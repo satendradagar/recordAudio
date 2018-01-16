@@ -107,3 +107,6 @@ Route::match(['get', 'post'],'api/get-menu','APIController@postGetMenu');
 Route::match(['get', 'post'],'api/remove_music','APIController@postRemoveMusic');
 Route::match(['get', 'post'],'api/get-group_music','APIController@postGetGroupMusic');
 Route::match(['get', 'post'],'api/set-favorite','APIController@postSetFavorite');
+
+admin@admin.com
+password

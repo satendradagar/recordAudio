@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,15 +12,15 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Audio_Capture" customModuleProvider="target">
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Hello_Demo" customModuleProvider="target">
             <connections>
                 <outlet property="menu" destination="APB-rk-xcc" id="Sls-Kc-c0f"/>
                 <outlet property="window" destination="QvC-M9-y7g" id="gIp-Ho-8D9"/>
             </connections>
         </customObject>
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
-        <menu id="APB-rk-xcc" userLabel="Menu Bar Options" customClass="MenuBarActionHandler" customModule="Audio_Capture" customModuleProvider="target">
+        <menu id="APB-rk-xcc" userLabel="Menu Bar Options" customClass="MenuBarActionHandler" customModule="Hello_Demo" customModuleProvider="target">
             <items>
                 <menuItem title="Record Audio" id="NOc-3h-UFU">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -40,6 +41,17 @@
                     <menu key="submenu" title="My Captures" id="OTX-mz-rSC">
                         <items>
                             <menuItem title="Cap 1" id="kxB-mt-PBB">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="Xcy-jf-Idh"/>
+                <menuItem title="Inbox" id="flC-nl-pqR">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <menu key="submenu" title="Inbox" id="Fel-mS-gaD">
+                        <items>
+                            <menuItem title="Cap 1" id="TTO-0C-fFO">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
                         </items>
@@ -67,8 +79,15 @@
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="4nv-zc-eCF"/>
+                <menuItem title="Login" id="NtI-r5-Yp8">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showLoginPopupDidClicked:" target="APB-rk-xcc" id="PsG-zI-QjL"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="W46-Mi-LWM"/>
-                <menuItem title="Quit Audio Capture" keyEquivalent="q" id="Q3q-Ir-dX9">
+                <menuItem title="Quit Hello Demo" keyEquivalent="q" id="Q3q-Ir-dX9">
                     <connections>
                         <action selector="didClickQuitApp:" target="APB-rk-xcc" id="whK-Ks-Mxh"/>
                     </connections>
@@ -76,6 +95,8 @@
             </items>
             <connections>
                 <outlet property="favourites" destination="Kzl-oP-KFd" id="vWH-6n-T6e"/>
+                <outlet property="inboxMenu" destination="flC-nl-pqR" id="f4T-e7-0mt"/>
+                <outlet property="loginLogout" destination="NtI-r5-Yp8" id="xUT-2j-WLs"/>
                 <outlet property="myCaptures" destination="S3Z-Vn-F3J" id="vTl-Mw-doQ"/>
                 <outlet property="playNext" destination="8Ky-3D-ny8" id="avo-bu-RSj"/>
                 <outlet property="recordAudio" destination="NOc-3h-UFU" id="0tR-H8-0GR"/>
@@ -745,15 +766,16 @@
             </items>
             <point key="canvasLocation" x="139" y="212"/>
         </menu>
-        <window title="Audio Capture" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
+        <window title="Audio Capture Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="335" y="390" width="480" height="360"/>
+            <rect key="contentRect" x="335" y="390" width="399" height="158"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="399" height="158"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
+            <point key="canvasLocation" x="645.5" y="191"/>
         </window>
     </objects>
 </document>

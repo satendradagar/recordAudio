@@ -111,4 +111,28 @@ class PreferencesStore: NSObject {
         self.defaults.setValue(nil, forKey: "U_Login")
         self.user.isLogin = false
     }
+    
+    func updateSyncFile(fileProperties:[String:Any], forPath path:String) {
+
+        var preDict = [:] as [String:Any?]
+    
+        if let oldDict = self.syncFileHistory(){
+            preDict = oldDict
+        }
+        preDict[path] = fileProperties
+        self.defaults.setValue(preDict, forKey: "U_Sync")
+    }
+    
+    func syncFileForPath(path: String) -> [String:Any?]? {
+        if let oldDict = self.syncFileHistory(){
+            return oldDict[path] as? [String:Any?]
+        }
+        return nil
+    }
+    
+    func syncFileHistory() -> [String:Any?]? {
+        
+        let dict = defaults.value(forKey: "U_Sync") as? [String:Any?] ?? [:]
+        return dict
+    }
 }

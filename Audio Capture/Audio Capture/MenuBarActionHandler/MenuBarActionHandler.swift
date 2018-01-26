@@ -85,7 +85,7 @@ class MenuBarActionHandler: NSMenu {
         if (recordingController.isRecording()){
             (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
             recordingController.recorder?.stop()
-            recordAudio.title = "Record Audio"
+            recordAudio.title = "Capture Audio"
 
         }
         else{
@@ -102,12 +102,16 @@ class MenuBarActionHandler: NSMenu {
     }
 
     @IBAction func showLoginPopupDidClicked(_ sender: Any) {
-        if PreferencesStore.sharedInstance.user.isLogin {
+        if false == PreferencesStore.sharedInstance.user.isLogin {
             
             loginController = MusicLoginController.init(nibName: "MusicLoginController", bundle: Bundle.main, popOverDismissHandler: { () -> Bool in
                 
                 (NSApp.delegate as? AppDelegate)?.setupMenuWithMainMenu()
                 self.loginController?.loginPopover.performClose(nil)
+                self.reloadFavouriteWithStore()
+                self.reloadInboxWithStore()
+                self.reloadLoginWithStore()
+
                 return true
             });
             loginController?.statusItem = (NSApp.delegate as? AppDelegate)?.statusItem
@@ -115,6 +119,11 @@ class MenuBarActionHandler: NSMenu {
             
             loginController?.showPopover()
             
+        }
+        else{
+            PreferencesStore.sharedInstance.logoutUser()
+            self.reloadLoginWithStore()
+
         }
 
         }
@@ -128,6 +137,8 @@ class MenuBarActionHandler: NSMenu {
     
     func updateFileRelatedMenu() {
         myCaptures.submenu?.removeAllItems();
+        NSApp.activate(ignoringOtherApps: true)
+
         for path in RecordingStoreManager.capturedFiles() {
             let item = NSMenuItem.init()
             let field = CaptureTextField(withFilePath:path)

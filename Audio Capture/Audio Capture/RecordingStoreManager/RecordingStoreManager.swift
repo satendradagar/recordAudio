@@ -64,6 +64,16 @@ class RecordingStoreManager: NSObject {
         }
         return paths
     }
+    
+    static func syncFiles() -> [String]{
+        var paths = [String]();
+        do {
+            paths = try FileManager.default.contentsOfDirectory(atPath:syncRootPath())
+        } catch {
+            print(error)
+        }
+        return paths
+    }
 //
 //    func favouriteRootPath()  -> NSURL {
 //

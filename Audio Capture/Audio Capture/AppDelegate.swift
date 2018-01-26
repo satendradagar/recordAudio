@@ -6,6 +6,16 @@
 //  Copyright © 2017 CB. All rights reserved.
 //
 
+enum InterfaceStyle : String {
+    case Dark, Light
+    
+    init() {
+        let type = UserDefaults.standard.string(forKey: "AppleInterfaceStyle") ?? "Light"
+        self = InterfaceStyle(rawValue: type)!
+    }
+}
+
+let currentStyle = InterfaceStyle()
 import Cocoa
 
 @NSApplicationMain
@@ -19,13 +29,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     var statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
   
-    func setupMenuForNormal() {
-        let img = NSImage(named: NSImage.Name("status"))
+    func setupMenuForRecording() {
+        var img = NSImage(named: NSImage.Name("status"))
+
+        if(InterfaceStyle() == .Dark){
+            img = NSImage(named: NSImage.Name("statusDark"))
+        }
         statusItem.image = img
 
     }
-
-    func setupMenuForRecording() {
+    func setupMenuForNormal() {
+        
         let img = NSImage(named: NSImage.Name("status_Recording"))
         statusItem.image = img
         
@@ -35,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func setupMenuWithButton() {
         let button = NSButton(frame: CGRect(x: 0, y: 0, width: 41, height: 18)) as? NSButton
         statusItem.view = button
-        let img = NSImage(named: NSImage.Name("status"))
+        let img = NSImage(named: NSImage.Name("status_Recording"))
         button?.image = img
 //        button?.title = "Audio"
         //    [button highlight:YES];
@@ -51,14 +65,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             return
         }
         statusItem.view = nil
-        let img = NSImage(named: NSImage.Name("status"))
+        let img = NSImage(named: NSImage.Name("status_Recording"))
         statusItem.menu = menu
         statusItem.image = img
 //        statusItem.title = "Audio"
 
-        let highlightedImage = NSImage(named: NSImage.Name("menuBarSelectedIcon"))
-        statusItem.alternateImage = highlightedImage
-        statusItem.highlightMode = true
+//        let highlightedImage = NSImage(named: NSImage.Name("menuBarSelectedIcon"))
+//        statusItem.alternateImage = highlightedImage
+//        statusItem.highlightMode = true
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

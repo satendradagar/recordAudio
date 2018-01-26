@@ -70,8 +70,8 @@ class MusicLoginController: NSViewController, NSPopoverDelegate {
         if nil != loginEmail {
             emailIDField.stringValue = loginEmail ?? ""
         }
-        emailIDField.stringValue = "satendradagar@gmail.com"
-        passwordField.stringValue = "sattubhai"
+        emailIDField.stringValue = "admin@admin.com"
+        passwordField.stringValue = "password"
 
     }
     func showPopover() {
@@ -105,19 +105,30 @@ class MusicLoginController: NSViewController, NSPopoverDelegate {
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
             print("Result: \(response.result)")                         // response serialization result
-            
+            self.circularProgressView.stopAnimation(nil)
+            self.circularProgressView.isHidden = true
+            self.loginButton.isEnabled = true
+
             if let json = response.result.value as? NSDictionary {
                 
                 print("JSON: \(json)") // serialized json response
 
-                if let err = json["error"] as? String{
+                if let err = json["message"] as? String{
                     print("error\(err)")
+                   _ = NSUtilities.dialogOK(question: "Authentication Failed", text: err)
                     PreferencesStore.sharedInstance.saveLoginDetails(data: nil )
 
                 }
                 else{
-                    let data = json["data"] as! NSDictionary
+                    if let data = json["data"] as? NSDictionary{
                     PreferencesStore.sharedInstance.saveLoginDetails(data: data )
+                        self.didClickClosePopover(sender)
+                    }
+                    else{
+                       _ = NSUtilities.dialogOK(question: "Authentication Failed", text: "Something went wrong")
+                        PreferencesStore.sharedInstance.saveLoginDetails(data: nil )
+
+                    }
                 }
 
             }

@@ -22,18 +22,28 @@
         <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
         <menu id="APB-rk-xcc" userLabel="Menu Bar Options" customClass="MenuBarActionHandler" customModule="Hello_Demo" customModuleProvider="target">
             <items>
-                <menuItem title="Record Audio" id="NOc-3h-UFU">
+                <menuItem title="Capture Audio" id="NOc-3h-UFU">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="didClickRecordAudio:" target="APB-rk-xcc" id="HaC-ip-ibk"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Gnm-e7-g36"/>
-                <menuItem title="Play Next" id="8Ky-3D-ny8">
+                <menuItem title="Play" id="cyO-bh-eYx">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="didClickPlayNext:" target="APB-rk-xcc" id="gPt-6p-Y8H"/>
-                    </connections>
+                    <menu key="submenu" title="Play" id="cuV-Dj-DPq">
+                        <items>
+                            <menuItem title="Inbox" id="PqR-2F-GQs">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Favorites" id="038-sK-t2l">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Capture" id="Vi8-7f-0R3">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                        </items>
+                    </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="yKZ-aF-FvD"/>
                 <menuItem title="My Captures" id="S3Z-Vn-F3J">
@@ -58,9 +68,9 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="UyE-vC-vkJ"/>
-                <menuItem title="Favourites" id="Kzl-oP-KFd">
+                <menuItem title="Favorites" id="Kzl-oP-KFd">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Favourites" id="HVM-uS-4Bl">
+                    <menu key="submenu" title="Favorites" id="HVM-uS-4Bl">
                         <items>
                             <menuItem title="Fav 1" id="E8Y-cc-Ugy">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -98,7 +108,6 @@
                 <outlet property="inboxMenu" destination="flC-nl-pqR" id="f4T-e7-0mt"/>
                 <outlet property="loginLogout" destination="NtI-r5-Yp8" id="xUT-2j-WLs"/>
                 <outlet property="myCaptures" destination="S3Z-Vn-F3J" id="vTl-Mw-doQ"/>
-                <outlet property="playNext" destination="8Ky-3D-ny8" id="avo-bu-RSj"/>
                 <outlet property="recordAudio" destination="NOc-3h-UFU" id="0tR-H8-0GR"/>
                 <outlet property="sync" destination="0Wn-2p-mgW" id="CWD-dU-sDi"/>
             </connections>
@@ -770,7 +779,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="399" height="158"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="399" height="158"/>
                 <autoresizingMask key="autoresizingMask"/>

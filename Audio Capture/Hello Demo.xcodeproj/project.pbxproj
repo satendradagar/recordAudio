@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4B660FF7AA18AC30D18DC4F1 /* Pods_Audio_Capture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7482909E1ECF42C0576A2F0 /* Pods_Audio_Capture.framework */; };
+		9A12CEB0200DBCDE00844308 /* SyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */; };
 		9A205C1B1FFF95850033D96D /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1A1FFF95850033D96D /* PreferencesStore.swift */; };
 		9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */; };
+		9A3564E220172801008DC087 /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3564E120172801008DC087 /* FileUploader.swift */; };
 		9A44227D20067E820023E37D /* InboxListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44227C20067E820023E37D /* InboxListUpdater.swift */; };
 		9A5805631FF4C37400A55D16 /* MenuBarActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5805621FF4C37400A55D16 /* MenuBarActionHandler.swift */; };
 		9A5805661FF4C97200A55D16 /* AudioRecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5805651FF4C97200A55D16 /* AudioRecordingController.swift */; };
@@ -55,8 +57,10 @@
 		49A9802D129883F571D39D9C /* Pods_Audio_CaptureTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Audio_CaptureTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		765E74007FCB3EE86D4F60CC /* Pods-Audio Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audio Capture.release.xcconfig"; path = "Pods/Target Support Files/Pods-Audio Capture/Pods-Audio Capture.release.xcconfig"; sourceTree = "<group>"; };
 		99A41F0EEBC20CAE852C191D /* Pods_Audio_CaptureUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Audio_CaptureUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncFileManager.swift; sourceTree = "<group>"; };
 		9A205C1A1FFF95850033D96D /* PreferencesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesStore.swift; sourceTree = "<group>"; };
 		9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteListUpdater.swift; sourceTree = "<group>"; };
+		9A3564E120172801008DC087 /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
 		9A44227C20067E820023E37D /* InboxListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxListUpdater.swift; sourceTree = "<group>"; };
 		9A5805621FF4C37400A55D16 /* MenuBarActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarActionHandler.swift; sourceTree = "<group>"; };
 		9A5805651FF4C97200A55D16 /* AudioRecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingController.swift; sourceTree = "<group>"; };
@@ -143,6 +147,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9A12CEAE200DBCC100844308 /* SyncFileManager */ = {
+			isa = PBXGroup;
+			children = (
+				9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */,
+			);
+			name = SyncFileManager;
+			path = "Audio Capture/SyncFileManager";
+			sourceTree = SOURCE_ROOT;
+		};
 		9A205C191FFF95850033D96D /* PreferencesStore */ = {
 			isa = PBXGroup;
 			children = (
@@ -156,6 +169,7 @@
 			children = (
 				9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */,
 				9A44227C20067E820023E37D /* InboxListUpdater.swift */,
+				9A3564E120172801008DC087 /* FileUploader.swift */,
 			);
 			path = ServerDataManagers;
 			sourceTree = "<group>";
@@ -222,6 +236,7 @@
 				9ADE7B991FF3FACB00AE8885 /* AppDelegate.swift */,
 				9A205C1C1FFF97C00033D96D /* ServerDataManagers */,
 				9AE97A0120022A2000815942 /* LoginController */,
+				9A12CEAE200DBCC100844308 /* SyncFileManager */,
 				9ADE7B9E1FF3FACB00AE8885 /* Assets.xcassets */,
 				9ADE7BA01FF3FACB00AE8885 /* MainMenu.xib */,
 				9ADE7BA31FF3FACB00AE8885 /* Info.plist */,
@@ -601,6 +616,7 @@
 				9AC7D40C1FFB9E7600D3689E /* CreateDirecotry.swift in Sources */,
 				9A44227D20067E820023E37D /* InboxListUpdater.swift in Sources */,
 				9ADE7BD01FF3FF5F00AE8885 /* DoubleClickButton.swift in Sources */,
+				9A3564E220172801008DC087 /* FileUploader.swift in Sources */,
 				9ADE7B9A1FF3FACB00AE8885 /* AppDelegate.swift in Sources */,
 				9AE97A0D20023C3200815942 /* NSUtilities.swift in Sources */,
 				9ADE7B9D1FF3FACB00AE8885 /* Audio_Capture.xcdatamodeld in Sources */,
@@ -608,6 +624,7 @@
 				9AF2900D200394570017E9AD /* ApiConstants.swift in Sources */,
 				9A5805631FF4C37400A55D16 /* MenuBarActionHandler.swift in Sources */,
 				9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */,
+				9A12CEB0200DBCDE00844308 /* SyncFileManager.swift in Sources */,
 				9ABC911D2004BB94003AEB80 /* DataRequestHandler.swift in Sources */,
 				9ABC911F2004C37F003AEB80 /* DictionaryCleanup.swift in Sources */,
 				9ABE2C1E20091EE50025BA5A /* CaptureTextField.swift in Sources */,

@@ -110,3 +110,4 @@ Route::match(['get', 'post'],'api/set-favorite','APIController@postSetFavorite')
 
 admin@admin.com
 password
+

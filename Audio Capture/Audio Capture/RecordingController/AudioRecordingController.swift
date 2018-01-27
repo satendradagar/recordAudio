@@ -24,7 +24,7 @@ class AVAudioRecordingController: NSObject {
         let currentDate = NSDate()
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yy HHmmss"
-        let fileName = "/Recording on " + dateFormatter.string(from: currentDate as Date) + ".caf"
+        let fileName = "/Recording on " + dateFormatter.string(from: currentDate as Date) + ".\(captureExtension)"
         let recordingPath = RecordingStoreManager.capturesRootPath()+fileName
         let url = NSURL(fileURLWithPath: recordingPath)
         let recordSettings = [AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
@@ -34,7 +34,7 @@ class AVAudioRecordingController: NSObject {
         do {
             initialisedRecorder = try AVAudioRecorder(url: url as URL, settings: recordSettings)
         }catch {
-            print("nope")
+            print("nope\(error)")
         }
         initialisedRecorder!.isMeteringEnabled = true
         initialisedRecorder!.prepareToRecord()

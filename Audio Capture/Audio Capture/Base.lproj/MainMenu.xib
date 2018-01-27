@@ -33,14 +33,23 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Play" id="cuV-Dj-DPq">
                         <items>
-                            <menuItem title="Inbox" id="PqR-2F-GQs">
+                            <menuItem title="Inbox" tag="1" id="PqR-2F-GQs">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didClickPlayNext:" target="APB-rk-xcc" id="5Ne-MX-chm"/>
+                                </connections>
                             </menuItem>
-                            <menuItem title="Favorites" id="038-sK-t2l">
+                            <menuItem title="Favorites" tag="2" id="038-sK-t2l">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didClickPlayNext:" target="APB-rk-xcc" id="bYc-Ld-0Jo"/>
+                                </connections>
                             </menuItem>
-                            <menuItem title="Capture" id="Vi8-7f-0R3">
+                            <menuItem title="Capture" tag="3" id="Vi8-7f-0R3">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didClickPlayNext:" target="APB-rk-xcc" id="Mhi-QC-LDR"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
@@ -57,28 +66,6 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Xcy-jf-Idh"/>
-                <menuItem title="Inbox" id="flC-nl-pqR">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Inbox" id="Fel-mS-gaD">
-                        <items>
-                            <menuItem title="Cap 1" id="TTO-0C-fFO">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="UyE-vC-vkJ"/>
-                <menuItem title="Favorites" id="Kzl-oP-KFd">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Favorites" id="HVM-uS-4Bl">
-                        <items>
-                            <menuItem title="Fav 1" id="E8Y-cc-Ugy">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                            </menuItem>
-                        </items>
-                    </menu>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="CC1-4D-Rly"/>
                 <menuItem title="Sync" id="0Wn-2p-mgW">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Sync" id="Bac-ap-elg">
@@ -104,8 +91,6 @@
                 </menuItem>
             </items>
             <connections>
-                <outlet property="favourites" destination="Kzl-oP-KFd" id="vWH-6n-T6e"/>
-                <outlet property="inboxMenu" destination="flC-nl-pqR" id="f4T-e7-0mt"/>
                 <outlet property="loginLogout" destination="NtI-r5-Yp8" id="xUT-2j-WLs"/>
                 <outlet property="myCaptures" destination="S3Z-Vn-F3J" id="vTl-Mw-doQ"/>
                 <outlet property="recordAudio" destination="NOc-3h-UFU" id="0tR-H8-0GR"/>

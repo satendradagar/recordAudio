@@ -6,6 +6,7 @@
 //  Copyright © 2017 CB. All rights reserved.
 //
 
+
 import Foundation
 import Cocoa
 
@@ -30,7 +31,8 @@ class MenuBarActionHandler: NSMenu {
     var loginController: MusicLoginController?
     var favouriteList: [FavouriteItem]?
     var inboxList: [MusicItem]?
-
+    var playerController = MiniAudioPlayerController.instance()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.updateFileRelatedMenu()
@@ -45,28 +47,28 @@ class MenuBarActionHandler: NSMenu {
         
         self.favouriteList = FavouriteListUpdater.getUpdatedFavouriteItems()
         
-        favourites.submenu?.removeAllItems();
+//        favourites.submenu?.removeAllItems();
         
-        if let list = self.favouriteList {
-            
-            for item in list {
-                favourites.submenu?.addItem(withTitle: item.title ?? ""  , action: nil, keyEquivalent: "")
-            }
-        }
+//        if let list = self.favouriteList {
+//
+//            for item in list {
+//                favourites.submenu?.addItem(withTitle: item.title ?? ""  , action: nil, keyEquivalent: "")
+//            }
+//        }
     }
     
     func reloadInboxWithStore()  {
         
         self.inboxList = InboxListUpdater.getUpdatedInboxItems()
         
-        inboxMenu.submenu?.removeAllItems();
-        
-        if let list = self.inboxList {
-            
-            for item in list {
-                inboxMenu.submenu?.addItem(withTitle: item.title ?? ""  , action: nil, keyEquivalent: "")
-            }
-        }
+//        inboxMenu.submenu?.removeAllItems();
+//
+//        if let list = self.inboxList {
+//
+//            for item in list {
+//                inboxMenu.submenu?.addItem(withTitle: item.title ?? ""  , action: nil, keyEquivalent: "")
+//            }
+//        }
     }
 
 
@@ -81,7 +83,7 @@ class MenuBarActionHandler: NSMenu {
     }
     
     @IBAction func didClickRecordAudio(_ sender: NSMenuItem) {
-        
+
         if (recordingController.isRecording()){
             (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
             recordingController.recorder?.stop()
@@ -98,7 +100,27 @@ class MenuBarActionHandler: NSMenu {
     }
     
     @IBAction func didClickPlayNext(_ sender: NSMenuItem) {
-        
+        playerController.window?.makeKeyAndOrderFront(sender)
+       
+        switch sender.tag {
+        case 1:
+            if let songs = inboxList {
+                playerController.playerController.configureWithSongs(songs: songs)
+            }
+            
+        case 2:
+            if let songs = favouriteList {
+                playerController.playerController.configureWithSongs(songs: songs)
+            }
+            
+        case 3:
+            if let songs = favouriteList {
+                playerController.playerController.configureWithSongs(songs: songs)
+            }
+            
+        default:
+            print("Default")
+        }
     }
 
     @IBAction func showLoginPopupDidClicked(_ sender: Any) {
@@ -139,7 +161,7 @@ class MenuBarActionHandler: NSMenu {
         myCaptures.submenu?.removeAllItems();
         NSApp.activate(ignoringOtherApps: true)
 
-        for path in RecordingStoreManager.capturedFiles() {
+        for path in RecordingStoreManager.capturedFiles().reversed() {
             let item = NSMenuItem.init()
             let field = CaptureTextField(withFilePath:path)
 //            field.stringValue = path

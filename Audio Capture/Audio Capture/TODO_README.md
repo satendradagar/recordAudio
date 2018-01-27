@@ -22,3 +22,15 @@ mp3/ wav
 2. Change record list in revert
 3. Remove Menu items
 4.
+
+Problem:
+1. Format
+kAudioFormatMPEG4AAC
+kAudioFormatAppleLossless
+kAudioFormatAppleIMA4
+kAudioFormatiLBC
+kAudioFormatULaw
+kAudioFormatLinearPCM
+
+2.
+

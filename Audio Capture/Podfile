@@ -1,20 +1,22 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Audio Capture' do
+target 'Hello Demo' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
 pod 'Alamofire', '~> 4.5'
 pod 'Alamofire-SwiftyJSON'
+pod 'AlamofireImage', '~> 3.3'
+
   use_frameworks!
 
   # Pods for Audio Capture
 
-  target 'Audio CaptureTests' do
+  target 'Hello DemoTests' do
     inherit! :search_paths
     # Pods for testing
   end
 
-  target 'Audio CaptureUITests' do
+  target 'Hello DemoUITests' do
     inherit! :search_paths
     # Pods for testing
   end

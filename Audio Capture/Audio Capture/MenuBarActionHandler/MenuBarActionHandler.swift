@@ -35,6 +35,7 @@ class MenuBarActionHandler: NSMenu {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.delegate = self
         self.updateFileRelatedMenu()
         FavouriteListUpdater.updateFavouriteItemList()
         InboxListUpdater.updateInboxItemList()
@@ -159,9 +160,12 @@ class MenuBarActionHandler: NSMenu {
     
     func updateFileRelatedMenu() {
         myCaptures.submenu?.removeAllItems();
-        NSApp.activate(ignoringOtherApps: true)
 
         for path in RecordingStoreManager.capturedFiles().reversed() {
+            if path == ".DSStore"
+            {
+                continue
+            }
             let item = NSMenuItem.init()
             let field = CaptureTextField(withFilePath:path)
 //            field.stringValue = path
@@ -175,5 +179,40 @@ class MenuBarActionHandler: NSMenu {
         }
     }
     
+    func updateSyncRelatedMenu() {
+        sync.submenu?.removeAllItems();
+        
+        for path in RecordingStoreManager.syncFiles() {
+            if path == ".DSStore"
+            {
+                continue
+            }
+            let item = NSMenuItem.init()
+//            let field = CaptureTextField(withFilePath:path)
+//            //            field.stringValue = path
+//            field.backgroundColor = NSColor.clear
+//            field.drawsBackground = true
+//            item.view = field
+//
+//            sync.submenu?.addItem(item)
+//
+            sync.submenu?.addItem(withTitle: path, action: nil, keyEquivalent: "")
+        }
+    }
+}
 
+extension MenuBarActionHandler : NSMenuDelegate {
+    
+    public func menuWillOpen(_ menu: NSMenu){
+        print("menuWillOpen")
+        NSApp.activate(ignoringOtherApps: true)
+        updateSyncRelatedMenu()
+//        self.updateMenuWithCurrentStatus()
+    }
+    
+    public func menuDidClose(_ menu: NSMenu){
+        print("menuDidClose")
+        
+    }
+    
 }

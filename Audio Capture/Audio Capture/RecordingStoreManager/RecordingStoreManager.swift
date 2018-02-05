@@ -49,6 +49,12 @@ class RecordingStoreManager: NSObject {
         return capturesPath
     }
     
+    
+    static func syncRootFilePathFor(_ fileName:String) -> String  {
+        let filePath = syncRootPath() + "/\(fileName))"
+        return filePath
+    }
+    
     static func favouriteRootPath() -> String  {
         let capturesPath = recordingsRootPath() + "/Favourite"
         FileManager.checkAndCreateDirectoryIfNeeded(path: capturesPath)

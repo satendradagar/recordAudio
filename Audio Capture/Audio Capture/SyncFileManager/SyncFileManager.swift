@@ -35,7 +35,12 @@ class SyncFile: NSObject {
     }
     
     func checkAnduploadFileToServer(completion:((_ filePath:String) -> Void)) {
-        
+        if uploadStatus != .uploaded{
+            let localPath = RecordingStoreManager.syncRootFilePathFor(fileName)
+            FileUploader.uploadMediaAtPath(localPath, completion: { (path, status) in
+                self.saveStatus()
+            })
+        }
     }
     
 }
@@ -43,25 +48,60 @@ class SyncFile: NSObject {
 class SyncFileManager: NSObject {
     
     var files = [SyncFile]()
-    
+    var syncIndex = 0
     static let shared = SyncFileManager()
-    
+    var timer: Timer?
+
    override init() {
 //        let files = RecordingStoreManager.syncFiles()
     }
     
     func checkAndSyncFiles() {
-        let files = RecordingStoreManager.syncFiles()
+        let recfiles = RecordingStoreManager.syncFiles()
         var filesToSync = [SyncFile]()
         
-        for file in files {
+        for file in recfiles {
             let syncFile = SyncFile.init(name: file)
             filesToSync.append(syncFile)
+            
         }
         self.files = filesToSync
+        syncIndex = -1
+        performSyncWithServer()
+    }
+    
+    func performSyncWithServer() {
+        
+        syncIndex = syncIndex + 1
+        if syncIndex < self.files.count {
+        let file = self.files[syncIndex]
+        file.checkAnduploadFileToServer(completion: { (filePath) in
+            self.performSyncWithServer()
+        })
+        
+        }
+
     }
     
     deinit {
         
+    }
+    
+    func startTimer() {
+        
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.loop), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func stopTimer() {
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+    
+    @objc func loop(timer:Timer) {
+        //do something
     }
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3B9C4EFB8AA9D0EF25E5EE9C /* Pods_Hello_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BB24CEB922E25FC3C79B70 /* Pods_Hello_DemoUITests.framework */; };
-		4B660FF7AA18AC30D18DC4F1 /* Pods_Audio_Capture.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7482909E1ECF42C0576A2F0 /* Pods_Audio_Capture.framework */; };
 		9A12CEB0200DBCDE00844308 /* SyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */; };
 		9A205C1B1FFF95850033D96D /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1A1FFF95850033D96D /* PreferencesStore.swift */; };
 		9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */; };
@@ -123,7 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B660FF7AA18AC30D18DC4F1 /* Pods_Audio_Capture.framework in Frameworks */,
 				C4BA0E493902225A0212ACA4 /* Pods_Hello_Demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

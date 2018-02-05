@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Audio Capture/RecordingController/AudioRecordingController.swift"
-            timestampString = "538155264.015069"
+            timestampString = "539455619.931592"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Audio Capture/MenuBarActionHandler/MenuBarActionHandler.swift"
-            timestampString = "538158170.310588"
+            timestampString = "539455619.931654"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "updateFileRelatedMenu()"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "showLoginPopupDidClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

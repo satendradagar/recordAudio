@@ -30,6 +30,7 @@ class AVAudioRecordingController: NSObject {
         let recordSettings = [AVEncoderAudioQualityKey: AVAudioQuality.min.rawValue,
                               AVEncoderBitRateKey: 16,
                               AVNumberOfChannelsKey: 2,
+                              AVFormatIDKey: kAudioFormatAppleIMA4,
                               AVSampleRateKey: 44100.0] as [String : Any]
         do {
             initialisedRecorder = try AVAudioRecorder(url: url as URL, settings: recordSettings)

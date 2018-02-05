@@ -50,12 +50,18 @@ class FileUploader: NSObject {
         
     }
     
-    static func uploadImage(_ filePath:String) {
+    static func uploadMediaAtPath(_ filePath:String, completion:@escaping ((_ filePath:String, _ status:Bool) -> Void)) {
         
-        let params: Parameters = ["user_id": PreferencesStore.sharedInstance.user.id ?? ""]
-        let URL = ApiConstant.pathFor(type: .favourite)
+        
+        let URL = ApiConstant.pathFor(type: .sync)
         let fileUrl = Foundation.URL(string: filePath)
+        
 
+        let params: Parameters = ["user_id": PreferencesStore.sharedInstance.user.id ?? "",
+                                  "bit_rate": "44100",
+                                  "bit_rate": "44100",
+                                  "file":fileUrl?.lastPathComponent ?? "File.aiff"
+                                  ]
         let data = try! Data.init(contentsOf:fileUrl!)
         
         Alamofire.upload(multipartFormData:
@@ -84,9 +90,14 @@ class FileUploader: NSObject {
                             {
                                 print("DATA UPLOAD SUCCESSFULLY")
                             }
+                            completion(filePath, true)
+
                         }
+                        completion(filePath, false)
+
                 }
             case .failure(let encodingError):
+                completion(filePath, false)
                 break
             }
         }

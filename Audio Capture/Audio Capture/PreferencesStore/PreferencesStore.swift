@@ -121,6 +121,7 @@ class PreferencesStore: NSObject {
         }
         preDict[path] = fileProperties
         self.defaults.setValue(preDict, forKey: "U_Sync")
+        self.defaults.synchronize()
     }
     
     func syncFileForPath(path: String) -> [String:Any?]? {

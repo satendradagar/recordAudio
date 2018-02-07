@@ -51,7 +51,7 @@ class RecordingStoreManager: NSObject {
     
     
     static func syncRootFilePathFor(_ fileName:String) -> String  {
-        let filePath = syncRootPath() + "/\(fileName))"
+        let filePath = syncRootPath() + "/\(fileName)"
         return filePath
     }
     

@@ -27,7 +27,9 @@ class MenuBarActionHandler: NSMenu {
     @IBOutlet weak var loginLogout: NSMenuItem!
 
     var recordingController = AVAudioRecordingController()
-    
+    var syncFilesManager = SyncFileManager()
+    var syncRecordingManager = RecordSyncFileManager()
+
     var loginController: MusicLoginController?
     var favouriteList: [FavouriteItem]?
     var inboxList: [MusicItem]?
@@ -205,6 +207,9 @@ extension MenuBarActionHandler : NSMenuDelegate {
     
     public func menuWillOpen(_ menu: NSMenu){
         print("menuWillOpen")
+        syncFilesManager.checkAndSyncFiles()
+        syncRecordingManager.checkAndSyncFiles()
+        
         NSApp.activate(ignoringOtherApps: true)
         updateSyncRelatedMenu()
 //        self.updateMenuWithCurrentStatus()

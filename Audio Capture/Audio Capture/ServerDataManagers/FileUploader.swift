@@ -56,22 +56,42 @@ class FileUploader: NSObject {
         let URL = ApiConstant.pathFor(type: .sync)
         let fileUrl = Foundation.URL(string: filePath)
         
+        /*
+         let parameters = [
+         [
+         "name": "user_id",
+         "value": "1"
+         ],
+         [
+         "name": "bit_rate",
+         "value": "44100"
+         ],
+         [
+         "name": "file",
+         "fileName": "/Users/satendrasingh/Desktop/Desktop/Songs/Punjabi/_Nu_Shraab--[HoTJaTT.CoM].mp3"
+         ]
+         ]
+ */
 
         let params: Parameters = ["user_id": PreferencesStore.sharedInstance.user.id ?? "",
                                   "bit_rate": "44100",
-                                  "bit_rate": "44100",
-                                  "file":fileUrl?.lastPathComponent ?? "File.aiff"
+//                                  "filename":fileUrl?.lastPathComponent ?? "File.aiff"
                                   ]
-        let data = try! Data.init(contentsOf:fileUrl!)
-        
+//        let data = try! Data.init(contentsOf:fileUrl!)
+        let data = FileManager.default.contents(atPath: filePath)
+
         Alamofire.upload(multipartFormData:
         {
+            
         (multipartFormData) in
-            multipartFormData.append(data , withName: fileUrl!.lastPathComponent , mimeType: "media/mp3")
-        for (key, value) in params
-        {
-        multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
-        }
+            for (key, value) in params
+            {
+                multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+            }
+
+//            multipartFormData.append(data! , withName: "file" , mimeType: "audio/mpeg")
+            multipartFormData.append(data!, withName: "file", fileName: fileUrl?.lastPathComponent ?? "File.aiff", mimeType: "audio/mpeg")
+            
         }, to:URL,headers:nil)
         { (result) in
             switch result {
@@ -85,15 +105,16 @@ class FileUploader: NSObject {
                         if response.result.value != nil
                         {
                             let dict :NSDictionary = response.result.value! as! NSDictionary
-                            let status = dict.value(forKey: "status")as! String
-                            if status=="1"
+                            let status = dict.value(forKey: "error_code")as! String
+                            if status=="200"
                             {
                                 print("DATA UPLOAD SUCCESSFULLY")
                             }
                             completion(filePath, true)
-
                         }
-                        completion(filePath, false)
+                        else{
+                            completion(filePath, false)
+                        }
 
                 }
             case .failure(let encodingError):

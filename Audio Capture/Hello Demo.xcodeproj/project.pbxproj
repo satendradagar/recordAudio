@@ -21,6 +21,7 @@
 		9A5B5B9A201B4AD50078BB7C /* NSViewController+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B5B98201B4AD40078BB7C /* NSViewController+Utilities.swift */; };
 		9A5B5B9B201B4AD50078BB7C /* NSStoryboard+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B5B99201B4AD40078BB7C /* NSStoryboard+Utilities.swift */; };
 		9A5B5B9D201B6BD50078BB7C /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B5B9C201B6BD50078BB7C /* PlayerViewController.swift */; };
+		9A5ECE2C2029D79500328094 /* RecordSyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECE2B2029D79500328094 /* RecordSyncFileManager.swift */; };
 		9ABC911D2004BB94003AEB80 /* DataRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC911C2004BB94003AEB80 /* DataRequestHandler.swift */; };
 		9ABC911F2004C37F003AEB80 /* DictionaryCleanup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC911E2004C37F003AEB80 /* DictionaryCleanup.swift */; };
 		9ABE2C1E20091EE50025BA5A /* CaptureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABE2C1D20091EE50025BA5A /* CaptureTextField.swift */; };
@@ -83,6 +84,7 @@
 		9A5B5B98201B4AD40078BB7C /* NSViewController+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSViewController+Utilities.swift"; sourceTree = "<group>"; };
 		9A5B5B99201B4AD40078BB7C /* NSStoryboard+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Utilities.swift"; sourceTree = "<group>"; };
 		9A5B5B9C201B6BD50078BB7C /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
+		9A5ECE2B2029D79500328094 /* RecordSyncFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSyncFileManager.swift; sourceTree = "<group>"; };
 		9A6FF41C1FFCE12500756E0C /* API_README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = API_README.md; sourceTree = "<group>"; tabWidth = 2; };
 		9ABC911C2004BB94003AEB80 /* DataRequestHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestHandler.swift; sourceTree = "<group>"; };
 		9ABC911E2004C37F003AEB80 /* DictionaryCleanup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryCleanup.swift; sourceTree = "<group>"; };
@@ -183,6 +185,7 @@
 			isa = PBXGroup;
 			children = (
 				9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */,
+				9A5ECE2B2029D79500328094 /* RecordSyncFileManager.swift */,
 			);
 			name = SyncFileManager;
 			path = "Audio Capture/SyncFileManager";
@@ -680,6 +683,7 @@
 				9ABC911D2004BB94003AEB80 /* DataRequestHandler.swift in Sources */,
 				9ABC911F2004C37F003AEB80 /* DictionaryCleanup.swift in Sources */,
 				9ABE2C1E20091EE50025BA5A /* CaptureTextField.swift in Sources */,
+				9A5ECE2C2029D79500328094 /* RecordSyncFileManager.swift in Sources */,
 				9A5805691FF4D1C900A55D16 /* RecordingStoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

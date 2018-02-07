@@ -34,12 +34,24 @@ class SyncFile: NSObject {
         PreferencesStore.sharedInstance.updateSyncFile(fileProperties: dict , forPath: fileName)
     }
     
-    func checkAnduploadFileToServer(completion:((_ filePath:String) -> Void)) {
+    func checkAnduploadFileToServer(completion:@escaping ((_ filePath:String) -> Void)) {
         if uploadStatus != .uploaded{
             let localPath = RecordingStoreManager.syncRootFilePathFor(fileName)
             FileUploader.uploadMediaAtPath(localPath, completion: { (path, status) in
+                
+                if (status == true){
+                    self.uploadStatus = .uploaded
+                    completion(self.fileName)
+                }
+                else if (status == false){
+                    self.uploadStatus = .failed
+//                    completion(self.fileName)
+                }
                 self.saveStatus()
             })
+        }
+        else{
+            completion(self.fileName)
         }
     }
     
@@ -49,18 +61,26 @@ class SyncFileManager: NSObject {
     
     var files = [SyncFile]()
     var syncIndex = 0
-    static let shared = SyncFileManager()
+//    static let shared = SyncFileManager()
     var timer: Timer?
 
    override init() {
 //        let files = RecordingStoreManager.syncFiles()
     }
     
+    func filesToList() -> [String]  {
+        return RecordingStoreManager.syncFiles()
+    }
+    
     func checkAndSyncFiles() {
-        let recfiles = RecordingStoreManager.syncFiles()
+        let recfiles = filesToList()
         var filesToSync = [SyncFile]()
         
         for file in recfiles {
+            if file == ".DSStore"
+            {
+                continue
+            }
             let syncFile = SyncFile.init(name: file)
             filesToSync.append(syncFile)
             
@@ -78,7 +98,6 @@ class SyncFileManager: NSObject {
         file.checkAnduploadFileToServer(completion: { (filePath) in
             self.performSyncWithServer()
         })
-        
         }
 
     }

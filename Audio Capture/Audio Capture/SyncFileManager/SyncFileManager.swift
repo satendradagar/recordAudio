@@ -21,7 +21,8 @@ enum FileStatus:String {
 class SyncFile: NSObject {
     var fileName: String!
     var uploadStatus = FileStatus.notSynced
-
+    var isRecording = false
+    
     init(name:String) {
         fileName = name
         if let dict = PreferencesStore.sharedInstance.syncFileForPath(path: fileName){
@@ -36,7 +37,10 @@ class SyncFile: NSObject {
     
     func checkAnduploadFileToServer(completion:@escaping ((_ filePath:String) -> Void)) {
         if uploadStatus != .uploaded{
-            let localPath = RecordingStoreManager.syncRootFilePathFor(fileName)
+            var localPath = RecordingStoreManager.syncRootFilePathFor(fileName)
+            if isRecording{
+                localPath = RecordingStoreManager.recordingRootFilePathFor(fileName)
+            }
             FileUploader.uploadMediaAtPath(localPath, completion: { (path, status) in
                 
                 if (status == true){
@@ -77,7 +81,7 @@ class SyncFileManager: NSObject {
         var filesToSync = [SyncFile]()
         
         for file in recfiles {
-            if file == ".DSStore"
+            if file == ".DS_Store"
             {
                 continue
             }

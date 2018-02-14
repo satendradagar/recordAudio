@@ -43,7 +43,7 @@ class MiniAudioPlayerController: NSWindowController {
     }
     
     @objc func windowWillClose(_ notification: Notification) {
-        playerController.playerView.player?.pause()
+        playerController.player.pause()
     }
 
 }

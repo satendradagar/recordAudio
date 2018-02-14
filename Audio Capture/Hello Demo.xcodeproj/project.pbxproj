@@ -8,6 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		3B9C4EFB8AA9D0EF25E5EE9C /* Pods_Hello_DemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48BB24CEB922E25FC3C79B70 /* Pods_Hello_DemoUITests.framework */; };
+		9A00613C202EE0660062E8DA /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A006134202EE0660062E8DA /* CircularProgressView.swift */; };
+		9A00613D202EE0660062E8DA /* NSBezierPath-CGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A006135202EE0660062E8DA /* NSBezierPath-CGPath.swift */; };
+		9A00613E202EE0660062E8DA /* ProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A006136202EE0660062E8DA /* ProgressBar.swift */; };
+		9A00613F202EE0660062E8DA /* DeterminateAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A006137202EE0660062E8DA /* DeterminateAnimation.swift */; };
+		9A006140202EE0660062E8DA /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A006138202EE0660062E8DA /* BaseView.swift */; };
+		9A006142202EE0890062E8DA /* PlayerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A006141202EE0880062E8DA /* PlayerViewController.storyboard */; };
+		9A006144202EE5CB0062E8DA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A006143202EE5CB0062E8DA /* ViewController.swift */; };
 		9A12CEB0200DBCDE00844308 /* SyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */; };
 		9A205C1B1FFF95850033D96D /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1A1FFF95850033D96D /* PreferencesStore.swift */; };
 		9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */; };
@@ -71,6 +78,13 @@
 		765E74007FCB3EE86D4F60CC /* Pods-Audio Capture.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Audio Capture.release.xcconfig"; path = "Pods/Target Support Files/Pods-Audio Capture/Pods-Audio Capture.release.xcconfig"; sourceTree = "<group>"; };
 		85E9E296B14B03EBAA625FE7 /* Pods-Hello Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello Demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-Hello Demo/Pods-Hello Demo.release.xcconfig"; sourceTree = "<group>"; };
 		99A41F0EEBC20CAE852C191D /* Pods_Audio_CaptureUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Audio_CaptureUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A006134202EE0660062E8DA /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
+		9A006135202EE0660062E8DA /* NSBezierPath-CGPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSBezierPath-CGPath.swift"; sourceTree = "<group>"; };
+		9A006136202EE0660062E8DA /* ProgressBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressBar.swift; sourceTree = "<group>"; };
+		9A006137202EE0660062E8DA /* DeterminateAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeterminateAnimation.swift; sourceTree = "<group>"; };
+		9A006138202EE0660062E8DA /* BaseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		9A006141202EE0880062E8DA /* PlayerViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = PlayerViewController.storyboard; sourceTree = "<group>"; };
+		9A006143202EE5CB0062E8DA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncFileManager.swift; sourceTree = "<group>"; };
 		9A205C1A1FFF95850033D96D /* PreferencesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesStore.swift; sourceTree = "<group>"; };
 		9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteListUpdater.swift; sourceTree = "<group>"; };
@@ -181,6 +195,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		9A006133202EE0660062E8DA /* Determinate */ = {
+			isa = PBXGroup;
+			children = (
+				9A006134202EE0660062E8DA /* CircularProgressView.swift */,
+				9A006135202EE0660062E8DA /* NSBezierPath-CGPath.swift */,
+				9A006136202EE0660062E8DA /* ProgressBar.swift */,
+				9A006137202EE0660062E8DA /* DeterminateAnimation.swift */,
+				9A006138202EE0660062E8DA /* BaseView.swift */,
+			);
+			path = Determinate;
+			sourceTree = "<group>";
+		};
 		9A12CEAE200DBCC100844308 /* SyncFileManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,9 +264,12 @@
 		9A5B5B93201B44770078BB7C /* MiniPlayerWindow */ = {
 			isa = PBXGroup;
 			children = (
+				9A006133202EE0660062E8DA /* Determinate */,
 				9A5B5B94201B44AC0078BB7C /* MiniAudioPlayerController.swift */,
+				9A006141202EE0880062E8DA /* PlayerViewController.storyboard */,
 				9A5B5B96201B45E60078BB7C /* MiniAudioPlayerController.storyboard */,
 				9A5B5B9C201B6BD50078BB7C /* PlayerViewController.swift */,
+				9A006143202EE5CB0062E8DA /* ViewController.swift */,
 			);
 			path = MiniPlayerWindow;
 			sourceTree = "<group>";
@@ -479,6 +508,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9ADE7B9F1FF3FACB00AE8885 /* Assets.xcassets in Resources */,
+				9A006142202EE0890062E8DA /* PlayerViewController.storyboard in Resources */,
 				9ADE7BA21FF3FACB00AE8885 /* MainMenu.xib in Resources */,
 				9AE97A0520022A7D00815942 /* MusicLoginController.xib in Resources */,
 				9A5B5B97201B45E60078BB7C /* MiniAudioPlayerController.storyboard in Resources */,
@@ -663,7 +693,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A205C1B1FFF95850033D96D /* PreferencesStore.swift in Sources */,
+				9A00613C202EE0660062E8DA /* CircularProgressView.swift in Sources */,
 				9AE97A0320022A3300815942 /* MusicLoginController.swift in Sources */,
+				9A00613F202EE0660062E8DA /* DeterminateAnimation.swift in Sources */,
 				9AC7D40C1FFB9E7600D3689E /* CreateDirecotry.swift in Sources */,
 				9A44227D20067E820023E37D /* InboxListUpdater.swift in Sources */,
 				9ADE7BD01FF3FF5F00AE8885 /* DoubleClickButton.swift in Sources */,
@@ -676,11 +708,15 @@
 				9ADE7B9D1FF3FACB00AE8885 /* Audio_Capture.xcdatamodeld in Sources */,
 				9A5805661FF4C97200A55D16 /* AudioRecordingController.swift in Sources */,
 				9AF2900D200394570017E9AD /* ApiConstants.swift in Sources */,
+				9A00613E202EE0660062E8DA /* ProgressBar.swift in Sources */,
 				9A5805631FF4C37400A55D16 /* MenuBarActionHandler.swift in Sources */,
+				9A006140202EE0660062E8DA /* BaseView.swift in Sources */,
 				9A5B5B9B201B4AD50078BB7C /* NSStoryboard+Utilities.swift in Sources */,
+				9A006144202EE5CB0062E8DA /* ViewController.swift in Sources */,
 				9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */,
 				9A12CEB0200DBCDE00844308 /* SyncFileManager.swift in Sources */,
 				9ABC911D2004BB94003AEB80 /* DataRequestHandler.swift in Sources */,
+				9A00613D202EE0660062E8DA /* NSBezierPath-CGPath.swift in Sources */,
 				9ABC911F2004C37F003AEB80 /* DictionaryCleanup.swift in Sources */,
 				9ABE2C1E20091EE50025BA5A /* CaptureTextField.swift in Sources */,
 				9A5ECE2C2029D79500328094 /* RecordSyncFileManager.swift in Sources */,

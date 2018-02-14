@@ -117,7 +117,8 @@ class MenuBarActionHandler: NSMenu {
             }
             
         case 3:
-            if let songs = favouriteList {
+            
+            if let songs = RecordingStoreManager.getRecordingMusicItem() {
                 playerController.playerController.configureWithSongs(songs: songs)
             }
             
@@ -164,7 +165,7 @@ class MenuBarActionHandler: NSMenu {
         myCaptures.submenu?.removeAllItems();
 
         for path in RecordingStoreManager.capturedFiles().reversed() {
-            if path == ".DSStore"
+            if path == ".DS_Store"
             {
                 continue
             }
@@ -185,7 +186,7 @@ class MenuBarActionHandler: NSMenu {
         sync.submenu?.removeAllItems();
         
         for path in RecordingStoreManager.syncFiles() {
-            if path == ".DSStore"
+            if path == ".DS_Store"
             {
                 continue
             }

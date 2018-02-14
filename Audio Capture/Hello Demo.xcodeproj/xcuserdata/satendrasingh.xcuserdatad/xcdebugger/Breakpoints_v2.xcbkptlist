@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Audio Capture/MenuBarActionHandler/MenuBarActionHandler.swift"
-            timestampString = "539455619.931654"
+            timestampString = "539962213.307314"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "showLoginPopupDidClicked(_:)"
             landmarkType = "7">
          </BreakpointContent>

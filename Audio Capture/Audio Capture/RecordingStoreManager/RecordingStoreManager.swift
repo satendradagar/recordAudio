@@ -55,6 +55,11 @@ class RecordingStoreManager: NSObject {
         return filePath
     }
     
+    static func recordingRootFilePathFor(_ fileName:String) -> String  {
+        let filePath = capturesRootPath() + "/\(fileName)"
+        return filePath
+    }
+
     static func favouriteRootPath() -> String  {
         let capturesPath = recordingsRootPath() + "/Favourite"
         FileManager.checkAndCreateDirectoryIfNeeded(path: capturesPath)
@@ -84,4 +89,22 @@ class RecordingStoreManager: NSObject {
 //    func favouriteRootPath()  -> NSURL {
 //
 //    }
+    
+    static func getRecordingMusicItem()  -> [MusicItem]?{
+        
+        let list = RecordingStoreManager.capturedFiles()
+        var items = [MusicItem]()
+        for item in list{
+            if item == ".DS_Store"
+            {
+                continue
+            }
+            let filepath = RecordingStoreManager.recordingRootFilePathFor(item)
+            if let fav = FavouriteItem(with: ["music_url":filepath]){
+                items.append(fav)
+            }
+        }
+        return items;
+    }
+
 }

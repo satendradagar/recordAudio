@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-let captureExtension = "aiff"
+let captureExtension = "wav"
 
 class NSUtilities: NSObject {
 

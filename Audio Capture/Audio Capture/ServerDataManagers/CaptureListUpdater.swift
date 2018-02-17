@@ -1,50 +1,22 @@
 //
-//  FavouriteListUpdater.swift
-//  Audio Capture
+//  CaptureListUpdater.swift
+//  Hello Demo
 //
-//  Created by Satendra Dagar on 05/01/18.
+//  Created by Satendra Dagar on 15/02/18.
 //  Copyright © 2018 CB. All rights reserved.
 //
 
+
 import Foundation
 import Alamofire
-import Alamofire_SwiftyJSON
 
-import Cocoa
-
-class MusicItem: NSObject {
+class CaptureListUpdater: NSObject {
     
-    var title:String?
-    var url:String?
-    var avatar: String?
-    
-    init?(with dict:[String:Any?]?) {
-        if let data = dict {
-            title = data["title"] as? String
-            url = data["music_url"] as? String
-            avatar = data["avatar"] as? String
-        }
-        else{
-            return nil
-        }
-    }
-    
-    func dictionaryRepresentation() -> [String:Any?] {
-        return ["title":title,"music_url":url,"avatar":avatar]
-    }
-}
-
-class FavouriteItem: MusicItem {
-    
-}
-
-class FavouriteListUpdater: NSObject {
-    
-    static func updateFavouriteItemList() {
+    static func updateCaptureItemList() {
         if false == PreferencesStore.sharedInstance.user.isLogin {
             return;
         }
-        let URL = ApiConstant.pathFor(type: .favourite)
+        let URL = ApiConstant.pathFor(type: .capture)
         Alamofire.request(URL, method: .post, parameters: ["user_id": PreferencesStore.sharedInstance.user.id ?? ""], encoding: URLEncoding.default).responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
@@ -56,17 +28,23 @@ class FavouriteListUpdater: NSObject {
                 
                 if let err = json["error"] as? String{
                     print("error\(err)")
-                    PreferencesStore.sharedInstance.storeFavouriteList(data: nil )
+                    PreferencesStore.sharedInstance.storeCaptureList(data: nil )
                     
                 }
                 else{
-                    let data = json["data"] as? [Any]
-                    PreferencesStore.sharedInstance.storeFavouriteList(data: data )
+                    let data = json["data"] as? [[String:Any?]]
+                    var finalRep = [[String:Any?]]()
+                    for item in data!{
+                        if let music =  MusicItem.init(with: item){
+                            finalRep.append(music.dictionaryRepresentation())
+                        }
+                    }
+                    PreferencesStore.sharedInstance.storeCaptureList(data: finalRep )
                 }
                 
             }
             else{
-                PreferencesStore.sharedInstance.storeFavouriteList(data: nil )
+                PreferencesStore.sharedInstance.storeCaptureList(data: nil )
                 
                 print("Incorrect format")
             }
@@ -78,16 +56,16 @@ class FavouriteListUpdater: NSObject {
         
     }
     
-    static func getUpdatedFavouriteItems()  -> [FavouriteItem]{
+    static func getUpdatedCapturedItems()  -> [MusicItem]{
         
-        if let list = PreferencesStore.sharedInstance.favouriteList() {
-            var items = [FavouriteItem]()
+        if let list = PreferencesStore.sharedInstance.captureList() {
+            var items = [MusicItem]()
             for item in list{
-                if let fav = FavouriteItem(with: item){
+                if let fav = MusicItem(with: item){
                     items.append(fav)
                 }
             }
-            return items;
+            return items
         }
         return []
     }

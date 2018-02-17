@@ -33,6 +33,8 @@ class MenuBarActionHandler: NSMenu {
     var loginController: MusicLoginController?
     var favouriteList: [FavouriteItem]?
     var inboxList: [MusicItem]?
+    var captureList: [MusicItem]?
+
     var playerController = MiniAudioPlayerController.instance()
     
     override func awakeFromNib() {
@@ -41,9 +43,13 @@ class MenuBarActionHandler: NSMenu {
         self.updateFileRelatedMenu()
         FavouriteListUpdater.updateFavouriteItemList()
         InboxListUpdater.updateInboxItemList()
+        CaptureListUpdater.updateCaptureItemList()
         reloadFavouriteWithStore()
         reloadInboxWithStore()
+        reloadCaptureWithStore()
         reloadLoginWithStore()
+        self.myCaptures.title = "Captures"
+        self.recordAudio.image = #imageLiteral(resourceName: "record")
     }
     
     func reloadFavouriteWithStore()  {
@@ -73,12 +79,25 @@ class MenuBarActionHandler: NSMenu {
 //            }
 //        }
     }
+    func reloadCaptureWithStore()  {
+        
+        self.captureList = CaptureListUpdater.getUpdatedCapturedItems()
+        
+        //        inboxMenu.submenu?.removeAllItems();
+        //
+        //        if let list = self.inboxList {
+        //
+        //            for item in list {
+        //                inboxMenu.submenu?.addItem(withTitle: item.title ?? ""  , action: nil, keyEquivalent: "")
+        //            }
+        //        }
+    }
 
 
     func reloadLoginWithStore()  {
         //Setup login
         if PreferencesStore.sharedInstance.user.isLogin {
-            loginLogout.title = "Logout(\(PreferencesStore.sharedInstance.user.firstName ?? ""))"
+            loginLogout.title = "Logout .. \(PreferencesStore.sharedInstance.user.firstName ?? "")"
         }
         else{
             loginLogout.title = "Login"
@@ -86,17 +105,18 @@ class MenuBarActionHandler: NSMenu {
     }
     
     @IBAction func didClickRecordAudio(_ sender: NSMenuItem) {
-
-        if (recordingController.isRecording()){
+        let isRecording = recordingController.isRecording();
+        print(isRecording)
+        if (isRecording){
             (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
-            recordingController.recorder?.stop()
+            recordingController.stopRecording()
             recordAudio.title = "Capture Audio"
 
         }
         else{
             (NSApp.delegate as? AppDelegate)?.setupMenuForRecording();
-            recordingController.createRecorder()
-            recordingController.recorder?.record()
+            recordingController.createRecorderFromMix()
+            recordingController.startRecording()
             recordAudio.title = "Stop Recording"
             self.updateFileRelatedMenu()
         }
@@ -118,7 +138,10 @@ class MenuBarActionHandler: NSMenu {
             
         case 3:
             
-            if let songs = RecordingStoreManager.getRecordingMusicItem() {
+//            if let songs = RecordingStoreManager.getRecordingMusicItem() {
+            captureList = CaptureListUpdater.getUpdatedCapturedItems()
+            if let songs = captureList {
+
                 playerController.playerController.configureWithSongs(songs: songs)
             }
             
@@ -163,8 +186,7 @@ class MenuBarActionHandler: NSMenu {
     
     func updateFileRelatedMenu() {
         myCaptures.submenu?.removeAllItems();
-
-        for path in RecordingStoreManager.capturedFiles().reversed() {
+        for path in RecordingStoreManager.capturedFiles() {
             if path == ".DS_Store"
             {
                 continue
@@ -205,13 +227,45 @@ class MenuBarActionHandler: NSMenu {
 }
 
 extension MenuBarActionHandler : NSMenuDelegate {
+
+    public func menu(_ menu: NSMenu, willHighlight item: NSMenuItem?)
+    {
+        print("\(item?.title)")
+        if let strTitle = item?.title {
+            if strTitle == "Captures"{
+
+            }
+        }
+    }
     
     public func menuWillOpen(_ menu: NSMenu){
         print("menuWillOpen")
+        if false == NSApp.isActive {
+            let itms = menu.items
+            menu.removeAllItems()
+            print("Removed")
+            NSApp.activate(ignoringOtherApps: true)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0001, execute: {
+//                menu.items = items
+                for item in itms{
+                    menu.addItem(item)
+                }
+                print("ADDED")
+
+                (NSApp.delegate as? AppDelegate)?.statusItem.popUpMenu(self);
+
+            })
+            
+            //                    menu.setMenuBarVisible(visible:true)
+        }
+
+//        if false == NSApp.isActive {
+//            NSApp.activate(ignoringOtherApps: true)
+//        }
+
         syncFilesManager.checkAndSyncFiles()
         syncRecordingManager.checkAndSyncFiles()
         
-        NSApp.activate(ignoringOtherApps: true)
         updateSyncRelatedMenu()
 //        self.updateMenuWithCurrentStatus()
     }

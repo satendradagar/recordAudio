@@ -11,7 +11,7 @@
         <scene sceneID="Qkl-fL-BD0">
             <objects>
                 <windowController id="IlB-b0-zlT" customClass="MiniAudioPlayerController" customModule="Hello_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Title" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titleVisibility="hidden" id="2N9-8c-Ldg" customClass="NSPanel">
+                    <window key="window" title="Hello Demo Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="2N9-8c-Ldg" customClass="NSPanel">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="559" y="687" width="250" height="183"/>
@@ -40,7 +40,7 @@
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="400" verticalCompressionResistancePriority="400" translatesAutoresizingMaskIntoConstraints="NO" id="zHj-Ev-ta9">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="184"/>
-                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="eBG-1i-jzU"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="eBG-1i-jzU"/>
                             </imageView>
                             <box autoresizesSubviews="NO" boxType="custom" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1cI-Hp-Pk6">
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="104"/>

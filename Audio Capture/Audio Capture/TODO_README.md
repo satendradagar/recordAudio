@@ -34,15 +34,15 @@ kAudioFormatLinearPCM
 
 2.
 
-1. Capture to Captures
-2. Fix the menu action
-3. Play record from server.
+1. Capture to Captures -
+2. Fix the menu action -
+3. Play record from server. -
 4. Add favourite icon
 5. Add slider for volume
-6. Edit Names(Rename)
+6. Edit Names(Rename) - 
 7. Hello Demo(Folder)
 8. Check if possible to show all files in finder
 9. Rename from finder4
-10. Logout ..
+10. Logout .. -
 
 

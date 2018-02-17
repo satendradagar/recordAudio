@@ -105,6 +105,23 @@ class PreferencesStore: NSObject {
         return dict
     }
 
+    func storeCaptureList(data:[Any]? )
+    {
+        if let dataObj = data {
+            self.defaults.setValue(dataObj, forKey: "U_Capture")
+        }
+        else{
+            self.defaults.setValue(nil, forKey: "U_Capture")
+            
+        }
+    }
+    
+    func captureList() -> [[String:Any?]]? {
+        
+        let dict = defaults.value(forKey: "U_Capture") as? [[String:Any?]]
+        return dict
+    }
+
     func logoutUser(){
         self.defaults.setValue(nil, forKey: "U_Inbox")
         self.defaults.setValue(nil, forKey: "U_Favourite")

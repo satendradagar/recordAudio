@@ -68,12 +68,28 @@ class RecordingStoreManager: NSObject {
 
     static func capturedFiles() -> [String]{
         var paths = [String]();
-        do {
-            paths = try FileManager.default.contentsOfDirectory(atPath:capturesRootPath())
-        } catch {
-            print(error)
+        let directory = NSURL.fileURL(withPath: capturesRootPath())
+        if let urlArray = try? FileManager.default.contentsOfDirectory(at: directory,
+                                                                       includingPropertiesForKeys: [.contentModificationDateKey],
+                                                                       options:.skipsHiddenFiles) {
+            
+            paths = urlArray.map { url in
+                (url.lastPathComponent, (try? url.resourceValues(forKeys: [.contentModificationDateKey]))?.contentModificationDate ?? Date.distantPast)
+                }
+                .sorted(by: { $0.1 > $1.1 }) // sort descending modification dates
+                .map { $0.0 } // extract file names
+            
+        } else {
+            print("Content could not be loaded");
         }
         return paths
+
+//        do {
+//            paths = try FileManager.default.contentsOfDirectory(atPath:capturesRootPath())
+//        } catch {
+//            print(error)
+//        }
+//        return paths
     }
     
     static func syncFiles() -> [String]{

@@ -25,7 +25,10 @@ class CaptureTextField: NSTextField {
 //            resultLabel.stringValue = sender.stringValue
         }
     }
-    
+    override func textShouldBeginEditing(_ textObject: NSText) -> Bool {
+
+        return true
+    }
     override func textShouldEndEditing(_ textObject: NSText) -> Bool{
         
         let recordingPath = RecordingStoreManager.capturesRootPath()
@@ -35,5 +38,9 @@ class CaptureTextField: NSTextField {
 
       return  NSUtilities.moveFile(pre: oldPath, move: newPath)
     }
-
+    
+    override func acceptsFirstMouse(for event: NSEvent?) -> Bool {
+       
+        return true
+    }
 }

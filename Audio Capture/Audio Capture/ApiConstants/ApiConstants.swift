@@ -13,6 +13,7 @@ enum ApiConstant: String {
     case login = "api/login"
     case favourite = "api/get-favourite"
     case inbox = "api/get-inbox"
+    case capture = "api/get-uploads"
     case sync = "/api/sync/songs"
     case uploadAudio = "io.github.halo.linkdaemon1"
 

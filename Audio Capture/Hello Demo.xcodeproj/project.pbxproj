@@ -20,6 +20,8 @@
 		9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */; };
 		9A3564E220172801008DC087 /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3564E120172801008DC087 /* FileUploader.swift */; };
 		9A44227D20067E820023E37D /* InboxListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44227C20067E820023E37D /* InboxListUpdater.swift */; };
+		9A4A2E8320358EEC00C606D3 /* RecordingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4A2E8220358EEC00C606D3 /* RecordingManager.m */; };
+		9A4A2E852035BCD000C606D3 /* CaptureListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4A2E842035BCD000C606D3 /* CaptureListUpdater.swift */; };
 		9A5805631FF4C37400A55D16 /* MenuBarActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5805621FF4C37400A55D16 /* MenuBarActionHandler.swift */; };
 		9A5805661FF4C97200A55D16 /* AudioRecordingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5805651FF4C97200A55D16 /* AudioRecordingController.swift */; };
 		9A5805691FF4D1C900A55D16 /* RecordingStoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5805681FF4D1C900A55D16 /* RecordingStoreManager.swift */; };
@@ -90,6 +92,10 @@
 		9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteListUpdater.swift; sourceTree = "<group>"; };
 		9A3564E120172801008DC087 /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
 		9A44227C20067E820023E37D /* InboxListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxListUpdater.swift; sourceTree = "<group>"; };
+		9A4A2E8020358EE900C606D3 /* Hello Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Hello Demo-Bridging-Header.h"; sourceTree = "<group>"; };
+		9A4A2E8120358EEB00C606D3 /* RecordingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecordingManager.h; sourceTree = "<group>"; };
+		9A4A2E8220358EEC00C606D3 /* RecordingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecordingManager.m; sourceTree = "<group>"; };
+		9A4A2E842035BCD000C606D3 /* CaptureListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureListUpdater.swift; sourceTree = "<group>"; };
 		9A5805621FF4C37400A55D16 /* MenuBarActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarActionHandler.swift; sourceTree = "<group>"; };
 		9A5805651FF4C97200A55D16 /* AudioRecordingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecordingController.swift; sourceTree = "<group>"; };
 		9A5805681FF4D1C900A55D16 /* RecordingStoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingStoreManager.swift; sourceTree = "<group>"; };
@@ -230,6 +236,7 @@
 			children = (
 				9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */,
 				9A44227C20067E820023E37D /* InboxListUpdater.swift */,
+				9A4A2E842035BCD000C606D3 /* CaptureListUpdater.swift */,
 				9A3564E120172801008DC087 /* FileUploader.swift */,
 			);
 			path = ServerDataManagers;
@@ -248,6 +255,9 @@
 			isa = PBXGroup;
 			children = (
 				9A5805651FF4C97200A55D16 /* AudioRecordingController.swift */,
+				9A4A2E8120358EEB00C606D3 /* RecordingManager.h */,
+				9A4A2E8220358EEC00C606D3 /* RecordingManager.m */,
+				9A4A2E8020358EE900C606D3 /* Hello Demo-Bridging-Header.h */,
 			);
 			path = RecordingController;
 			sourceTree = "<group>";
@@ -463,6 +473,7 @@
 				TargetAttributes = {
 					9ADE7B951FF3FACB00AE8885 = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
@@ -694,6 +705,7 @@
 			files = (
 				9A205C1B1FFF95850033D96D /* PreferencesStore.swift in Sources */,
 				9A00613C202EE0660062E8DA /* CircularProgressView.swift in Sources */,
+				9A4A2E852035BCD000C606D3 /* CaptureListUpdater.swift in Sources */,
 				9AE97A0320022A3300815942 /* MusicLoginController.swift in Sources */,
 				9A00613F202EE0660062E8DA /* DeterminateAnimation.swift in Sources */,
 				9AC7D40C1FFB9E7600D3689E /* CreateDirecotry.swift in Sources */,
@@ -713,6 +725,7 @@
 				9A006140202EE0660062E8DA /* BaseView.swift in Sources */,
 				9A5B5B9B201B4AD50078BB7C /* NSStoryboard+Utilities.swift in Sources */,
 				9A006144202EE5CB0062E8DA /* ViewController.swift in Sources */,
+				9A4A2E8320358EEC00C606D3 /* RecordingManager.m in Sources */,
 				9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */,
 				9A12CEB0200DBCDE00844308 /* SyncFileManager.swift in Sources */,
 				9ABC911D2004BB94003AEB80 /* DataRequestHandler.swift in Sources */,
@@ -878,6 +891,7 @@
 			baseConfigurationReference = 0DCFEEF1DFDFC25073C02865 /* Pods-Hello Demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -887,6 +901,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.corebitss.Audio-Capture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Audio Capture/RecordingController/Hello Demo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -896,6 +912,7 @@
 			baseConfigurationReference = 85E9E296B14B03EBAA625FE7 /* Pods-Hello Demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = "";
@@ -905,6 +922,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.corebitss.Audio-Capture";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Audio Capture/RecordingController/Hello Demo-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

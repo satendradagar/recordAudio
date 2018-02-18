@@ -11,8 +11,8 @@
         <scene sceneID="Qkl-fL-BD0">
             <objects>
                 <windowController id="IlB-b0-zlT" customClass="MiniAudioPlayerController" customModule="Hello_Demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Hello Demo Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="2N9-8c-Ldg" customClass="NSPanel">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" HUD="YES"/>
+                    <window key="window" title="Hello Demo Player" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="2N9-8c-Ldg" customClass="NSPanel">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" utility="YES" HUD="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="559" y="687" width="250" height="183"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
@@ -42,37 +42,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="250" height="184"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" id="eBG-1i-jzU"/>
                             </imageView>
-                            <box autoresizesSubviews="NO" boxType="custom" borderType="line" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="1cI-Hp-Pk6">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="104"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ekv-VV-zjS">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="109"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="playerBG" id="b4b-4t-AuV"/>
+                            </imageView>
+                            <box autoresizesSubviews="NO" borderType="none" title="Box" titlePosition="noTitle" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1cI-Hp-Pk6">
+                                <rect key="frame" x="-3" y="-4" width="256" height="110"/>
                                 <view key="contentView" id="Prj-nY-qzE">
-                                    <rect key="frame" x="1" y="1" width="248" height="102"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="256" height="110"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="fJr-Ln-OYF" customClass="ProgressBar" customModule="Hello_Demo" customModuleProvider="target">
-                                            <rect key="frame" x="20" y="53" width="211" height="4"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="4" id="tVl-Pn-tpP"/>
-                                            </constraints>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="foreground">
-                                                    <color key="value" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="background">
-                                                    <color key="value" name="selectedTextBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="progress">
-                                                    <real key="value" value="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" white="1" alpha="0.0" colorSpace="deviceWhite"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </customView>
                                         <customView translatesAutoresizingMaskIntoConstraints="NO" id="KAj-kI-kBy">
-                                            <rect key="frame" x="20" y="6" width="211" height="32"/>
+                                            <rect key="frame" x="0.0" y="6" width="256" height="32"/>
                                             <subviews>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="Wjc-Si-eMj">
-                                                    <rect key="frame" x="90" y="5" width="22" height="22"/>
+                                                    <rect key="frame" x="112" y="5" width="22" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="MYQ-YZ-qeL"/>
                                                         <constraint firstAttribute="width" constant="22" id="b09-Xn-5N2"/>
@@ -86,7 +71,7 @@
                                                     </connections>
                                                 </button>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="exQ-uH-uR1">
-                                                    <rect key="frame" x="46" y="5" width="22" height="22"/>
+                                                    <rect key="frame" x="68" y="5" width="22" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="22" id="KYA-8J-Qgh"/>
                                                         <constraint firstAttribute="height" constant="22" id="Qox-6Y-W1Q"/>
@@ -100,7 +85,7 @@
                                                     </connections>
                                                 </button>
                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="27y-3D-Jo5">
-                                                    <rect key="frame" x="134" y="5" width="22" height="22"/>
+                                                    <rect key="frame" x="156" y="5" width="22" height="22"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="22" id="3lM-Oy-WFf"/>
                                                         <constraint firstAttribute="width" constant="22" id="hv8-1j-jK5"/>
@@ -112,6 +97,19 @@
                                                     <connections>
                                                         <action selector="didClickPlayNext:" target="1NR-Bi-ixd" id="N5N-Rg-wzO"/>
                                                     </connections>
+                                                </button>
+                                                <slider verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Gg7-Cc-jKQ">
+                                                    <rect key="frame" x="6" y="7" width="54" height="13"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <sliderCell key="cell" controlSize="mini" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="RBM-xW-aqA"/>
+                                                </slider>
+                                                <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PHH-0D-0JN">
+                                                    <rect key="frame" x="228" y="3" width="22" height="22"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="favUnselected" imagePosition="only" alignment="center" alternateImage="favSelected" imageScaling="proportionallyUpOrDown" inset="2" id="F5q-0i-Wvk">
+                                                        <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
+                                                        <font key="font" metaFont="system"/>
+                                                    </buttonCell>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -138,7 +136,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OwN-kC-Cph">
-                                            <rect key="frame" x="173" y="39" width="60" height="12"/>
+                                            <rect key="frame" x="181" y="39" width="60" height="12"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="56" id="kl5-tH-67B"/>
                                                 <constraint firstAttribute="height" constant="12" id="xXU-Zb-Yq4"/>
@@ -149,8 +147,8 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="300" verticalCompressionResistancePriority="300" translatesAutoresizingMaskIntoConstraints="NO" id="vbY-Ce-4Jj">
-                                            <rect key="frame" x="18" y="59" width="215" height="23"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="300" verticalCompressionResistancePriority="300" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vbY-Ce-4Jj">
+                                            <rect key="frame" x="18" y="67" width="223" height="23"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="23" id="d7a-66-C4y"/>
                                             </constraints>
@@ -160,18 +158,24 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K8T-V3-ZF8" customClass="SSSlider" customModule="Hello_Demo" customModuleProvider="target">
+                                            <rect key="frame" x="20" y="48" width="216" height="13"/>
+                                            <sliderCell key="cell" controlSize="mini" state="on" alignment="left" maxValue="100" tickMarkPosition="above" sliderType="linear" id="72E-gs-IZp"/>
+                                            <connections>
+                                                <action selector="sliderDidSlide:" target="1NR-Bi-ixd" id="h6g-I0-iKG"/>
+                                            </connections>
+                                        </slider>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Rdo-t8-ZMD" firstAttribute="top" secondItem="fJr-Ln-OYF" secondAttribute="bottom" constant="2" id="A24-g5-VEX"/>
                                         <constraint firstItem="KAj-kI-kBy" firstAttribute="top" secondItem="Rdo-t8-ZMD" secondAttribute="bottom" constant="1" id="Hf0-yQ-UVt"/>
-                                        <constraint firstItem="fJr-Ln-OYF" firstAttribute="leading" secondItem="Prj-nY-qzE" secondAttribute="leading" constant="20" id="RBb-sI-Bcu"/>
-                                        <constraint firstAttribute="trailing" secondItem="KAj-kI-kBy" secondAttribute="trailing" constant="17" id="T1S-CL-gfo"/>
-                                        <constraint firstAttribute="trailing" secondItem="fJr-Ln-OYF" secondAttribute="trailing" constant="17" id="Tj0-dD-MXb"/>
+                                        <constraint firstItem="K8T-V3-ZF8" firstAttribute="leading" secondItem="Prj-nY-qzE" secondAttribute="leading" constant="20" id="KNs-zZ-Y2n"/>
+                                        <constraint firstAttribute="trailing" secondItem="KAj-kI-kBy" secondAttribute="trailing" id="T1S-CL-gfo"/>
                                         <constraint firstItem="Rdo-t8-ZMD" firstAttribute="leading" secondItem="Prj-nY-qzE" secondAttribute="leading" constant="20" id="Vzf-5J-ve2"/>
                                         <constraint firstItem="vbY-Ce-4Jj" firstAttribute="leading" secondItem="Prj-nY-qzE" secondAttribute="leading" constant="20" id="bKV-gh-Mw6"/>
                                         <constraint firstAttribute="trailing" secondItem="vbY-Ce-4Jj" secondAttribute="trailing" constant="17" id="gSx-nG-FKK"/>
-                                        <constraint firstItem="fJr-Ln-OYF" firstAttribute="top" secondItem="vbY-Ce-4Jj" secondAttribute="bottom" constant="2" id="jSu-hG-zUm"/>
-                                        <constraint firstItem="KAj-kI-kBy" firstAttribute="leading" secondItem="Prj-nY-qzE" secondAttribute="leading" constant="20" id="p4z-88-3QI"/>
+                                        <constraint firstAttribute="trailing" secondItem="K8T-V3-ZF8" secondAttribute="trailing" constant="20" id="h1I-ME-KjA"/>
+                                        <constraint firstItem="KAj-kI-kBy" firstAttribute="top" secondItem="K8T-V3-ZF8" secondAttribute="bottom" constant="11" id="l4A-05-dRV"/>
+                                        <constraint firstItem="KAj-kI-kBy" firstAttribute="leading" secondItem="Prj-nY-qzE" secondAttribute="leading" id="p4z-88-3QI"/>
                                         <constraint firstAttribute="trailing" secondItem="OwN-kC-Cph" secondAttribute="trailing" constant="17" id="pH2-2J-SJd"/>
                                         <constraint firstAttribute="bottom" secondItem="KAj-kI-kBy" secondAttribute="bottom" constant="6" id="pWX-Bk-79O"/>
                                         <constraint firstItem="KAj-kI-kBy" firstAttribute="top" secondItem="OwN-kC-Cph" secondAttribute="bottom" constant="1" id="uTg-sg-VTh"/>
@@ -180,7 +184,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="104" id="pB4-1I-8fy"/>
                                 </constraints>
-                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="0.7009578339041096" colorSpace="custom" customColorSpace="sRGB"/>
                             </box>
                         </subviews>
                         <constraints>
@@ -196,9 +199,10 @@
                     <connections>
                         <outlet property="backgroundImage" destination="zHj-Ev-ta9" id="VyI-Jv-fhP"/>
                         <outlet property="endTime" destination="OwN-kC-Cph" id="pYC-8J-suM"/>
+                        <outlet property="favouriteButton" destination="PHH-0D-0JN" id="NQy-c6-43n"/>
                         <outlet property="leftButton" destination="exQ-uH-uR1" id="4wv-KS-ILb"/>
                         <outlet property="playButton" destination="Wjc-Si-eMj" id="QqP-EK-R4T"/>
-                        <outlet property="progressBar" destination="fJr-Ln-OYF" id="ovU-Aw-wj4"/>
+                        <outlet property="playerSlider" destination="K8T-V3-ZF8" id="FJs-Hv-vK1"/>
                         <outlet property="rightButton" destination="27y-3D-Jo5" id="W8a-xt-yGi"/>
                         <outlet property="songTitle" destination="vbY-Ce-4Jj" id="D8f-jI-jOC"/>
                         <outlet property="startTime" destination="Rdo-t8-ZMD" id="A64-y5-9eQ"/>
@@ -206,12 +210,15 @@
                 </viewController>
                 <customObject id="Bmh-tX-sMS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="-510"/>
+            <point key="canvasLocation" x="53" y="-510.5"/>
         </scene>
     </scenes>
     <resources>
         <image name="Play-icon" width="19" height="22"/>
         <image name="back-track" width="17" height="16"/>
+        <image name="favSelected" width="64" height="64"/>
+        <image name="favUnselected" width="64" height="64"/>
         <image name="next-track" width="17" height="16"/>
+        <image name="playerBG" width="458" height="200"/>
     </resources>
 </document>

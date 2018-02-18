@@ -97,7 +97,7 @@ class MenuBarActionHandler: NSMenu {
     func reloadLoginWithStore()  {
         //Setup login
         if PreferencesStore.sharedInstance.user.isLogin {
-            loginLogout.title = "Logout .. \(PreferencesStore.sharedInstance.user.firstName ?? "")"
+            loginLogout.title = "Logout .. @\(PreferencesStore.sharedInstance.user.firstName ?? "")"
         }
         else{
             loginLogout.title = "Login"
@@ -128,12 +128,24 @@ class MenuBarActionHandler: NSMenu {
         switch sender.tag {
         case 1:
             if let songs = inboxList {
-                playerController.playerController.configureWithSongs(songs: songs)
+                if songs.count > 0{
+                    playerController.playerController.configureWithSongs(songs: songs)
+                }
+                else{
+                    NSApp.presentError(NSError.init(domain: "No song found to play", code: 0, userInfo: nil));
+                }
+
             }
             
         case 2:
             if let songs = favouriteList {
-                playerController.playerController.configureWithSongs(songs: songs)
+                if songs.count > 0{
+                    playerController.playerController.configureWithSongs(songs: songs)
+                }
+                else{
+                    NSApp.presentError(NSError.init(domain: "No song found to play", code: 0, userInfo: nil));
+                }
+
             }
             
         case 3:
@@ -142,7 +154,12 @@ class MenuBarActionHandler: NSMenu {
             captureList = CaptureListUpdater.getUpdatedCapturedItems()
             if let songs = captureList {
 
-                playerController.playerController.configureWithSongs(songs: songs)
+                if songs.count > 0{
+                    playerController.playerController.configureWithSongs(songs: songs)
+                }
+                else{
+                    NSApp.presentError(NSError.init(domain: "No song found to play", code: 0, userInfo: nil));
+                }
             }
             
         default:

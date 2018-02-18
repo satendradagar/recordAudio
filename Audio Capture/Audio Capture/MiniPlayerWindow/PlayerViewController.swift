@@ -13,9 +13,9 @@ import Alamofire
 import AlamofireImage
 
 class PlayerViewController: NSViewController {
-
-    @IBOutlet weak var progressBar: ProgressBar!
-    @IBOutlet weak var playerSlider: NSSlider!
+  
+//    @IBOutlet weak var progressBar: ProgressBar!
+    @IBOutlet weak var playerSlider: SSSlider!
     @IBOutlet weak var playButton: NSButton!
     @IBOutlet weak var playerView: AVPlayerView!
     @IBOutlet weak var songTitle: NSTextField!
@@ -24,6 +24,7 @@ class PlayerViewController: NSViewController {
     @IBOutlet weak var rightButton: NSButton!
     @IBOutlet weak var startTime: NSTextField!
     @IBOutlet weak var endTime: NSTextField!
+    @IBOutlet weak var favouriteButton: NSButton!
 
     var currentSongIndex = 0;
     var allSongs = [MusicItem]()
@@ -69,6 +70,14 @@ class PlayerViewController: NSViewController {
         
     }
 
+    @IBAction func sliderDidSlide(_ sender: SSSlider) {
+        sender.isUserDragging = false
+        self.player.seek(to: CMTime.init(seconds: self.playerSlider.doubleValue, preferredTimescale: 1)) { (isDone) in
+            
+        }
+        print(sender.doubleValue)
+    }
+    
     func configureSongWith(songIndex: Int)  {
         player.pause()
 
@@ -78,7 +87,8 @@ class PlayerViewController: NSViewController {
 
         self.startTime.stringValue = "--:--"
         self.endTime.stringValue = "--:--"
-        self.progressBar.progress = 0.0;
+//        self.progressBar.progress = 0.0;
+        self.playerSlider.doubleValue = 0.0
         leftButton.isEnabled = true
         rightButton.isEnabled = true
 
@@ -95,8 +105,14 @@ class PlayerViewController: NSViewController {
         player.replaceCurrentItem(with: playerItem)
 //        player = AVPlayer.init(url: song.audioUrl())
         player.play()
+        var rawFav = 0
+        if let isfav = song.isFavourite{
+            if isfav == true{
+                rawFav = 1
+            }
+        }
         
-        
+        self.favouriteButton.state = NSControl.StateValue.init(rawFav)
         self.songTitle.stringValue = song.title ?? (song.url ?? "Untitles")
         if let imgPath = song.avatar{
             Alamofire.request(imgPath).responseImage { response in
@@ -136,10 +152,14 @@ class PlayerViewController: NSViewController {
             // Get the current time in seconds
             let playhead = currentItem.currentTime().seconds
             let duration = currentItem.duration.seconds
-//            self.playerSlider.maxValue = duration
-//            self.playerSlider.doubleValue = playhead
+            if false == self.playerSlider.isUserDragging{
+                
+                self.playerSlider.maxValue = duration
+                self.playerSlider.doubleValue = playhead
+
+            }
             if duration > 0.0{
-                self.progressBar.progress = CGFloat(playhead/duration)
+//                self.progressBar.progress = CGFloat(playhead/duration)
                 let durationLabel = formatTimeFor(seconds: duration)
                 let playheadLabel = formatTimeFor(seconds: playhead)
                 print("\(playheadLabel)-----\(durationLabel)")
@@ -148,7 +168,9 @@ class PlayerViewController: NSViewController {
             }
             else
             {
-                self.progressBar.progress = 0.0;
+                self.playerSlider.doubleValue = 0.0
+
+//                self.progressBar.progress = 0.0;
             }
             // Format seconds for human readable string
         }
@@ -190,6 +212,7 @@ class PlayerViewController: NSViewController {
         //set to 00:00
         player.pause()
     }
+
     
 }
 

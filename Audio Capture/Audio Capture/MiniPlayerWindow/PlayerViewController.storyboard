@@ -157,7 +157,8 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="104" id="hW0-HO-ea2"/>
                                 </constraints>
-                                <color key="fillColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                <color key="borderColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             </box>
                         </subviews>
                         <constraints>

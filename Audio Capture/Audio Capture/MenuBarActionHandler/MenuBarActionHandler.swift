@@ -49,7 +49,8 @@ class MenuBarActionHandler: NSMenu {
         reloadCaptureWithStore()
         reloadLoginWithStore()
         self.myCaptures.title = "Captures"
-        self.recordAudio.image = #imageLiteral(resourceName: "record")
+//        self.recordAudio.image = #imageLiteral(resourceName: "record")
+        self.recordAudio.title = "Captures Audio 🔴"
     }
     
     func reloadFavouriteWithStore()  {
@@ -110,14 +111,14 @@ class MenuBarActionHandler: NSMenu {
         if (isRecording){
             (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
             recordingController.stopRecording()
-            recordAudio.title = "Capture Audio"
+            recordAudio.title = "Capture Audio  🔴"
 
         }
         else{
             (NSApp.delegate as? AppDelegate)?.setupMenuForRecording();
             recordingController.createRecorderFromMix()
             recordingController.startRecording()
-            recordAudio.title = "Stop Recording"
+            recordAudio.title = "Stop Recording  🔴"
             self.updateFileRelatedMenu()
         }
     }

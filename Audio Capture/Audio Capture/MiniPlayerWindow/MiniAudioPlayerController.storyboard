@@ -219,6 +219,6 @@
         <image name="favSelected" width="64" height="64"/>
         <image name="favUnselected" width="64" height="64"/>
         <image name="next-track" width="17" height="16"/>
-        <image name="playerBG" width="458" height="200"/>
+        <image name="playerBG" width="1900" height="1267"/>
     </resources>
 </document>

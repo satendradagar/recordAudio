@@ -20,6 +20,8 @@ class PlayerViewController: NSViewController {
     @IBOutlet weak var playerView: AVPlayerView!
     @IBOutlet weak var songTitle: NSTextField!
     @IBOutlet weak var backgroundImage: NSImageView!
+    @IBOutlet weak var contentBackground: NSImageView!
+
     @IBOutlet weak var leftButton: NSButton!
     @IBOutlet weak var rightButton: NSButton!
     @IBOutlet weak var startTime: NSTextField!

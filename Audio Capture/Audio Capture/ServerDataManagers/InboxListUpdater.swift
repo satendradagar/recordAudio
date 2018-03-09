@@ -31,8 +31,14 @@ class InboxListUpdater: NSObject {
                     
                 }
                 else{
-                    let data = json["data"] as? [Any]
-                    PreferencesStore.sharedInstance.storeInboxList(data: data )
+                    let data = json["data"] as? [[String:Any?]]
+                    var finalRep = [[String:Any?]]()
+                    for item in data!{
+                        if let music =  MusicItem.init(with: item){
+                            finalRep.append(music.dictionaryRepresentation())
+                        }
+                    }
+                    PreferencesStore.sharedInstance.storeInboxList(data: finalRep )
                 }
                 
             }

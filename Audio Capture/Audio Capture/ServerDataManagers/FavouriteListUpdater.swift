@@ -64,7 +64,13 @@ class FavouriteListUpdater: NSObject {
                     
                 }
                 else{
-                    let data = json["data"] as? [Any]
+                    let data = json["data"] as? [[String:Any?]]
+                    var finalRep = [[String:Any?]]()
+                    for item in data!{
+                        if let music =  FavouriteItem.init(with: item){
+                            finalRep.append(music.dictionaryRepresentation())
+                        }
+                    }
                     PreferencesStore.sharedInstance.storeFavouriteList(data: data )
                 }
                 

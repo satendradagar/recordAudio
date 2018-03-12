@@ -75,7 +75,7 @@ class AVAudioRecordingController: NSObject {
 
     func isRecording() -> Bool {
         
-        return recordManager.isRecording()
+        return recordManager.isRecording
     }
 }
 

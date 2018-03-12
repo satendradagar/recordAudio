@@ -1,50 +1,49 @@
 //
 //  RecordingManager.h
-//  TestmacOS
+//  RecordFile
 //
-//  Created by Live on 2/15/18.
-//  Copyright © 2018 Live. All rights reserved.
+//  Created by David Tong on 2/27/18.
+//  Copyright © 2018 Syed Haris Ali. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
-//@class AVCaptureSession;
-//@class AVCaptureDeviceInput;
-//@class AVCaptureAudioPreviewOutput;
-//@class AVCaptureConnection;
-//@class AVCaptureDevice;
+#import "EZAudio.h"
+#import "EZAudioDevice.h"
 
 @protocol RecordingManagerDelegate <NSObject>
+    
 @optional
 - (void) didStartRecordingToOutputFileAt:(NSURL*) outputURL;
-- (void) didPauseRecordingToOutputFileAt:(NSURL*) outputURL;
-- (void) didResumeRecordingToOutputFileAt:(NSURL*) outputURL;
-- (void) willFinishRecordingToOutputFileAt:(NSURL*) outputURL dueTo:(NSError*) error;
-- (void) didFinishRecordingToOutputFileAt:(NSURL*) outputURL error:(NSError*) error;
-
-
+- (void) didFinishRecordingToOutputFileAt:(NSURL*) outputURL;
+- (void) updateAudioPlotBuffer:(float *)buffer withBufferSize:(UInt32)bufferSize;
+- (void) recorderUpdatedCurrentTime:(NSString *) formattedCurrentTime;
+    
 @end
 
-@interface RecordingManager : NSObject <AVCaptureFileOutputDelegate, AVCaptureFileOutputRecordingDelegate> {
-    
-    AVCaptureSession             *session;
-    AVCaptureAudioFileOutput     *audioFileOutput;
-    
-    NSArray                      *audioDevices;
-    NSArray                      *observers;
-    NSMutableArray               *_audioInputs;
-    NSMutableArray               *_audioInputConnectons;
-    BOOL                         _verbose;
-    
+@interface RecordingManager : NSObject <EZAudioPlayerDelegate, EZMicrophoneDelegate, EZRecorderDelegate> {
+    NSURL* recordingPath;
 }
-#pragma MARK Properties
 
-@property (retain)                      AVCaptureSession    *session;
 @property (assign, nonatomic)           id<RecordingManagerDelegate> delegate;
+//
+// A flag indicating whether we are recording or not
+//
+@property (nonatomic, assign) BOOL isRecording;
+//
+// The microphone component
+//
+@property (nonatomic, strong) EZMicrophone *microphone;
+@property (nonatomic, strong) EZAudioDevice *defaultOutput;
+
+//
+// The recorder component
+//
+@property (nonatomic, strong) EZRecorder *recorder;
 
 #pragma MARK Public methods
-- (BOOL) isRecording;
+
 - (void) startRecordingAtPath:(NSString *)filePath;
 - (void) stopRecordingCompletionBlock:(void (^)(void))completionBlock ;
+- (void) controlVolume:(Float32) volume;
 
 @end

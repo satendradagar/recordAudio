@@ -33,7 +33,7 @@ class RecordingStoreManager: NSObject {
     static func recordingsRootPath()  -> String {
         let filePaths = NSSearchPathForDirectoriesInDomains(.musicDirectory, .userDomainMask, true)
         let firstPath = filePaths[0]
-        let recordingRootPath = firstPath+"/Recordings"
+        let recordingRootPath = firstPath+"/Hello Demo"
         return recordingRootPath
     }
     

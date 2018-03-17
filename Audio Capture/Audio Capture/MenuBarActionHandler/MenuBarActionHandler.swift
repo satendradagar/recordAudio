@@ -22,9 +22,13 @@ class MenuBarActionHandler: NSMenu {
 
     @IBOutlet weak var favourites: NSMenuItem!
     
-    @IBOutlet weak var sync: NSMenuItem!
+//    @IBOutlet weak var sync: NSMenuItem!
     
     @IBOutlet weak var loginLogout: NSMenuItem!
+
+//    @IBOutlet weak var recordMenuView: NSView!
+
+    @IBOutlet weak var recordTitle: NSTextField!
 
     var recordingController = AVAudioRecordingController()
     var syncFilesManager = SyncFileManager()
@@ -50,7 +54,18 @@ class MenuBarActionHandler: NSMenu {
         reloadLoginWithStore()
         self.myCaptures.title = "Captures"
 //        self.recordAudio.image = #imageLiteral(resourceName: "record")
-        self.recordAudio.title = "Captures Audio 🔴"
+        self.recordAudio.title = "Capture Audio                              🔴"
+//        self.recordAudio.onStateImage = #imageLiteral(resourceName: "record")
+        self.recordAudio.offStateImage = #imageLiteral(resourceName: "record")
+//        self.recordAudio.mixedStateImage = #imageLiteral(resourceName: "record")
+//        let statusItemView = StatusItemView.init(frame: NSRect.init(x: 0, y: 0, width: 200, height: 50))
+//
+////        statusItemView.statusItem = self.recordAudio
+////        statusItemView.menu = menu
+//        statusItemView.toolTip = NSLocalizedString("Menubar Countdown", comment: "Status Item Tooltip")
+//        recordAudio.view = statusItemView
+//        statusItemView.title = "00:00:00"
+
     }
     
     func reloadFavouriteWithStore()  {
@@ -98,27 +113,27 @@ class MenuBarActionHandler: NSMenu {
     func reloadLoginWithStore()  {
         //Setup login
         if PreferencesStore.sharedInstance.user.isLogin {
-            loginLogout.title = "Logout .. @\(PreferencesStore.sharedInstance.user.firstName ?? "")"
+            loginLogout.title = "Logout, \(PreferencesStore.sharedInstance.user.firstName ?? "")"
         }
         else{
             loginLogout.title = "Login"
         }
     }
     
-    @IBAction func didClickRecordAudio(_ sender: NSMenuItem) {
+    @IBAction func didClickRecordAudio(_ sender: Any?) {
         let isRecording = recordingController.isRecording();
         print(isRecording)
         if (isRecording){
             (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
             recordingController.stopRecording()
-            recordAudio.title = "Capture Audio  🔴"
+            recordTitle.stringValue = "Capture Audio"
 
         }
         else{
             (NSApp.delegate as? AppDelegate)?.setupMenuForRecording();
             recordingController.createRecorderFromMix()
             recordingController.startRecording()
-            recordAudio.title = "Stop Recording  🔴"
+            recordTitle.stringValue = "Stop Recording"
             self.updateFileRelatedMenu()
         }
     }
@@ -196,7 +211,41 @@ class MenuBarActionHandler: NSMenu {
         }
 //            (NSApp.delegate as? AppDelegate)?.setupMenuWithButton()
 //            loginViewController.showPopover()
+    
+    @IBAction func didClickShowInFinder(_ sender: NSMenuItem) {
+        var path:String?
+        switch sender.tag {
+        case 1:
+            print("Captures")
+            path = RecordingStoreManager.capturesRootPath()
 
+        default:
+            print("Sync")
+            path = RecordingStoreManager.syncRootPath()
+
+        }
+        func showError() {
+            let alert = NSAlert()
+            alert.messageText = "Error"
+            alert.informativeText = "Sorry, the document couldn't be shown in the Finder."
+            alert.runModal()
+        }
+        
+        // if the path isn't known, then show an error
+        guard path != nil else {
+            showError()
+            return
+        }
+        
+        // try to select the file in the Finder
+        let workspace = NSWorkspace.shared
+        let selected = workspace.selectFile(path!, inFileViewerRootedAtPath: "")
+        if !selected {
+            showError()
+        }
+        
+    }
+    
     @IBAction func didClickQuitApp(_ sender: NSMenuItem) {
         NSApp.terminate(sender)
     }
@@ -223,25 +272,31 @@ class MenuBarActionHandler: NSMenu {
     }
     
     func updateSyncRelatedMenu() {
-        sync.submenu?.removeAllItems();
-        
-        for path in RecordingStoreManager.syncFiles() {
-            if path == ".DS_Store"
-            {
-                continue
-            }
-            let item = NSMenuItem.init()
-//            let field = CaptureTextField(withFilePath:path)
-//            //            field.stringValue = path
-//            field.backgroundColor = NSColor.clear
-//            field.drawsBackground = true
-//            item.view = field
+//        sync.submenu?.removeAllItems();
 //
-//            sync.submenu?.addItem(item)
-//
-            sync.submenu?.addItem(withTitle: path, action: nil, keyEquivalent: "")
-        }
+//        for path in RecordingStoreManager.syncFiles() {
+//            if path == ".DS_Store"
+//            {
+//                continue
+//            }
+//            let item = NSMenuItem.init()
+////            let field = CaptureTextField(withFilePath:path)
+////            //            field.stringValue = path
+////            field.backgroundColor = NSColor.clear
+////            field.drawsBackground = true
+////            item.view = field
+////
+////            sync.submenu?.addItem(item)
+////
+//            sync.submenu?.addItem(withTitle: path, action: nil, keyEquivalent: "")
+//        }
     }
+    
+    
+    func updateRecordingRelatedMenu() {
+
+    }
+
 }
 
 extension MenuBarActionHandler : NSMenuDelegate {
@@ -280,11 +335,13 @@ extension MenuBarActionHandler : NSMenuDelegate {
 //        if false == NSApp.isActive {
 //            NSApp.activate(ignoringOtherApps: true)
 //        }
-
-        syncFilesManager.checkAndSyncFiles()
-        syncRecordingManager.checkAndSyncFiles()
-        
-        updateSyncRelatedMenu()
+        let isRecording = recordingController.isRecording();
+        print(isRecording)
+        if (isRecording == false){
+            syncFilesManager.checkAndSyncFiles()
+            syncRecordingManager.checkAndSyncFiles()
+            updateSyncRelatedMenu()
+        }
 //        self.updateMenuWithCurrentStatus()
     }
     

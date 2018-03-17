@@ -30,13 +30,24 @@ class SyncFile: NSObject {
         }
     }
     
+    override func isEqual(_ object: Any?) -> Bool {
+        if let newObj = object as? SyncFile {
+            if self.fileName == newObj.fileName {
+                return true
+            }
+        }
+        return false
+    }
+    
     func saveStatus()  {
         let dict = [statusKey:uploadStatus.rawValue, pathKey: fileName]
         PreferencesStore.sharedInstance.updateSyncFile(fileProperties: dict , forPath: fileName)
     }
     
     func checkAnduploadFileToServer(completion:@escaping ((_ filePath:String) -> Void)) {
-        if uploadStatus != .uploaded{
+        if uploadStatus != .uploaded && uploadStatus != .uploading{
+            uploadStatus = .uploading
+            print("status:\(uploadStatus),file:\(fileName)")
             var localPath = RecordingStoreManager.syncRootFilePathFor(fileName)
             if isRecording{
                 localPath = RecordingStoreManager.recordingRootFilePathFor(fileName)
@@ -89,7 +100,19 @@ class SyncFileManager: NSObject {
             filesToSync.append(syncFile)
             
         }
-        self.files = filesToSync
+        for newFile in filesToSync {
+            var isMatchFound = false
+            for oldFile in files{
+                if newFile.isEqual(oldFile){
+                    isMatchFound = true
+                    break
+                }
+            }
+            if isMatchFound == false{
+                self.files.append(newFile)
+            }
+        }
+//        self.files = filesToSync
         syncIndex = -1
         performSyncWithServer()
     }

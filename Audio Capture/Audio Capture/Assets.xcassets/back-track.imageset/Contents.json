@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "back-track.png",
+      "filename" : "x1-RW.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "x2-RW.png",
       "scale" : "2x"
     },
     {

@@ -28,7 +28,20 @@ class RecordSyncFileManager: SyncFileManager {
             filesToSync.append(syncFile)
             
         }
-        self.files = filesToSync
+
+        for newFile in filesToSync {
+            var isMatchFound = false
+            for oldFile in files{
+                if newFile.isEqual(oldFile){
+                    isMatchFound = true
+                    break
+                }
+            }
+            if isMatchFound == false{
+                self.files.append(newFile)
+            }
+        }
+//        self.files = filesToSync
         syncIndex = -1
         performSyncWithServer()
     }

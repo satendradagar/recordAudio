@@ -29,7 +29,7 @@
     recordingPath = [NSURL fileURLWithPath:filePath];
     self.recorder = [EZRecorder recorderWithURL:recordingPath
                                    clientFormat:[self.microphone audioStreamBasicDescription]
-                                       fileType:EZRecorderFileTypeWAV
+                                       fileType:EZRecorderFileTypeAIFF
                                        delegate:self];
     if([_delegate respondsToSelector:@selector(didStartRecordingToOutputFileAt:)]) {
         [_delegate didStartRecordingToOutputFileAt:recordingPath];

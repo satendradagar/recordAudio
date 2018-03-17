@@ -54,8 +54,8 @@ class FileUploader: NSObject {
         
         
         let URL = ApiConstant.pathFor(type: .sync)
-        let fileUrl = Foundation.URL(string: filePath)
-        
+        let fileUrl = Foundation.URL(fileURLWithPath: filePath)
+        let fileName = fileUrl.lastPathComponent
         /*
          let parameters = [
          [
@@ -90,7 +90,7 @@ class FileUploader: NSObject {
             }
 
 //            multipartFormData.append(data! , withName: "file" , mimeType: "audio/mpeg")
-            multipartFormData.append(data!, withName: "file", fileName: fileUrl?.lastPathComponent ?? "File.aiff", mimeType: "audio/mpeg")
+            multipartFormData.append(data!, withName: "file", fileName: fileUrl.lastPathComponent ?? "File.aiff", mimeType: "audio/mpeg")
             
         }, to:URL,headers:nil)
         { (result) in

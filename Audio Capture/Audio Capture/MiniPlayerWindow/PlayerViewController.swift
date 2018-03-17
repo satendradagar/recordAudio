@@ -12,6 +12,8 @@ import AVKit
 import Alamofire
 import AlamofireImage
 
+let volumeDefaultsKey = "soundVol"
+
 class PlayerViewController: NSViewController {
   
 //    @IBOutlet weak var progressBar: ProgressBar!
@@ -37,10 +39,16 @@ class PlayerViewController: NSViewController {
 //        let mediaPAth = "http://ec2-35-177-218-234.eu-west-2.compute.amazonaws.com/uploads/95174.wav"
         currentSongIndex = 0
 //        configureSongWith(songIndex: currentSongIndex)
+        let vol = UserDefaults.standard.object(forKey:volumeDefaultsKey) as? Float
+        if nil == vol {
+            UserDefaults.standard.set(1.0, forKey: volumeDefaultsKey)
+        }
+        UserDefaults.standard.addObserver(self, forKeyPath: volumeDefaultsKey, options: .new, context: nil)
     }
     
     func configureWithSongs(songs:[MusicItem])  {
-
+        
+        currentSongIndex = 0
         allSongs = songs
         configureSongWith(songIndex: currentSongIndex)
 
@@ -56,7 +64,6 @@ class PlayerViewController: NSViewController {
     @IBAction func didClickPlayPrevious(_ sender: NSButton) {
         currentSongIndex = currentSongIndex - 1
         configureSongWith(songIndex: currentSongIndex)
-
     }
 
     @IBAction func didClickPlaySong(_ sender: NSButton) {
@@ -84,6 +91,7 @@ class PlayerViewController: NSViewController {
         player.pause()
 
         player = AVPlayer()
+        
         setupPlayer()
         self.playButton.image = #imageLiteral(resourceName: "Pause-icon")
 
@@ -179,7 +187,9 @@ class PlayerViewController: NSViewController {
     }
     
     func setupPlayer()  {
-    
+        if let vol = UserDefaults.standard.object(forKey:volumeDefaultsKey) as? Float{
+            player.volume = vol
+        }
         let tm: CMTime = CMTimeMakeWithSeconds(0.1, Int32(Double(NSEC_PER_SEC)))
         player.addPeriodicTimeObserver(forInterval: tm, queue: DispatchQueue.main, using: {(_ time: CMTime) -> Void in
             let duration: Float64 = CMTimeGetSeconds((self.player.currentItem?.duration)!)
@@ -215,6 +225,20 @@ class PlayerViewController: NSViewController {
         player.pause()
     }
 
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == volumeDefaultsKey {
+            //Do something
+            if let vol = UserDefaults.standard.object(forKey:volumeDefaultsKey) as? Float{
+                print(vol)
+                player.volume = vol
+            }
+        }
+    }
+    
+    deinit {
+        UserDefaults.standard.removeObserver(self, forKeyPath:volumeDefaultsKey)
+    }
     
 }
 

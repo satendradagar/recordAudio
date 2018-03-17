@@ -26,6 +26,21 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="didClickRecordAudio:" target="APB-rk-xcc" id="HaC-ip-ibk"/>
+                        <outlet property="view" destination="wwe-KE-IJ9" id="Jd9-YG-NYZ"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="T0d-kL-H8z"/>
+                <menuItem title="Note" id="DNU-sw-G1Y">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <outlet property="view" destination="2ry-rk-7h8" id="de1-lN-L1x"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="ieg-sm-3tj"/>
+                <menuItem title="Graph" id="cCr-RS-xv4">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <outlet property="view" destination="1SP-pO-8hh" id="q9f-Ti-zGT"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Gnm-e7-g36"/>
@@ -66,12 +81,22 @@
                     </menu>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="Xcy-jf-Idh"/>
-                <menuItem title="Sync" id="0Wn-2p-mgW">
+                <menuItem title="Show In Finder" id="yk8-Mz-htD">
                     <modifierMask key="keyEquivalentModifierMask"/>
-                    <menu key="submenu" title="Sync" id="Bac-ap-elg">
+                    <menu key="submenu" title="Show In Finder" id="ZZb-iw-03q">
                         <items>
-                            <menuItem title="Fav 1" id="awB-Q0-NBg">
+                            <menuItem title="Captures" tag="1" id="kY8-qC-tzj">
                                 <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didClickShowInFinder:" target="APB-rk-xcc" id="xWa-z7-S3p"/>
+                                </connections>
+                            </menuItem>
+                            <menuItem isSeparatorItem="YES" id="i8p-Nz-j08"/>
+                            <menuItem title="Sync" tag="2" id="Egc-0z-EfP">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="didClickShowInFinder:" target="APB-rk-xcc" id="bon-1b-y7a"/>
+                                </connections>
                             </menuItem>
                         </items>
                     </menu>
@@ -94,9 +119,9 @@
                 <outlet property="loginLogout" destination="NtI-r5-Yp8" id="xUT-2j-WLs"/>
                 <outlet property="myCaptures" destination="S3Z-Vn-F3J" id="vTl-Mw-doQ"/>
                 <outlet property="recordAudio" destination="NOc-3h-UFU" id="0tR-H8-0GR"/>
-                <outlet property="sync" destination="0Wn-2p-mgW" id="CWD-dU-sDi"/>
+                <outlet property="recordTitle" destination="j8P-HZ-XWx" id="emm-w5-4hb"/>
             </connections>
-            <point key="canvasLocation" x="428" y="658.5"/>
+            <point key="canvasLocation" x="532" y="639"/>
         </menu>
         <menu title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
             <items>
@@ -764,12 +789,112 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="399" height="158"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="399" height="158"/>
                 <autoresizingMask key="autoresizingMask"/>
             </view>
             <point key="canvasLocation" x="645.5" y="191"/>
         </window>
+        <customView id="wwe-KE-IJ9" customClass="SSMouseHoverEffectView" customModule="Hello_Demo" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="219" height="24"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-ZA-NAW">
+                    <rect key="frame" x="191" y="0.0" width="24" height="24"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="record" id="SJY-iw-Hi0"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8P-HZ-XWx">
+                    <rect key="frame" x="18" y="3" width="167" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Record Audio" id="UgN-A3-YGA">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hH-Pu-XoE">
+                    <rect key="frame" x="0.0" y="2" width="190" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="1L5-02-fnh">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="didClickRecordAudio:" target="APB-rk-xcc" id="j5w-nX-VLD"/>
+                    </connections>
+                </button>
+            </subviews>
+            <point key="canvasLocation" x="236.5" y="347"/>
+        </customView>
+        <customView id="2ry-rk-7h8">
+            <rect key="frame" x="0.0" y="0.0" width="226" height="96"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAG-rj-sh6">
+                    <rect key="frame" x="18" y="47" width="93" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="F#6" id="m83-wl-3jc">
+                        <font key="font" metaFont="system" size="33"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVW-hz-ifh">
+                    <rect key="frame" x="122" y="20" width="86" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Frequency" id="5RU-Fi-ryu">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eH-9p-UBy">
+                    <rect key="frame" x="122" y="59" width="86" height="17"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note" id="7jH-2K-Ue4">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXX-9s-v93">
+                    <rect key="frame" x="18" y="16" width="81" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1480.2" id="o0Q-cu-GhB">
+                        <font key="font" metaFont="system" size="23"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <point key="canvasLocation" x="233" y="453"/>
+        </customView>
+        <customView id="1SP-pO-8hh">
+            <rect key="frame" x="0.0" y="0.0" width="226" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKX-S1-sEC">
+                    <rect key="frame" x="64" y="21" width="76" height="26"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="SqR-5f-9pc" id="Ww4-dv-fvV">
+                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="menu"/>
+                        <menu key="menu" id="xTC-s8-9cP">
+                            <items>
+                                <menuItem title="Item 1" state="on" id="SqR-5f-9pc"/>
+                                <menuItem title="Item 2" id="cWv-1t-0nq"/>
+                                <menuItem title="Item 3" id="tBw-nq-vHD"/>
+                            </items>
+                        </menu>
+                    </popUpButtonCell>
+                </popUpButton>
+            </subviews>
+            <point key="canvasLocation" x="233" y="574.5"/>
+        </customView>
     </objects>
+    <resources>
+        <image name="record" width="44" height="44"/>
+    </resources>
 </document>

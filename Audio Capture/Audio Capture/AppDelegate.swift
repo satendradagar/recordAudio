@@ -54,7 +54,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         let img = NSImage(named: NSImage.Name("status_Recording"))
         statusItem.image = img
-        
+        statusItem.title = ""
+
 
     }
 

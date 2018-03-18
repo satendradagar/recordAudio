@@ -15,6 +15,7 @@ import Cocoa
 class MusicItem: NSObject {
     
     var title:String?
+    var artist:String?
     var url:String?
     var avatar: String?
     var isFavourite:Bool? = false
@@ -22,6 +23,7 @@ class MusicItem: NSObject {
     init?(with dict:[String:Any?]?) {
         if let data = dict {
             title = data["title"] as? String
+            artist = data["artist"] as? String
             url = data["music_url"] as? String
             avatar = data["avatar"] as? String
             if let favVal = data["favorite"] as? Bool{
@@ -34,7 +36,7 @@ class MusicItem: NSObject {
     }
     
     func dictionaryRepresentation() -> [String:Any?] {
-        return ["title":title,"music_url":url,"avatar":avatar,"favorite":isFavourite]
+        return ["title":title,"music_url":url,"avatar":avatar,"favorite":isFavourite,"artist":artist]
     }
 }
 

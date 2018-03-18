@@ -14,6 +14,8 @@ let  FFTViewControllerFFTWindowSize = 4096 as vDSP_Length;
 
 class MenuBarActionHandler: NSMenu {
     
+    var isRec = false
+    
     @IBOutlet weak var recordAudio: NSMenuItem!
     
     @IBOutlet weak var playNext: NSMenuItem!
@@ -39,6 +41,14 @@ class MenuBarActionHandler: NSMenu {
     // A label used to display the maximum frequency (i.e. the frequency with
     // the highest energy) calculated from the FFT.
     //
+    @IBOutlet weak var noteMenu: NSMenuItem!
+    
+    @IBOutlet weak var frequencyMenu: NSMenuItem!
+
+    @IBOutlet  var noteView: NSView!
+    
+    @IBOutlet  var frequencyView: NSView!
+
     @IBOutlet weak var noteLabel: NSTextField!
 
     @IBOutlet weak var maxFrequencyLabel: NSTextField!
@@ -73,6 +83,11 @@ class MenuBarActionHandler: NSMenu {
         reloadCaptureWithStore()
         reloadLoginWithStore()
         self.myCaptures.title = "Captures"
+        self.myCaptures.isHidden = true
+        noteMenu.isHidden = true
+        frequencyMenu.isHidden = true
+        noteMenu.view = nil
+        frequencyMenu.view = nil
 
 //        self.myCaptures.attributedTitle = self.attributedTitleWith(title: "Hello", subTitle: "New")
 //        self.recordAudio.image = #imageLiteral(resourceName: "record")
@@ -88,6 +103,7 @@ class MenuBarActionHandler: NSMenu {
 //        recordAudio.view = statusItemView
 //        statusItemView.title = "00:00:00"
         configuureRecordingView()
+        self.updateMenuBarTitleWith(note: "Hell", frequency: "Frequ")
     }
     
     func reloadFavouriteWithStore()  {
@@ -146,19 +162,32 @@ class MenuBarActionHandler: NSMenu {
         let isRecording = recordingController.isRecording();
         print(isRecording)
         if (isRecording){
-            (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
+            isRec = false
             recordingController.stopRecording()
             recordTitle.stringValue = "Capture Audio"
+            noteMenu.isHidden = true
+            frequencyMenu.isHidden = true
+            noteMenu.view = nil
+            frequencyMenu.view = nil
+            (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
 
         }
         else{
+            isRec = true
             (NSApp.delegate as? AppDelegate)?.setupMenuForRecording();
+
 //            recordingController.createRecorderFromMix()
             recordingController.recordManager.delegate = self;
+            noteMenu.isHidden = false
+            frequencyMenu.isHidden = false
+            noteMenu.view = noteView
+            frequencyMenu.view = frequencyView
 
             recordingController.startRecording()
             recordTitle.stringValue = "Stop Recording"
+
             self.updateFileRelatedMenu()
+
         }
         self.cancelTracking()
     }
@@ -426,40 +455,73 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
         DispatchQueue.main.async(execute: {() -> Void in
             let text = "Highest Note: \(noteName)) \n Frequency: %.2f\(maxFrequency)"
             print("Label:\(text)")
-            
+            var noteStr = ""
+            var freqStr = ""
+
             if let freq = maxFrequency{
-                self.maxFrequencyLabel.stringValue = "\(freq)"
+                freqStr = "\(freq)"
+                self.maxFrequencyLabel.stringValue = freqStr
             }
             
             if let note = noteName{
-                self.noteLabel.stringValue = "\(note)"
+                noteStr = "\(note)"
+                self.noteLabel.stringValue = noteStr
             }
+            
 //            self.noteLabel.stringValue = "\(String(describing: noteName))"
             self.recordingAudioPlot.updateBuffer(fftData, withBufferSize: UInt32(bufferSize))
+            self.updateMenuBarTitleWith(note: noteStr, frequency: freqStr)
         })
     }
     
+    func updateMenuBarTitleWith(note:String,frequency:String) {
+        
+        if isRec == false {
+            return
+        }
+        (NSApp.delegate as? AppDelegate)?.setupMenuForRecording(withTitle: self.attributedTitleWith(title: note, subTitle: frequency));
+
+    }
+    
     func attributedTitleWith(title:String,subTitle:String) -> NSAttributedString {
+        
+        var textColor = NSColor.black
+        if(InterfaceStyle() == .Dark){
+            textColor = NSColor.white
+        }
+        
+        // *** Create instance of `NSMutableParagraphStyle`
+        let paragraphStyle = NSMutableParagraphStyle()
+        
+        // *** set LineSpacing property in points ***
+//        paragraphStyle.lineSpacing = 0.0 // Whatever line spacing you want in points
+        paragraphStyle.lineSpacing = 0.5 // change line spacing between each line like 30 or 40
+        paragraphStyle.maximumLineHeight = 6
         let stringAttributes = [
-            NSAttributedStringKey.font : NSFont(name: "Helvetica Neue", size: 17.0)!,
+        
+            NSAttributedStringKey.font : NSFont(name: "Helvetica Neue", size: 12.0)!,
 //            NSAttributedStringKey.underlineStyle : 1,
-            NSAttributedStringKey.foregroundColor : NSColor.orange,
+            NSAttributedStringKey.foregroundColor : textColor,
+
 //            NSAttributedStringKey.textEffect : NSAttributedString.TextEffectStyle.letterpressStyle,
 //            NSAttributedStringKey.strokeWidth : 2.0
+//            NSAttributedStringKey.paragraphStyle : paragraphStyle,
             ] as [NSAttributedStringKey : Any]
-        let atrributedString = NSAttributedString(string: "Hello\n", attributes: stringAttributes)
+        let atrributedString = NSAttributedString(string: "\(title)\n", attributes: stringAttributes)
         
         let stringAttributes2 = [
-            NSAttributedStringKey.font : NSFont(name: "Helvetica Neue", size: 10.0)!,
+            NSAttributedStringKey.font : NSFont(name: "Helvetica Neue", size: 8.0)!,
 //            NSAttributedStringKey.underlineStyle : 1,
-            NSAttributedStringKey.foregroundColor : NSColor.systemGreen,
+            NSAttributedStringKey.foregroundColor : textColor,
 //            NSAttributedStringKey.textEffect : NSAttributedString.TextEffectStyle.letterpressStyle,
-//            NSAttributedStringKey.strokeWidth : 2.0
+//            NSAttributedStringKey.strokeWidth : 2.0,
+            NSAttributedStringKey.paragraphStyle : paragraphStyle,
             ] as [NSAttributedStringKey : Any]
-        let atrributedString2 = NSAttributedString(string: "New\n", attributes: stringAttributes2)
+        let atrributedString2 = NSAttributedString(string: subTitle, attributes: stringAttributes2)
         
         let attrStr = NSMutableAttributedString.init(attributedString: atrributedString)
         attrStr.append(atrributedString2)
+//        attrStr.addAttributes([NSAttributedStringKey.paragraphStyle : paragraphStyle], range: NSMakeRange(0, attrStr.length))
 //        sampleLabel.attributedText = atrributedString
         return attrStr
         

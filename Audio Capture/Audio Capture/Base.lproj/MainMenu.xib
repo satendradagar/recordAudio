@@ -60,7 +60,7 @@
                                     <action selector="didClickPlayNext:" target="APB-rk-xcc" id="bYc-Ld-0Jo"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Capture" tag="3" id="Vi8-7f-0R3">
+                            <menuItem title="Captures" tag="3" id="Vi8-7f-0R3">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="didClickPlayNext:" target="APB-rk-xcc" id="Mhi-QC-LDR"/>
@@ -116,10 +116,14 @@
                 </menuItem>
             </items>
             <connections>
+                <outlet property="frequencyMenu" destination="cCr-RS-xv4" id="dIz-R4-Ycm"/>
+                <outlet property="frequencyView" destination="1SP-pO-8hh" id="D8z-78-Zin"/>
                 <outlet property="loginLogout" destination="NtI-r5-Yp8" id="xUT-2j-WLs"/>
                 <outlet property="maxFrequencyLabel" destination="cXX-9s-v93" id="Dbd-wh-MAC"/>
                 <outlet property="myCaptures" destination="S3Z-Vn-F3J" id="vTl-Mw-doQ"/>
                 <outlet property="noteLabel" destination="cAG-rj-sh6" id="Fi4-Hr-ANX"/>
+                <outlet property="noteMenu" destination="DNU-sw-G1Y" id="cyu-b7-iwO"/>
+                <outlet property="noteView" destination="2ry-rk-7h8" id="wRa-Ul-vzF"/>
                 <outlet property="recordAudio" destination="NOc-3h-UFU" id="0tR-H8-0GR"/>
                 <outlet property="recordTitle" destination="j8P-HZ-XWx" id="emm-w5-4hb"/>
                 <outlet property="recordingAudioPlot" destination="1SP-pO-8hh" id="h84-Yc-hkT"/>
@@ -792,10 +796,47 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="399" height="158"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="399" height="158"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tao-Gz-uD6">
+                        <rect key="frame" x="79" y="87" width="217" height="59"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <clipView key="contentView" ambiguous="YES" id="zDW-ou-thb">
+                            <rect key="frame" x="0.0" y="0.0" width="217" height="59"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <textView ambiguous="YES" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="u5Z-DV-Geh">
+                                    <rect key="frame" x="0.0" y="0.0" width="217" height="59"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <size key="minSize" width="217" height="59"/>
+                                    <size key="maxSize" width="463" height="10000000"/>
+                                    <attributedString key="textStorage">
+                                        <fragment content="Hello New">
+                                            <attributes>
+                                                <font key="NSFont" size="12" name="Helvetica"/>
+                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
+                                            </attributes>
+                                        </fragment>
+                                    </attributedString>
+                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                </textView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="66D-94-yFq">
+                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Iy7-ef-xSl">
+                            <rect key="frame" x="201" y="0.0" width="16" height="59"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
+                </subviews>
             </view>
             <point key="canvasLocation" x="645.5" y="191"/>
         </window>
@@ -836,7 +877,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAG-rj-sh6">
-                    <rect key="frame" x="18" y="34" width="104" height="52"/>
+                    <rect key="frame" x="18" y="34" width="112" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="F#6" id="m83-wl-3jc">
                         <font key="font" metaFont="system" size="40"/>
@@ -845,7 +886,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVW-hz-ifh">
-                    <rect key="frame" x="122" y="2" width="86" height="17"/>
+                    <rect key="frame" x="134" y="2" width="85" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Frequency" id="5RU-Fi-ryu">
                         <font key="font" metaFont="systemBold"/>
@@ -854,7 +895,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eH-9p-UBy">
-                    <rect key="frame" x="122" y="50" width="86" height="17"/>
+                    <rect key="frame" x="134" y="50" width="74" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note" id="7jH-2K-Ue4">
                         <font key="font" metaFont="systemBold"/>
@@ -863,7 +904,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXX-9s-v93">
-                    <rect key="frame" x="18" y="2" width="104" height="24"/>
+                    <rect key="frame" x="18" y="2" width="112" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1480.2" id="o0Q-cu-GhB">
                         <font key="font" metaFont="system" size="20"/>

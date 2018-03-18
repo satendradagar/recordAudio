@@ -21,6 +21,8 @@ class PlayerViewController: NSViewController {
     @IBOutlet weak var playButton: NSButton!
     @IBOutlet weak var playerView: AVPlayerView!
     @IBOutlet weak var songTitle: NSTextField!
+    @IBOutlet weak var artistTitle: NSTextField!
+
     @IBOutlet weak var backgroundImage: NSImageView!
     @IBOutlet weak var contentBackground: NSImageView!
 
@@ -123,7 +125,9 @@ class PlayerViewController: NSViewController {
         }
         
         self.favouriteButton.state = NSControl.StateValue.init(rawFav)
-        self.songTitle.stringValue = song.title ?? (song.url ?? "Untitles")
+        self.songTitle.stringValue = song.title ?? (song.url ?? "Untitled")
+        self.artistTitle.stringValue = song.artist ?? "No artist"
+
         if let imgPath = song.avatar{
             Alamofire.request(imgPath).responseImage { response in
                 debugPrint(response)

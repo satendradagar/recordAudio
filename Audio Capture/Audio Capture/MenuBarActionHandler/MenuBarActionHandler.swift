@@ -10,6 +10,8 @@
 import Foundation
 import Cocoa
 
+let  FFTViewControllerFFTWindowSize = 4096 as vDSP_Length;
+
 class MenuBarActionHandler: NSMenu {
     
     @IBOutlet weak var recordAudio: NSMenuItem!
@@ -29,7 +31,25 @@ class MenuBarActionHandler: NSMenu {
 //    @IBOutlet weak var recordMenuView: NSView!
 
     @IBOutlet weak var recordTitle: NSTextField!
+    //
+    // Used to calculate a rolling FFT of the incoming audio data.
+    //
+    var fft: EZAudioFFTRolling?
+    //
+    // A label used to display the maximum frequency (i.e. the frequency with
+    // the highest energy) calculated from the FFT.
+    //
+    @IBOutlet weak var noteLabel: NSTextField!
 
+    @IBOutlet weak var maxFrequencyLabel: NSTextField!
+    
+    //------------------------------------------------------------------------------
+    //
+    // Use a OpenGL based plot to visualize the data coming in
+    //
+    @IBOutlet weak var recordingAudioPlot: EZAudioPlotGL!
+    //------------------------------------------------------------------------------
+    
     var recordingController = AVAudioRecordingController()
     var syncFilesManager = SyncFileManager()
     var syncRecordingManager = RecordSyncFileManager()
@@ -53,6 +73,8 @@ class MenuBarActionHandler: NSMenu {
         reloadCaptureWithStore()
         reloadLoginWithStore()
         self.myCaptures.title = "Captures"
+
+//        self.myCaptures.attributedTitle = self.attributedTitleWith(title: "Hello", subTitle: "New")
 //        self.recordAudio.image = #imageLiteral(resourceName: "record")
         self.recordAudio.title = "Capture Audio                              🔴"
 //        self.recordAudio.onStateImage = #imageLiteral(resourceName: "record")
@@ -65,7 +87,7 @@ class MenuBarActionHandler: NSMenu {
 //        statusItemView.toolTip = NSLocalizedString("Menubar Countdown", comment: "Status Item Tooltip")
 //        recordAudio.view = statusItemView
 //        statusItemView.title = "00:00:00"
-
+        configuureRecordingView()
     }
     
     func reloadFavouriteWithStore()  {
@@ -131,11 +153,14 @@ class MenuBarActionHandler: NSMenu {
         }
         else{
             (NSApp.delegate as? AppDelegate)?.setupMenuForRecording();
-            recordingController.createRecorderFromMix()
+//            recordingController.createRecorderFromMix()
+            recordingController.recordManager.delegate = self;
+
             recordingController.startRecording()
             recordTitle.stringValue = "Stop Recording"
             self.updateFileRelatedMenu()
         }
+        self.cancelTracking()
     }
     
     @IBAction func didClickPlayNext(_ sender: NSMenuItem) {
@@ -300,54 +325,145 @@ class MenuBarActionHandler: NSMenu {
 }
 
 extension MenuBarActionHandler : NSMenuDelegate {
-
-    public func menu(_ menu: NSMenu, willHighlight item: NSMenuItem?)
-    {
-        print("\(item?.title)")
-        if let strTitle = item?.title {
-            if strTitle == "Captures"{
-
+    
+        public func menu(_ menu: NSMenu, willHighlight item: NSMenuItem?)
+        {
+            print("\(item?.title)")
+            if let strTitle = item?.title {
+                if strTitle == "Captures"{
+                    
+                }
             }
         }
-    }
     
-    public func menuWillOpen(_ menu: NSMenu){
-        print("menuWillOpen")
-        if false == NSApp.isActive {
-            let itms = menu.items
-            menu.removeAllItems()
-            print("Removed")
-            NSApp.activate(ignoringOtherApps: true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.0001, execute: {
-//                menu.items = items
-                for item in itms{
-                    menu.addItem(item)
-                }
-                print("ADDED")
-
-                (NSApp.delegate as? AppDelegate)?.statusItem.popUpMenu(self);
-
-            })
+        public func menuWillOpen(_ menu: NSMenu){
+            print("menuWillOpen")
+            if false == NSApp.isActive {
+                let itms = menu.items
+                menu.removeAllItems()
+                print("Removed")
+                NSApp.activate(ignoringOtherApps: true)
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.0001, execute: {
+                    //                menu.items = items
+                    for item in itms{
+                        menu.addItem(item)
+                    }
+                    print("ADDED")
+                    
+                    (NSApp.delegate as? AppDelegate)?.statusItem.popUpMenu(self);
+                    
+                })
+                
+                //                    menu.setMenuBarVisible(visible:true)
+            }
             
-            //                    menu.setMenuBarVisible(visible:true)
+            //        if false == NSApp.isActive {
+            //            NSApp.activate(ignoringOtherApps: true)
+            //        }
+            let isRecording = recordingController.isRecording();
+            print(isRecording)
+            if (isRecording == false){
+                syncFilesManager.checkAndSyncFiles()
+                syncRecordingManager.checkAndSyncFiles()
+                updateSyncRelatedMenu()
+            }
+            //        self.updateMenuWithCurrentStatus()
         }
+    
+        public func menuDidClose(_ menu: NSMenu){
+            print("menuDidClose")
+            
+        }
+    
+    }
 
-//        if false == NSApp.isActive {
-//            NSApp.activate(ignoringOtherApps: true)
-//        }
-        let isRecording = recordingController.isRecording();
-        print(isRecording)
-        if (isRecording == false){
-            syncFilesManager.checkAndSyncFiles()
-            syncRecordingManager.checkAndSyncFiles()
-            updateSyncRelatedMenu()
-        }
-//        self.updateMenuWithCurrentStatus()
+extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
+    func configuureRecordingView() {
+        
+        recordingAudioPlot.color = NSColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        recordingAudioPlot.plotType = EZPlotType.rolling
+        recordingAudioPlot.shouldFill = true
+        recordingAudioPlot.shouldMirror = true
+        self.recordingController.recordManager.delegate = self;
+        // Create an instance of the EZAudioFFTRolling to keep a history of the incoming audio data and calculate the FFT.
+        //
+        //        EZAudioFFTRolling.init(windowSize: vDSP_Length, sampleRate: <#T##Float#>, delegate: <#T##EZAudioFFTDelegate!#>)
+        fft = EZAudioFFTRolling.init(windowSize: FFTViewControllerFFTWindowSize, sampleRate: Float(recordingController.recordManager.microphone.audioStreamBasicDescription().mSampleRate), delegate: self)
+    }
+
+    //Hanlde recording delegates
+    // MARK: - RecordingManagerDelegate
+    func didStartRecordingToOutputFile(at outputURL: URL?) {
+//        playButton.enabled = true
+//        window.title = outputURL?.path
+    }
+
+    func didFinishRecordingToOutputFile(at outputURL: URL?) {
+//        window.title = "RecordFile"
+    }
+
+    func updateAudioPlotBuffer(_ buffer: UnsafeMutablePointer<Float>?, withBufferSize bufferSize: UInt32) {
+        print(#function)
+        self.recordingAudioPlot.updateBuffer(buffer, withBufferSize: bufferSize)
+        //
+        // Calculate the FFT, will trigger EZAudioFFTDelegate
+        //
+        fft?.computeFFT(withBuffer: buffer, withBufferSize: bufferSize)
+//        playingAudioPlot.updateBuffer(buffer, withBufferSize: bufferSize)
     }
     
-    public func menuDidClose(_ menu: NSMenu){
-        print("menuDidClose")
+//    func recorderUpdatedCurrentTime(_ formattedCurrentTime: String?) {
+//        if let aTime = formattedCurrentTime {
+//            "\(currentTimeLabel)" = aTime
+//        }
+//    }
+    //------------------------------------------------------------------------------
+    // MARK: - EZAudioFFTDelegate
+    //------------------------------------------------------------------------------
+    func fft(_ fft: EZAudioFFT?, updatedWithFFTData fftData: UnsafeMutablePointer<Float>?, bufferSize: vDSP_Length) {
+        let maxFrequency: Float? = fft?.maxFrequency
+        let noteName = EZAudioUtilities.noteNameString(forFrequency: maxFrequency!, includeOctave: true)
+        DispatchQueue.main.async(execute: {() -> Void in
+            let text = "Highest Note: \(noteName)) \n Frequency: %.2f\(maxFrequency)"
+            print("Label:\(text)")
+            
+            if let freq = maxFrequency{
+                self.maxFrequencyLabel.stringValue = "\(freq)"
+            }
+            
+            if let note = noteName{
+                self.noteLabel.stringValue = "\(note)"
+            }
+//            self.noteLabel.stringValue = "\(String(describing: noteName))"
+            self.recordingAudioPlot.updateBuffer(fftData, withBufferSize: UInt32(bufferSize))
+        })
+    }
+    
+    func attributedTitleWith(title:String,subTitle:String) -> NSAttributedString {
+        let stringAttributes = [
+            NSAttributedStringKey.font : NSFont(name: "Helvetica Neue", size: 17.0)!,
+//            NSAttributedStringKey.underlineStyle : 1,
+            NSAttributedStringKey.foregroundColor : NSColor.orange,
+//            NSAttributedStringKey.textEffect : NSAttributedString.TextEffectStyle.letterpressStyle,
+//            NSAttributedStringKey.strokeWidth : 2.0
+            ] as [NSAttributedStringKey : Any]
+        let atrributedString = NSAttributedString(string: "Hello\n", attributes: stringAttributes)
+        
+        let stringAttributes2 = [
+            NSAttributedStringKey.font : NSFont(name: "Helvetica Neue", size: 10.0)!,
+//            NSAttributedStringKey.underlineStyle : 1,
+            NSAttributedStringKey.foregroundColor : NSColor.systemGreen,
+//            NSAttributedStringKey.textEffect : NSAttributedString.TextEffectStyle.letterpressStyle,
+//            NSAttributedStringKey.strokeWidth : 2.0
+            ] as [NSAttributedStringKey : Any]
+        let atrributedString2 = NSAttributedString(string: "New\n", attributes: stringAttributes2)
+        
+        let attrStr = NSMutableAttributedString.init(attributedString: atrributedString)
+        attrStr.append(atrributedString2)
+//        sampleLabel.attributedText = atrributedString
+        return attrStr
         
     }
     
 }
+

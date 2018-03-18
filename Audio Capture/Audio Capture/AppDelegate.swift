@@ -38,6 +38,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.image = img
 
     }
+    
+    func setupMenuForRecording(withTitle title:NSAttributedString) {
+//        var img = NSImage(named: NSImage.Name("status"))
+//
+//        if(InterfaceStyle() == .Dark){
+//            img = NSImage(named: NSImage.Name("statusDark"))
+//        }
+        statusItem.image = nil
+        statusItem.attributedTitle = title
+        
+    }
+
     func setupMenuForNormal() {
         
         let img = NSImage(named: NSImage.Name("status_Recording"))

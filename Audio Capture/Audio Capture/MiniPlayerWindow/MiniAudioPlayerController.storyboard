@@ -215,7 +215,7 @@
                 <customObject id="Bmh-tX-sMS" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController representsSharedInstance="YES" id="sff-aR-HJJ"/>
             </objects>
-            <point key="canvasLocation" x="53" y="-510.5"/>
+            <point key="canvasLocation" x="-63" y="-560"/>
         </scene>
     </scenes>
     <resources>

@@ -18,6 +18,7 @@ class AVAudioRecordingController: NSObject {
 
     override init() {
         super.init()
+        createRecorderFromMix()
         
     }
     // MARK: Instance methods

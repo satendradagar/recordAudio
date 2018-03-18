@@ -117,9 +117,12 @@
             </items>
             <connections>
                 <outlet property="loginLogout" destination="NtI-r5-Yp8" id="xUT-2j-WLs"/>
+                <outlet property="maxFrequencyLabel" destination="cXX-9s-v93" id="Dbd-wh-MAC"/>
                 <outlet property="myCaptures" destination="S3Z-Vn-F3J" id="vTl-Mw-doQ"/>
+                <outlet property="noteLabel" destination="cAG-rj-sh6" id="Fi4-Hr-ANX"/>
                 <outlet property="recordAudio" destination="NOc-3h-UFU" id="0tR-H8-0GR"/>
                 <outlet property="recordTitle" destination="j8P-HZ-XWx" id="emm-w5-4hb"/>
+                <outlet property="recordingAudioPlot" destination="1SP-pO-8hh" id="h84-Yc-hkT"/>
             </connections>
             <point key="canvasLocation" x="532" y="639"/>
         </menu>
@@ -829,69 +832,52 @@
             <point key="canvasLocation" x="236.5" y="347"/>
         </customView>
         <customView id="2ry-rk-7h8">
-            <rect key="frame" x="0.0" y="0.0" width="226" height="96"/>
+            <rect key="frame" x="0.0" y="0.0" width="226" height="85"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cAG-rj-sh6">
-                    <rect key="frame" x="18" y="47" width="93" height="40"/>
+                    <rect key="frame" x="18" y="34" width="104" height="52"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="F#6" id="m83-wl-3jc">
-                        <font key="font" metaFont="system" size="33"/>
+                        <font key="font" metaFont="system" size="40"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AVW-hz-ifh">
-                    <rect key="frame" x="122" y="20" width="86" height="17"/>
+                    <rect key="frame" x="122" y="2" width="86" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Frequency" id="5RU-Fi-ryu">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3eH-9p-UBy">
-                    <rect key="frame" x="122" y="59" width="86" height="17"/>
+                    <rect key="frame" x="122" y="50" width="86" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Note" id="7jH-2K-Ue4">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="systemBold"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cXX-9s-v93">
-                    <rect key="frame" x="18" y="16" width="81" height="25"/>
+                    <rect key="frame" x="18" y="2" width="104" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="1480.2" id="o0Q-cu-GhB">
-                        <font key="font" metaFont="system" size="23"/>
+                        <font key="font" metaFont="system" size="20"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
             </subviews>
-            <point key="canvasLocation" x="233" y="453"/>
+            <point key="canvasLocation" x="233" y="458.5"/>
         </customView>
-        <customView id="1SP-pO-8hh">
-            <rect key="frame" x="0.0" y="0.0" width="226" height="65"/>
+        <customView id="1SP-pO-8hh" customClass="EZAudioPlot">
+            <rect key="frame" x="0.0" y="0.0" width="226" height="43"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-            <subviews>
-                <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKX-S1-sEC">
-                    <rect key="frame" x="64" y="21" width="76" height="26"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="SqR-5f-9pc" id="Ww4-dv-fvV">
-                        <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="menu"/>
-                        <menu key="menu" id="xTC-s8-9cP">
-                            <items>
-                                <menuItem title="Item 1" state="on" id="SqR-5f-9pc"/>
-                                <menuItem title="Item 2" id="cWv-1t-0nq"/>
-                                <menuItem title="Item 3" id="tBw-nq-vHD"/>
-                            </items>
-                        </menu>
-                    </popUpButtonCell>
-                </popUpButton>
-            </subviews>
-            <point key="canvasLocation" x="233" y="574.5"/>
+            <point key="canvasLocation" x="233" y="563.5"/>
         </customView>
     </objects>
     <resources>

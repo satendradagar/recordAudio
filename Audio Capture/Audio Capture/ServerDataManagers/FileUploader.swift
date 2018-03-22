@@ -50,7 +50,7 @@ class FileUploader: NSObject {
         
     }
     
-    static func uploadMediaAtPath(_ filePath:String, completion:@escaping ((_ filePath:String, _ status:Bool) -> Void)) {
+    static func uploadMediaAtPath(_ filePath:String,type:String, completion:@escaping ((_ filePath:String, _ status:Bool) -> Void)) {
         
         
         let URL = ApiConstant.pathFor(type: .sync)
@@ -75,6 +75,8 @@ class FileUploader: NSObject {
 
         let params: Parameters = ["user_id": PreferencesStore.sharedInstance.user.id ?? "",
                                   "bit_rate": "44100",
+                                  "type": type,
+
 //                                  "filename":fileUrl?.lastPathComponent ?? "File.aiff"
                                   ]
 //        let data = try! Data.init(contentsOf:fileUrl!)

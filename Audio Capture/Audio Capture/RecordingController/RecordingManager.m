@@ -13,7 +13,7 @@
 - (instancetype) init {
     if(self == [super init]) {
         self.microphone = [EZMicrophone microphoneWithDelegate:self];
-        //[self.microphone startFetchingAudio];
+        [self.microphone startFetchingAudio];
         self.defaultOutput = [EZAudioDevice currentOutputSystem];
         NSUserDefaults* udf = [NSUserDefaults standardUserDefaults];
         [udf setInteger:self.defaultOutput.deviceID forKey:@"deviceID"];

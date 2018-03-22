@@ -853,7 +853,7 @@
                     <rect key="frame" x="18" y="3" width="167" height="17"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Record Audio" id="UgN-A3-YGA">
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menuBar"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
@@ -863,7 +863,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="1L5-02-fnh">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="menuBar"/>
                     </buttonCell>
                     <connections>
                         <action selector="didClickRecordAudio:" target="APB-rk-xcc" id="j5w-nX-VLD"/>

@@ -22,6 +22,7 @@ class SyncFile: NSObject {
     var fileName: String!
     var uploadStatus = FileStatus.notSynced
     var isRecording = false
+    var type = "capture"
     
     init(name:String) {
         fileName = name
@@ -52,7 +53,7 @@ class SyncFile: NSObject {
             if isRecording{
                 localPath = RecordingStoreManager.recordingRootFilePathFor(fileName)
             }
-            FileUploader.uploadMediaAtPath(localPath, completion: { (path, status) in
+            FileUploader.uploadMediaAtPath(localPath,type: self.type, completion: { (path, status) in
                 
                 if (status == true){
                     self.uploadStatus = .uploaded
@@ -97,6 +98,7 @@ class SyncFileManager: NSObject {
                 continue
             }
             let syncFile = SyncFile.init(name: file)
+            syncFile.type = "sync"
             filesToSync.append(syncFile)
             
         }

@@ -23,7 +23,7 @@ class SSMouseHoverEffectView: NSView {
     override func awakeFromNib() {
         super.awakeFromNib();
         self.normalColor = NSColor.clear
-        self.highlightColor = NSColor.keyboardFocusIndicatorColor
+        self.highlightColor = NSColor.selectedMenuItemColor
         self.wantsLayer = true
     }
     

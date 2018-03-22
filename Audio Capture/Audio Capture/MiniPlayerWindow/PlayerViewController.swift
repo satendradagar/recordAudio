@@ -137,7 +137,7 @@ class PlayerViewController: NSViewController {
                 debugPrint(response.result)
                 
                 if let image = response.result.value {
-                    self.backgroundImage.image = image
+                    self.backgroundImage.image = image.crop(size: self.backgroundImage.bounds.size)
                     print("image downloaded: \(image)")
                     
                 }

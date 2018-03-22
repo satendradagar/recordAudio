@@ -18,6 +18,7 @@
 		9A12CEB0200DBCDE00844308 /* SyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */; };
 		9A205C1B1FFF95850033D96D /* PreferencesStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1A1FFF95850033D96D /* PreferencesStore.swift */; };
 		9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */; };
+		9A2D922E20636289007B9077 /* NSImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D922D20636288007B9077 /* NSImageExtensions.swift */; };
 		9A3564E220172801008DC087 /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3564E120172801008DC087 /* FileUploader.swift */; };
 		9A3EC25E20563FCC0043CF0C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9A3EC23620563FCB0043CF0C /* LICENSE */; };
 		9A3EC25F20563FCC0043CF0C /* EZMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3EC23C20563FCB0043CF0C /* EZMicrophone.m */; };
@@ -114,6 +115,7 @@
 		9A12CEAF200DBCDE00844308 /* SyncFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncFileManager.swift; sourceTree = "<group>"; };
 		9A205C1A1FFF95850033D96D /* PreferencesStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesStore.swift; sourceTree = "<group>"; };
 		9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteListUpdater.swift; sourceTree = "<group>"; };
+		9A2D922D20636288007B9077 /* NSImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageExtensions.swift; sourceTree = "<group>"; };
 		9A3564E120172801008DC087 /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
 		9A3EC23620563FCB0043CF0C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9A3EC23820563FCB0043CF0C /* EZPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlot.h; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 				9ABB2B962038616D0066DFDE /* SSSlider.swift */,
 				9AC49FFA205A3416007C5BF5 /* StatusItemView.h */,
 				9AC49FFB205A3416007C5BF5 /* StatusItemView.m */,
+				9A2D922D20636288007B9077 /* NSImageExtensions.swift */,
 			);
 			path = CocoaSubclasses;
 			sourceTree = "<group>";
@@ -860,6 +863,7 @@
 				9A3EC26320563FCC0043CF0C /* EZPlot.m in Sources */,
 				9A3EC26720563FCC0043CF0C /* EZAudio.m in Sources */,
 				9AE97A0D20023C3200815942 /* NSUtilities.swift in Sources */,
+				9A2D922E20636289007B9077 /* NSImageExtensions.swift in Sources */,
 				9ADE7B9D1FF3FACB00AE8885 /* Audio_Capture.xcdatamodeld in Sources */,
 				9A5805661FF4C97200A55D16 /* AudioRecordingController.swift in Sources */,
 				9A3EC26B20563FCC0043CF0C /* EZAudioFloatConverter.m in Sources */,

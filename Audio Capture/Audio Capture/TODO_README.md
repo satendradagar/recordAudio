@@ -47,8 +47,7 @@ kAudioFormatLinearPCM
 
 
 1.cut player image 1/2 and center the image- (don’t just leave the bottom portion of the image)  … only the dark area displays.
-This design is completely different from initial design you shared.i thought that you are asking to decrease the height of bottom player view. Till now I was implementing on basic of the player design you shared to me.  So to make all these layout changes  it need more efforts and time now. Also if there was such change then you should have inform me on initial builds.
-
+-Done
 2.scroll long song titles
 -OK
 

@@ -14,6 +14,8 @@ let  FFTViewControllerFFTWindowSize = 4096 as vDSP_Length;
 
 class MenuBarActionHandler: NSMenu {
     
+    var maxFrequency: Float?;
+
     var isRec = false
     
     @IBOutlet weak var recordAudio: NSMenuItem!
@@ -164,7 +166,7 @@ class MenuBarActionHandler: NSMenu {
         if (isRecording){
             isRec = false
             recordingController.stopRecording()
-            recordTitle.stringValue = "Capture Audio"
+            recordTitle.stringValue = "     Capture Audio"
             noteMenu.isHidden = true
             frequencyMenu.isHidden = true
             noteMenu.view = nil
@@ -184,7 +186,7 @@ class MenuBarActionHandler: NSMenu {
             frequencyMenu.view = frequencyView
 
             recordingController.startRecording()
-            recordTitle.stringValue = "Stop Recording"
+            recordTitle.stringValue = "     Stop Recording"
 
             self.updateFileRelatedMenu()
 
@@ -432,7 +434,7 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
     }
 
     func updateAudioPlotBuffer(_ buffer: UnsafeMutablePointer<Float>?, withBufferSize bufferSize: UInt32) {
-        print(#function)
+//        print(#function)
         self.recordingAudioPlot.updateBuffer(buffer, withBufferSize: bufferSize)
         //
         // Calculate the FFT, will trigger EZAudioFFTDelegate
@@ -450,23 +452,36 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
     // MARK: - EZAudioFFTDelegate
     //------------------------------------------------------------------------------
     func fft(_ fft: EZAudioFFT?, updatedWithFFTData fftData: UnsafeMutablePointer<Float>?, bufferSize: vDSP_Length) {
-        let maxFrequency: Float? = fft?.maxFrequency
+         maxFrequency = fft?.maxFrequency
         let noteName = EZAudioUtilities.noteNameString(forFrequency: maxFrequency!, includeOctave: true)
         DispatchQueue.main.async(execute: {() -> Void in
-            let text = "Highest Note: \(noteName)) \n Frequency: %.2f\(maxFrequency)"
-            print("Label:\(text)")
+//            let text = "Highest Note: \(noteName)) \n Frequency: %.2f\(self.maxFrequency)"
+//            print("Label:\(text)")
             var noteStr = ""
             var freqStr = ""
 
-            if let freq = maxFrequency{
-                freqStr = "\(freq)"
-                self.maxFrequencyLabel.stringValue = freqStr
+   
+            
+            if let freq = self.maxFrequency{
+                if ( freq > 20.0 ){
+                    freqStr = "\(freq)"
+                    self.maxFrequencyLabel.stringValue = freqStr
+                    if let note = noteName{
+                        noteStr = "\(note)"
+                        self.noteLabel.stringValue = noteStr
+                    }
+                }
+                else{
+                    self.maxFrequencyLabel.stringValue = ""
+                    self.noteLabel.stringValue = ""
+
+//                    if let note = noteName{
+//                        noteStr = "\(note)"
+//                        self.noteLabel.stringValue = ""
+//                    }
+                }
             }
             
-            if let note = noteName{
-                noteStr = "\(note)"
-                self.noteLabel.stringValue = noteStr
-            }
             
 //            self.noteLabel.stringValue = "\(String(describing: noteName))"
             self.recordingAudioPlot.updateBuffer(fftData, withBufferSize: UInt32(bufferSize))

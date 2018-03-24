@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="VolumeController" customModule="Hello_Demo" customModuleProvider="target">
+            <connections>
+                <outlet property="loginPopover" destination="vGJ-Vw-lot" id="zqR-KX-jnw"/>
+                <outlet property="slider" destination="tYZ-21-xS6" id="CwD-LO-0RE"/>
+                <outlet property="view" destination="EiT-Mj-1SZ" id="jc4-9c-phO"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="QvC-M9-y7g">
+            <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="196" y="240" width="20" height="71"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
+                <rect key="frame" x="0.0" y="0.0" width="20" height="71"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <slider horizontalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tYZ-21-xS6">
+                        <rect key="frame" x="0.0" y="0.0" width="19" height="70"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <sliderCell key="cell" continuous="YES" alignment="left" maxValue="1" doubleValue="0.5" tickMarkPosition="right" sliderType="linear" id="lFT-kZ-W8T"/>
+                        <connections>
+                            <binding destination="vZJ-n3-dhM" name="value" keyPath="values.soundVol" id="IYH-Tq-drf"/>
+                        </connections>
+                    </slider>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="-92" y="61.5"/>
+        </window>
+        <userDefaultsController representsSharedInstance="YES" id="vZJ-n3-dhM"/>
+        <popover appearance="vibrantLight" id="vGJ-Vw-lot">
+            <connections>
+                <outlet property="contentViewController" destination="-2" id="HOo-MR-aIv"/>
+            </connections>
+        </popover>
+    </objects>
+</document>

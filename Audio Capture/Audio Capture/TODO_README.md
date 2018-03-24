@@ -67,7 +67,7 @@ kAudioFormatLinearPCM
 -Done
 
 8. app to run at startup
-- It was not discussed yet, also there is no design of the app for this feature.So I believe it should move either to next milestone or need extra efforts in current milestone.
+- Additional, need to implement installer for the app.
 
 9. update toolbar icon
 -Done

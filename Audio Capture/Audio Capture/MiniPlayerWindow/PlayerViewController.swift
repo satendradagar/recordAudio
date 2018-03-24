@@ -31,7 +31,11 @@ class PlayerViewController: NSViewController {
     @IBOutlet weak var startTime: NSTextField!
     @IBOutlet weak var endTime: NSTextField!
     @IBOutlet weak var favouriteButton: NSButton!
-
+    @IBOutlet weak var scrollingText:ScrollingTextView!
+    @IBOutlet weak var soundButton: NSButton!
+    @IBOutlet weak var soundView: NSView!
+    var volumeController :VolumeController?
+    
     var currentSongIndex = 0;
     var allSongs = [MusicItem]()
     var player = AVPlayer()
@@ -46,6 +50,11 @@ class PlayerViewController: NSViewController {
             UserDefaults.standard.set(1.0, forKey: volumeDefaultsKey)
         }
         UserDefaults.standard.addObserver(self, forKeyPath: volumeDefaultsKey, options: .new, context: nil)
+//        let marqueeView = ScrollingTextView.init(frame: NSRect.init(x: 0, y: 80, width: self.view.frame.size.width, height: 50.0))
+        scrollingText.speed = 0.05
+//        scrollingText.text = "http://ec2-35-177-218-234.eu-west-2.compute.amazonaws.com/uploads/95174.wav"
+//        self.view.addSubview(marqueeView);
+
     }
     
     func configureWithSongs(songs:[MusicItem])  {
@@ -79,6 +88,21 @@ class PlayerViewController: NSViewController {
 
 //        configureSongWith(songIndex: currentSongIndex)
         
+    }
+
+    @IBAction func didClickMarkFavourite(_ sender: NSButton) {
+        
+        let song = allSongs[currentSongIndex]
+        
+        if let isfav = song.isFavourite{
+            if isfav == true{
+                return
+            }
+        }
+        FavouriteListUpdater.markSongAsFavourite(songID: song.uploadID ?? "") { (dict, error) in
+            self.favouriteButton.image = #imageLiteral(resourceName: "favSelected")
+
+        }
     }
 
     @IBAction func sliderDidSlide(_ sender: SSSlider) {
@@ -117,16 +141,23 @@ class PlayerViewController: NSViewController {
         player.replaceCurrentItem(with: playerItem)
 //        player = AVPlayer.init(url: song.audioUrl())
         player.play()
-        var rawFav = 0
+//        var rawFav = 0
+        self.favouriteButton.image = #imageLiteral(resourceName: "favUnselected")
+
+        self.favouriteButton.isEnabled = true
         if let isfav = song.isFavourite{
             if isfav == true{
-                rawFav = 1
+//                rawFav = 1
+                self.favouriteButton.image = #imageLiteral(resourceName: "favSelected")
             }
         }
+        else{
+        }
         
-        self.favouriteButton.state = NSControl.StateValue.init(rawFav)
-        self.songTitle.stringValue = song.title ?? (song.url ?? "Untitled")
+//        self.favouriteButton.state = NSControl.StateValue.init(rawFav)
+//        self.songTitle.stringValue = song.title ?? (song.url ?? "Untitled")
         self.artistTitle.stringValue = song.artist ?? "No artist"
+        scrollingText.text = song.title ?? (song.url ?? "Untitled")
 
         if let imgPath = song.avatar{
             Alamofire.request(imgPath).responseImage { response in
@@ -244,6 +275,25 @@ class PlayerViewController: NSViewController {
         UserDefaults.standard.removeObserver(self, forKeyPath:volumeDefaultsKey)
     }
     
+    @IBAction func didClickSound(_ sender: NSButton) {
+        if nil == volumeController {
+            
+            volumeController = VolumeController.init(nibName: "VolumeController", bundle: Bundle.main, popOverDismissHandler: { (isClose,newVal) -> Bool in
+                true
+            })
+            let view: NSView? = volumeController?.view
+
+        }
+        
+        if (volumeController?.loginPopover.isShown)! {
+            volumeController?.loginPopover.close()
+        }
+        else{
+            volumeController?.loginPopover.show(relativeTo: sender.frame, of: self.view, preferredEdge: NSRectEdge.maxY)
+
+        }
+    }
+
 }
 
 extension MusicItem{

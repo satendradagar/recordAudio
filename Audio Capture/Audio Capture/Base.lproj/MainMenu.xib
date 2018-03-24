@@ -125,7 +125,7 @@
                 <outlet property="noteMenu" destination="DNU-sw-G1Y" id="cyu-b7-iwO"/>
                 <outlet property="noteView" destination="2ry-rk-7h8" id="wRa-Ul-vzF"/>
                 <outlet property="recordAudio" destination="NOc-3h-UFU" id="0tR-H8-0GR"/>
-                <outlet property="recordTitle" destination="j8P-HZ-XWx" id="emm-w5-4hb"/>
+                <outlet property="recordTitle" destination="L2g-pi-ONL" id="eyT-PT-gv3"/>
                 <outlet property="recordingAudioPlot" destination="1SP-pO-8hh" id="h84-Yc-hkT"/>
             </connections>
             <point key="canvasLocation" x="532" y="639"/>
@@ -796,72 +796,35 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="335" y="390" width="399" height="158"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="399" height="158"/>
                 <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tao-Gz-uD6">
-                        <rect key="frame" x="79" y="87" width="217" height="59"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <clipView key="contentView" ambiguous="YES" id="zDW-ou-thb">
-                            <rect key="frame" x="0.0" y="0.0" width="217" height="59"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            <subviews>
-                                <textView ambiguous="YES" importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="u5Z-DV-Geh">
-                                    <rect key="frame" x="0.0" y="0.0" width="217" height="59"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="217" height="59"/>
-                                    <size key="maxSize" width="463" height="10000000"/>
-                                    <attributedString key="textStorage">
-                                        <fragment content="Hello New">
-                                            <attributes>
-                                                <font key="NSFont" size="12" name="Helvetica"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="0.80000000000000004" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                </textView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="66D-94-yFq">
-                            <rect key="frame" x="-100" y="-100" width="87" height="18"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Iy7-ef-xSl">
-                            <rect key="frame" x="201" y="0.0" width="16" height="59"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                        </scroller>
-                    </scrollView>
-                </subviews>
             </view>
             <point key="canvasLocation" x="645.5" y="191"/>
         </window>
         <customView id="wwe-KE-IJ9" customClass="SSMouseHoverEffectView" customModule="Hello_Demo" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="219" height="24"/>
+            <rect key="frame" x="0.0" y="0.0" width="219" height="26"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L2g-pi-ONL">
+                    <rect key="frame" x="0.0" y="2" width="219" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="     Record Audio" drawsBackground="YES" id="pUH-hs-6NZ">
+                        <font key="font" metaFont="menuBar"/>
+                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="deviceWhite"/>
+                    </textFieldCell>
+                </textField>
                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2NT-ZA-NAW">
-                    <rect key="frame" x="191" y="0.0" width="24" height="24"/>
+                    <rect key="frame" x="190" y="1" width="24" height="24"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="record" id="SJY-iw-Hi0"/>
                 </imageView>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j8P-HZ-XWx">
-                    <rect key="frame" x="18" y="3" width="167" height="17"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Record Audio" id="UgN-A3-YGA">
-                        <font key="font" metaFont="menuBar"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8hH-Pu-XoE">
-                    <rect key="frame" x="0.0" y="2" width="190" height="21"/>
+                    <rect key="frame" x="0.0" y="2" width="219" height="21"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="center" transparent="YES" imageScaling="proportionallyDown" inset="2" id="1L5-02-fnh">
+                    <buttonCell key="cell" type="bevel" bezelStyle="rounded" alignment="left" transparent="YES" imageScaling="proportionallyDown" inset="2" id="1L5-02-fnh">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="menuBar"/>
                     </buttonCell>
@@ -870,6 +833,9 @@
                     </connections>
                 </button>
             </subviews>
+            <connections>
+                <outlet property="label" destination="L2g-pi-ONL" id="LQy-we-4sM"/>
+            </connections>
             <point key="canvasLocation" x="236.5" y="347"/>
         </customView>
         <customView id="2ry-rk-7h8">

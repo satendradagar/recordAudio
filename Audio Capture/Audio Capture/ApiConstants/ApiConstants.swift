@@ -15,6 +15,8 @@ enum ApiConstant: String {
     case inbox = "api/get-inbox"
     case capture = "api/get-uploads"
     case sync = "/api/sync/songs"
+    case setFavourite = "api/set-favorite"
+
     case uploadAudio = "io.github.halo.linkdaemon1"
 
     static func pathFor(type:ApiConstant) -> String {

@@ -20,6 +20,7 @@
 		9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */; };
 		9A2D922E20636289007B9077 /* NSImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2D922D20636288007B9077 /* NSImageExtensions.swift */; };
 		9A3564E220172801008DC087 /* FileUploader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3564E120172801008DC087 /* FileUploader.swift */; };
+		9A357EBA2064CC6600CD1331 /* VolumeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A357EB92064CC6600CD1331 /* VolumeController.swift */; };
 		9A3EC25E20563FCC0043CF0C /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = 9A3EC23620563FCB0043CF0C /* LICENSE */; };
 		9A3EC25F20563FCC0043CF0C /* EZMicrophone.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3EC23C20563FCB0043CF0C /* EZMicrophone.m */; };
 		9A3EC26020563FCC0043CF0C /* EZAudioFloatData.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3EC23D20563FCB0043CF0C /* EZAudioFloatData.m */; };
@@ -52,6 +53,7 @@
 		9A5B5B9B201B4AD50078BB7C /* NSStoryboard+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B5B99201B4AD40078BB7C /* NSStoryboard+Utilities.swift */; };
 		9A5B5B9D201B6BD50078BB7C /* PlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B5B9C201B6BD50078BB7C /* PlayerViewController.swift */; };
 		9A5ECE2C2029D79500328094 /* RecordSyncFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5ECE2B2029D79500328094 /* RecordSyncFileManager.swift */; };
+		9A65246220656873003022DC /* VolumeController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A65246120656873003022DC /* VolumeController.xib */; };
 		9ABB2B972038616D0066DFDE /* SSSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABB2B962038616D0066DFDE /* SSSlider.swift */; };
 		9ABB2B99203890B20066DFDE /* SSView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABB2B98203890B10066DFDE /* SSView.swift */; };
 		9ABC911D2004BB94003AEB80 /* DataRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ABC911C2004BB94003AEB80 /* DataRequestHandler.swift */; };
@@ -67,6 +69,7 @@
 		9ADE7BAE1FF3FACB00AE8885 /* Audio_CaptureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE7BAD1FF3FACB00AE8885 /* Audio_CaptureTests.swift */; };
 		9ADE7BB91FF3FACB00AE8885 /* Audio_CaptureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE7BB81FF3FACB00AE8885 /* Audio_CaptureUITests.swift */; };
 		9ADE7BD01FF3FF5F00AE8885 /* DoubleClickButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE7BCF1FF3FF5F00AE8885 /* DoubleClickButton.swift */; };
+		9ADE91572063A2FC00D6EAEE /* ScrollingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE91562063A2FC00D6EAEE /* ScrollingTextView.m */; };
 		9AE97A0320022A3300815942 /* MusicLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE97A0220022A3300815942 /* MusicLoginController.swift */; };
 		9AE97A0520022A7D00815942 /* MusicLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AE97A0420022A7D00815942 /* MusicLoginController.xib */; };
 		9AE97A0D20023C3200815942 /* NSUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE97A0C20023C3200815942 /* NSUtilities.swift */; };
@@ -117,6 +120,7 @@
 		9A205C1D1FFF97FD0033D96D /* FavouriteListUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteListUpdater.swift; sourceTree = "<group>"; };
 		9A2D922D20636288007B9077 /* NSImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSImageExtensions.swift; sourceTree = "<group>"; };
 		9A3564E120172801008DC087 /* FileUploader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUploader.swift; sourceTree = "<group>"; };
+		9A357EB92064CC6600CD1331 /* VolumeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VolumeController.swift; sourceTree = "<group>"; };
 		9A3EC23620563FCB0043CF0C /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		9A3EC23820563FCB0043CF0C /* EZPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZPlot.h; sourceTree = "<group>"; };
 		9A3EC23920563FCB0043CF0C /* EZAudioOSX.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EZAudioOSX.h; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 		9A5B5B99201B4AD40078BB7C /* NSStoryboard+Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSStoryboard+Utilities.swift"; sourceTree = "<group>"; };
 		9A5B5B9C201B6BD50078BB7C /* PlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerViewController.swift; sourceTree = "<group>"; };
 		9A5ECE2B2029D79500328094 /* RecordSyncFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordSyncFileManager.swift; sourceTree = "<group>"; };
+		9A65246120656873003022DC /* VolumeController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VolumeController.xib; sourceTree = "<group>"; };
 		9A6FF41C1FFCE12500756E0C /* API_README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = API_README.md; sourceTree = "<group>"; tabWidth = 2; };
 		9ABB2B962038616D0066DFDE /* SSSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SSSlider.swift; sourceTree = "<group>"; };
 		9ABB2B98203890B10066DFDE /* SSView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SSView.swift; sourceTree = "<group>"; };
@@ -195,6 +200,8 @@
 		9ADE7BB81FF3FACB00AE8885 /* Audio_CaptureUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Audio_CaptureUITests.swift; sourceTree = "<group>"; };
 		9ADE7BBA1FF3FACB00AE8885 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9ADE7BCF1FF3FF5F00AE8885 /* DoubleClickButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleClickButton.swift; sourceTree = "<group>"; };
+		9ADE91552063A2FC00D6EAEE /* ScrollingTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollingTextView.h; sourceTree = "<group>"; };
+		9ADE91562063A2FC00D6EAEE /* ScrollingTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollingTextView.m; sourceTree = "<group>"; };
 		9AE97A0220022A3300815942 /* MusicLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLoginController.swift; sourceTree = "<group>"; };
 		9AE97A0420022A7D00815942 /* MusicLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicLoginController.xib; sourceTree = "<group>"; };
 		9AE97A0C20023C3200815942 /* NSUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUtilities.swift; sourceTree = "<group>"; };
@@ -312,6 +319,15 @@
 			path = ServerDataManagers;
 			sourceTree = "<group>";
 		};
+		9A357EB82064CC4900CD1331 /* VolumePopover */ = {
+			isa = PBXGroup;
+			children = (
+				9A357EB92064CC6600CD1331 /* VolumeController.swift */,
+				9A65246120656873003022DC /* VolumeController.xib */,
+			);
+			path = VolumePopover;
+			sourceTree = "<group>";
+		};
 		9A3EC23520563FCB0043CF0C /* EZAudio */ = {
 			isa = PBXGroup;
 			children = (
@@ -399,6 +415,7 @@
 		9A5B5B93201B44770078BB7C /* MiniPlayerWindow */ = {
 			isa = PBXGroup;
 			children = (
+				9A357EB82064CC4900CD1331 /* VolumePopover */,
 				9A006133202EE0660062E8DA /* Determinate */,
 				9A5B5B94201B44AC0078BB7C /* MiniAudioPlayerController.swift */,
 				9A006141202EE0880062E8DA /* PlayerViewController.storyboard */,
@@ -503,6 +520,8 @@
 				9ABB2B962038616D0066DFDE /* SSSlider.swift */,
 				9AC49FFA205A3416007C5BF5 /* StatusItemView.h */,
 				9AC49FFB205A3416007C5BF5 /* StatusItemView.m */,
+				9ADE91552063A2FC00D6EAEE /* ScrollingTextView.h */,
+				9ADE91562063A2FC00D6EAEE /* ScrollingTextView.m */,
 				9A2D922D20636288007B9077 /* NSImageExtensions.swift */,
 			);
 			path = CocoaSubclasses;
@@ -657,6 +676,7 @@
 				9A5B5B97201B45E60078BB7C /* MiniAudioPlayerController.storyboard in Resources */,
 				9A3EC27120563FCC0043CF0C /* README.md in Resources */,
 				9A3EC27020563FCC0043CF0C /* Info.plist in Resources */,
+				9A65246220656873003022DC /* VolumeController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -840,6 +860,7 @@
 				9A205C1B1FFF95850033D96D /* PreferencesStore.swift in Sources */,
 				9A00613C202EE0660062E8DA /* CircularProgressView.swift in Sources */,
 				9A3EC26E20563FCC0043CF0C /* EZAudioFile.m in Sources */,
+				9ADE91572063A2FC00D6EAEE /* ScrollingTextView.m in Sources */,
 				9A4A2E852035BCD000C606D3 /* CaptureListUpdater.swift in Sources */,
 				9AE97A0320022A3300815942 /* MusicLoginController.swift in Sources */,
 				9A3EC26D20563FCC0043CF0C /* EZAudioDisplayLink.m in Sources */,
@@ -878,6 +899,7 @@
 				9A5B5B9B201B4AD50078BB7C /* NSStoryboard+Utilities.swift in Sources */,
 				9A3EC26020563FCC0043CF0C /* EZAudioFloatData.m in Sources */,
 				9A006144202EE5CB0062E8DA /* ViewController.swift in Sources */,
+				9A357EBA2064CC6600CD1331 /* VolumeController.swift in Sources */,
 				9AC49FFC205A3416007C5BF5 /* StatusItemView.m in Sources */,
 				9A4A2E8320358EEC00C606D3 /* RecordingManager.m in Sources */,
 				9A205C1E1FFF97FD0033D96D /* FavouriteListUpdater.swift in Sources */,

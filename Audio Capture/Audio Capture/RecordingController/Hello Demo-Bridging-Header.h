@@ -4,3 +4,4 @@
 
 #import "RecordingManager.h"
 #import "StatusItemView.h"
+#import "ScrollingTextView.h"

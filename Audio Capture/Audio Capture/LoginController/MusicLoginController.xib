@@ -6,7 +6,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="MusicLoginController" customModule="Audio_Capture" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="MusicLoginController" customModule="Hello_Demo" customModuleProvider="target">
             <connections>
                 <outlet property="circularProgressView" destination="cad-CO-ynF" id="QKM-i4-v5i"/>
                 <outlet property="emailIDField" destination="Rci-gH-WYH" id="KEe-e5-Nle"/>
@@ -99,7 +99,7 @@ Gw
                     </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="186" y="216.5"/>
+            <point key="canvasLocation" x="165" y="105"/>
         </window>
     </objects>
 </document>

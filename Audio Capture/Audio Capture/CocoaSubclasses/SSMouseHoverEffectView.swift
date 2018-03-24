@@ -11,6 +11,8 @@ import Cocoa
 
 class SSMouseHoverEffectView: NSView {
 
+    @IBOutlet weak var label: NSTextField!
+    
     var trackingArea: NSTrackingArea?
     var isMouseInside = false
     var highlightColor :NSColor?
@@ -22,15 +24,17 @@ class SSMouseHoverEffectView: NSView {
     
     override func awakeFromNib() {
         super.awakeFromNib();
-        self.normalColor = NSColor.clear
-        self.highlightColor = NSColor.selectedMenuItemColor
-        self.wantsLayer = true
+//        normalColor = NSColor.clear
+        self.highlightColor = NSColor.init(red: 65.0/255, green: 149/255.0, blue: 250/255.0, alpha: 1.0)
+//        self.wantsLayer = true
+//        self.layer?.isOpaque = true
     }
     
-    var normalColor :NSColor?{
+    var normalColor :NSColor? = NSColor.clear{
         didSet{
-            layer?.backgroundColor = normalColor?.cgColor
-            layer?.borderColor = normalColor?.cgColor
+//            layer?.backgroundColor = normalColor?.cgColor
+//            layer?.borderColor = normalColor?.cgColor
+            self.label.backgroundColor = normalColor
         }
     }
 
@@ -53,19 +57,23 @@ class SSMouseHoverEffectView: NSView {
     override func mouseEntered(with event: NSEvent) {
         isMouseInside = true
         print(#function)
-        layer?.backgroundColor = highlightColor?.cgColor
-        layer?.borderColor = highlightColor?.cgColor
+//        layer?.backgroundColor = highlightColor?.cgColor
+//        layer?.borderColor = highlightColor?.cgColor
 //        layer?.borderWidth = 1.0
 //        layer?.cornerRadius = 2.0
+        self.label.backgroundColor = highlightColor
+
     }
     
     override func mouseExited(with event: NSEvent) {
         isMouseInside = false
         print(#function)
-        layer?.backgroundColor = normalColor?.cgColor
-        layer?.borderColor = normalColor?.cgColor
+//        layer?.backgroundColor = normalColor?.cgColor
+//        layer?.borderColor = normalColor?.cgColor
 //        layer?.borderWidth = 1.0
 //        layer?.cornerRadius = 2.0
+        self.label.backgroundColor = normalColor
+
 
     }
 }

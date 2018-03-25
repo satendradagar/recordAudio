@@ -199,6 +199,7 @@ class MenuBarActionHandler: NSMenu {
        
         switch sender.tag {
         case 1:
+             reloadInboxWithStore()
             if let songs = inboxList {
                 if songs.count > 0{
                     playerController.playerController.configureWithSongs(songs: songs)
@@ -210,6 +211,7 @@ class MenuBarActionHandler: NSMenu {
             }
             
         case 2:
+            reloadFavouriteWithStore()
             if let songs = favouriteList {
                 if songs.count > 0{
                     playerController.playerController.configureWithSongs(songs: songs)

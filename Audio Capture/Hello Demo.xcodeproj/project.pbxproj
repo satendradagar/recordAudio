@@ -70,6 +70,7 @@
 		9ADE7BB91FF3FACB00AE8885 /* Audio_CaptureUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE7BB81FF3FACB00AE8885 /* Audio_CaptureUITests.swift */; };
 		9ADE7BD01FF3FF5F00AE8885 /* DoubleClickButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE7BCF1FF3FF5F00AE8885 /* DoubleClickButton.swift */; };
 		9ADE91572063A2FC00D6EAEE /* ScrollingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ADE91562063A2FC00D6EAEE /* ScrollingTextView.m */; };
+		9AE27509206A0A23009EDB86 /* Hello Demo Launch Helper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9AE27502206A09E6009EDB86 /* Hello Demo Launch Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		9AE97A0320022A3300815942 /* MusicLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE97A0220022A3300815942 /* MusicLoginController.swift */; };
 		9AE97A0520022A7D00815942 /* MusicLoginController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AE97A0420022A7D00815942 /* MusicLoginController.xib */; };
 		9AE97A0D20023C3200815942 /* NSUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE97A0C20023C3200815942 /* NSUtilities.swift */; };
@@ -95,7 +96,41 @@
 			remoteGlobalIDString = 9ADE7B951FF3FACB00AE8885;
 			remoteInfo = "Audio Capture";
 		};
+		9AE27501206A09E6009EDB86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE274FC206A09E5009EDB86 /* Hello Demo Launch Helper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B3952ED1BAFF2B500966A2B;
+			remoteInfo = "Hello Demo Launch Helper";
+		};
+		9AE27503206A09E6009EDB86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE274FC206A09E5009EDB86 /* Hello Demo Launch Helper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5B3953001BAFF2B500966A2B;
+			remoteInfo = "Hello Demo Launch HelperTests";
+		};
+		9AE27505206A09F3009EDB86 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9AE274FC206A09E5009EDB86 /* Hello Demo Launch Helper.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B3952EC1BAFF2B500966A2B;
+			remoteInfo = "Hello Demo Launch Helper";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9AE27507206A09F8009EDB86 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				9AE27509206A0A23009EDB86 /* Hello Demo Launch Helper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0DCFEEF1DFDFC25073C02865 /* Pods-Hello Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Hello Demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Hello Demo/Pods-Hello Demo.debug.xcconfig"; sourceTree = "<group>"; };
@@ -202,6 +237,7 @@
 		9ADE7BCF1FF3FF5F00AE8885 /* DoubleClickButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleClickButton.swift; sourceTree = "<group>"; };
 		9ADE91552063A2FC00D6EAEE /* ScrollingTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollingTextView.h; sourceTree = "<group>"; };
 		9ADE91562063A2FC00D6EAEE /* ScrollingTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollingTextView.m; sourceTree = "<group>"; };
+		9AE274FC206A09E5009EDB86 /* Hello Demo Launch Helper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Hello Demo Launch Helper.xcodeproj"; path = "LoginItemHelper/Hello Demo Launch Helper/Hello Demo Launch Helper.xcodeproj"; sourceTree = "<group>"; };
 		9AE97A0220022A3300815942 /* MusicLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLoginController.swift; sourceTree = "<group>"; };
 		9AE97A0420022A7D00815942 /* MusicLoginController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MusicLoginController.xib; sourceTree = "<group>"; };
 		9AE97A0C20023C3200815942 /* NSUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUtilities.swift; sourceTree = "<group>"; };
@@ -429,6 +465,7 @@
 		9ADE7B8D1FF3FACB00AE8885 = {
 			isa = PBXGroup;
 			children = (
+				9AE274FC206A09E5009EDB86 /* Hello Demo Launch Helper.xcodeproj */,
 				9ADE7B981FF3FACB00AE8885 /* Audio Capture */,
 				9ADE7BAC1FF3FACB00AE8885 /* Audio CaptureTests */,
 				9ADE7BB71FF3FACB00AE8885 /* Audio CaptureUITests */,
@@ -527,6 +564,15 @@
 			path = CocoaSubclasses;
 			sourceTree = "<group>";
 		};
+		9AE274FD206A09E5009EDB86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9AE27502206A09E6009EDB86 /* Hello Demo Launch Helper.app */,
+				9AE27504206A09E6009EDB86 /* Hello Demo Launch HelperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		9AE97A0120022A2000815942 /* LoginController */ = {
 			isa = PBXGroup;
 			children = (
@@ -559,10 +605,12 @@
 				9ADE7B941FF3FACB00AE8885 /* Resources */,
 				A278793931B658B571392745 /* [CP] Embed Pods Frameworks */,
 				AF18C9ABB89B19B620C6D2D7 /* [CP] Copy Pods Resources */,
+				9AE27507206A09F8009EDB86 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9AE27506206A09F3009EDB86 /* PBXTargetDependency */,
 			);
 			name = "Hello Demo";
 			productName = "Audio Capture";
@@ -654,6 +702,12 @@
 			mainGroup = 9ADE7B8D1FF3FACB00AE8885;
 			productRefGroup = 9ADE7B971FF3FACB00AE8885 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 9AE274FD206A09E5009EDB86 /* Products */;
+					ProjectRef = 9AE274FC206A09E5009EDB86 /* Hello Demo Launch Helper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				9ADE7B951FF3FACB00AE8885 /* Hello Demo */,
@@ -662,6 +716,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		9AE27502206A09E6009EDB86 /* Hello Demo Launch Helper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Hello Demo Launch Helper.app";
+			remoteRef = 9AE27501206A09E6009EDB86 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		9AE27504206A09E6009EDB86 /* Hello Demo Launch HelperTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Hello Demo Launch HelperTests.xctest";
+			remoteRef = 9AE27503206A09E6009EDB86 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		9ADE7B941FF3FACB00AE8885 /* Resources */ = {
@@ -943,6 +1014,11 @@
 			isa = PBXTargetDependency;
 			target = 9ADE7B951FF3FACB00AE8885 /* Hello Demo */;
 			targetProxy = 9ADE7BB51FF3FACB00AE8885 /* PBXContainerItemProxy */;
+		};
+		9AE27506206A09F3009EDB86 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Hello Demo Launch Helper";
+			targetProxy = 9AE27505206A09F3009EDB86 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

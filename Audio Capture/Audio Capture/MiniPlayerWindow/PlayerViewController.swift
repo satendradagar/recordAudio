@@ -13,6 +13,7 @@ import Alamofire
 import AlamofireImage
 
 let volumeDefaultsKey = "soundVol"
+let continuePlayKey = "playContinue"
 
 class PlayerViewController: NSViewController {
   
@@ -57,12 +58,12 @@ class PlayerViewController: NSViewController {
 
     }
     
-    func configureWithSongs(songs:[MusicItem])  {
+    func configureWithSongs(songs:[MusicItem], isFavouriteEnable:Bool = false)  {
         
         currentSongIndex = 0
         allSongs = songs
         configureSongWith(songIndex: currentSongIndex)
-
+        self.favouriteButton.isHidden = !isFavouriteEnable
     }
     
     @IBAction func didClickPlayNext(_ sender: NSButton) {
@@ -76,6 +77,11 @@ class PlayerViewController: NSViewController {
         currentSongIndex = currentSongIndex - 1
         configureSongWith(songIndex: currentSongIndex)
     }
+
+    @IBAction func didClickMinimize(_ sender: NSButton) {
+        self.view.window?.miniaturize(sender)
+    }
+    
 
     @IBAction func didClickPlaySong(_ sender: NSButton) {
         if player.isPlaying == true {
@@ -101,9 +107,25 @@ class PlayerViewController: NSViewController {
         }
         FavouriteListUpdater.markSongAsFavourite(songID: song.uploadID ?? "") { (dict, error) in
             self.favouriteButton.image = #imageLiteral(resourceName: "favSelected")
-
+            song.isFavourite = true
         }
     }
+
+    
+//    @IBAction func didClickContinuousPlay(_ sender: NSButton) {
+//
+//        let song = allSongs[currentSongIndex]
+//
+//        if let isfav = song.isFavourite{
+//            if isfav == true{
+//                return
+//            }
+//        }
+//        FavouriteListUpdater.markSongAsFavourite(songID: song.uploadID ?? "") { (dict, error) in
+//            self.favouriteButton.image = #imageLiteral(resourceName: "favSelected")
+//            song.isFavourite = true
+//        }
+//    }
 
     @IBAction func sliderDidSlide(_ sender: SSSlider) {
         sender.isUserDragging = false
@@ -258,6 +280,16 @@ class PlayerViewController: NSViewController {
 //        p?.seek(to: kCMTimeZero)
         //set to 00:00
         player.pause()
+        
+        if rightButton.isEnabled {//We have some next song
+            
+            if let isContinuous = UserDefaults.standard.object(forKey:continuePlayKey) as? Bool{
+                if(isContinuous == true){
+                    self.didClickPlayNext(rightButton)
+                }
+            }
+            
+        }
     }
 
     

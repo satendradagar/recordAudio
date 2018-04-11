@@ -33,6 +33,11 @@ class VolumeController: NSViewController,NSPopoverDelegate {
     override func viewDidLoad() {
         loginPopover.delegate = self
         loginPopover.behavior = .transient
+        if #available(OSX 10.12.2, *) {
+            slider.trackFillColor = NSColor.red
+        } else {
+            // Fallback on earlier versions
+        }
 //            [super viewDidLoad];
         // Do view setup here.
     }

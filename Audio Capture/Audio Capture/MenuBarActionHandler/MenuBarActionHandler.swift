@@ -105,7 +105,7 @@ class MenuBarActionHandler: NSMenu {
 //        recordAudio.view = statusItemView
 //        statusItemView.title = "00:00:00"
         configuureRecordingView()
-        self.updateMenuBarTitleWith(note: "Hell", frequency: "Frequ")
+//        self.updateMenuBarTitleWith(note: "Hell", frequency: "Frequ")
     }
     
     func reloadFavouriteWithStore()  {
@@ -202,7 +202,7 @@ class MenuBarActionHandler: NSMenu {
              reloadInboxWithStore()
             if let songs = inboxList {
                 if songs.count > 0{
-                    playerController.playerController.configureWithSongs(songs: songs)
+                    playerController.playerController.configureWithSongs(songs: songs,isFavouriteEnable: true)
                 }
                 else{
                     NSApp.presentError(NSError.init(domain: "No song found to play", code: 0, userInfo: nil));
@@ -399,6 +399,10 @@ extension MenuBarActionHandler : NSMenuDelegate {
                 syncFilesManager.checkAndSyncFiles()
                 syncRecordingManager.checkAndSyncFiles()
                 updateSyncRelatedMenu()
+                FavouriteListUpdater.updateFavouriteItemList()
+                InboxListUpdater.updateInboxItemList()
+                CaptureListUpdater.updateCaptureItemList()
+
             }
             //        self.updateMenuWithCurrentStatus()
         }
@@ -454,19 +458,27 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
     // MARK: - EZAudioFFTDelegate
     //------------------------------------------------------------------------------
     func fft(_ fft: EZAudioFFT?, updatedWithFFTData fftData: UnsafeMutablePointer<Float>?, bufferSize: vDSP_Length) {
+        
+//        if let newFreq = fft?.maxFrequency {
+//            if (newFreq == maxFrequency){
+//                return//Same as previous, skip
+//            }
+//        }
          maxFrequency = fft?.maxFrequency
         let noteName = EZAudioUtilities.noteNameString(forFrequency: maxFrequency!, includeOctave: true)
         DispatchQueue.main.async(execute: {() -> Void in
 //            let text = "Highest Note: \(noteName)) \n Frequency: %.2f\(self.maxFrequency)"
 //            print("Label:\(text)")
-            var noteStr = ""
-            var freqStr = ""
+            var noteStr = "- - - -"
+            var freqStr = " "
 
    
             
             if let freq = self.maxFrequency{
                 if ( freq > 20.0 ){
-                    freqStr = "\(freq)"
+                    let formatted = String(format: "%.0f", freq)
+
+                    freqStr = formatted
                     self.maxFrequencyLabel.stringValue = freqStr
                     if let note = noteName{
                         noteStr = "\(note)"
@@ -474,20 +486,25 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
                     }
                 }
                 else{
-                    self.maxFrequencyLabel.stringValue = ""
-                    self.noteLabel.stringValue = ""
+//                    self.maxFrequencyLabel.stringValue = ""
+//                    self.noteLabel.stringValue = ""
 
 //                    if let note = noteName{
 //                        noteStr = "\(note)"
 //                        self.noteLabel.stringValue = ""
 //                    }
                 }
+                self.updateMenuBarTitleWith(note: noteStr, frequency: freqStr)
+
+            }
+            else{
+                self.updateMenuBarTitleWith(note: "--", frequency: "---")
+
             }
             
             
 //            self.noteLabel.stringValue = "\(String(describing: noteName))"
             self.recordingAudioPlot.updateBuffer(fftData, withBufferSize: UInt32(bufferSize))
-            self.updateMenuBarTitleWith(note: noteStr, frequency: freqStr)
         })
     }
     
@@ -501,7 +518,7 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
     }
     
     func attributedTitleWith(title:String,subTitle:String) -> NSAttributedString {
-        
+        print("\(title) \(subTitle)");
         var textColor = NSColor.black
         if(InterfaceStyle() == .Dark){
             textColor = NSColor.white
@@ -544,5 +561,23 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
         
     }
     
+}
+
+extension Double {
+    var asNumber:String? {
+        if self >= 0 {
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .none
+            formatter.percentSymbol = ""
+            formatter.maximumFractionDigits = 2
+            formatter.maximumIntegerDigits = 3
+            
+            formatter.minimumFractionDigits = 2
+            formatter.minimumIntegerDigits = 3
+            return formatter.string(from: NSNumber.init(value: self))
+//            return "\(formatter.stringFromNumber(NSNumber(self))!)"
+        }
+        return ""
+    }
 }
 

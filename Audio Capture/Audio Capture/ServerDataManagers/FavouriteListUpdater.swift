@@ -27,7 +27,7 @@ class MusicItem: NSObject {
             artist = data["artist"] as? String
             url = data["music_url"] as? String
             avatar = data["avatar"] as? String
-            uploadID = (data["upload_id"] as? Int)?.description ?? ""
+            uploadID = (data["id"] as? NSNumber)?.description ?? data["id"] as? String
             if let favVal = data["favorite"] as? Bool{
                 isFavourite = favVal
             }
@@ -38,7 +38,7 @@ class MusicItem: NSObject {
     }
     
     func dictionaryRepresentation() -> [String:Any?] {
-        return ["title":title,"music_url":url,"avatar":avatar,"favorite":isFavourite,"artist":artist,"uploads_id":uploadID]
+        return ["title":title,"music_url":url,"avatar":avatar,"favorite":isFavourite,"artist":artist,"id":uploadID]
     }
 }
 
@@ -75,7 +75,7 @@ class FavouriteListUpdater: NSObject {
                             finalRep.append(music.dictionaryRepresentation())
                         }
                     }
-                    PreferencesStore.sharedInstance.storeFavouriteList(data: data )
+                    PreferencesStore.sharedInstance.storeFavouriteList(data: finalRep )
                 }
                 
             }

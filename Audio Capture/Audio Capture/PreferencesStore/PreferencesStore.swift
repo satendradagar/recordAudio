@@ -53,6 +53,17 @@ class PreferencesStore: NSObject {
        
     }
 
+    func isFirstLaunch() -> Bool {
+        let dict = defaults.value(forKey: "IS_FIRST_LA")
+        if nil != dict {//Exist
+            return false
+        }
+        else{
+            self.defaults.setValue("11", forKey: "IS_FIRST_LA")
+            return true
+        }
+    }
+    
     func currentEmail() -> String? {
         
         return self.defaults.string(forKey: "userLoginId")

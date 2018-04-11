@@ -17,6 +17,7 @@ enum InterfaceStyle : String {
 
 let currentStyle = InterfaceStyle()
 import Cocoa
+import ServiceManagement
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -106,6 +107,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //
 //        }
         self.setupMenuForNormal()
+        let isSet = PreferencesStore.sharedInstance.isFirstLaunch()
+        if isSet == false {
+            self.startAtLogin = true
+        }
+    }
+
+    let helperBundleIdentifier = "com.corebitss.Audio-Capture.launcher"
+    
+//    @objc @available(OSX, deprecated: 10.10) // necessary to suppress the deprecated warning.
+    @objc dynamic var startAtLogin : Bool {
+        get {
+            guard let jobDicts = SMCopyAllJobDictionaries( kSMDomainUserLaunchd ).takeRetainedValue() as NSArray as? [[String:Any]] else { return false }
+            return jobDicts.filter { $0["Label"] as! String == helperBundleIdentifier }.isEmpty == false
+        } set {
+            if !SMLoginItemSetEnabled(helperBundleIdentifier as CFString, newValue) {
+                print("SMLoginItemSetEnabled failed.")
+            }
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {

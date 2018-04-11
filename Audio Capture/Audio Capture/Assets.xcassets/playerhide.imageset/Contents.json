@@ -2,12 +2,12 @@
   "images" : [
     {
       "idiom" : "mac",
-      "filename" : "x1-heart.png",
+      "filename" : "svg-shuff-actv-1X.png",
       "scale" : "1x"
     },
     {
       "idiom" : "mac",
-      "filename" : "x2-heart.png",
+      "filename" : "svg-shuff-actv-2X.png",
       "scale" : "2x"
     }
   ],

@@ -27,21 +27,21 @@ class SSSliderCell: NSSliderCell {
 //        super.init(coder: aDecoder)
 //    }
 //
-//    override func drawBar(inside aRect: NSRect, flipped: Bool) {
-//        var rect = aRect
+    override func drawBar(inside aRect: NSRect, flipped: Bool) {
+        var rect = aRect
 //        rect.size.height = CGFloat(5)
-//        let barRadius = CGFloat(2.5)
-//        let value = CGFloat((self.doubleValue - self.minValue) / (self.maxValue - self.minValue))
-//        let finalWidth = CGFloat(value * (self.controlView!.frame.size.width - 8))
-//        var leftRect = rect
-//        leftRect.size.width = finalWidth
-//        let bg = NSBezierPath(roundedRect: rect, xRadius: barRadius, yRadius: barRadius)
-//        NSColor.orange.setFill()
-//        bg.fill()
-//        let active = NSBezierPath(roundedRect: leftRect, xRadius: barRadius, yRadius: barRadius)
-//        NSColor.purple.setFill()
-//        active.fill()
-//    }
+        let barRadius = CGFloat(2.5)
+        let value = CGFloat((self.doubleValue - self.minValue) / (self.maxValue - self.minValue))
+        let finalWidth = CGFloat(value * (self.controlView!.frame.size.height))
+        var leftRect = rect
+        leftRect.size.height = self.controlView!.frame.size.height - finalWidth - 8
+        let bg = NSBezierPath(roundedRect: rect, xRadius: barRadius, yRadius: barRadius)
+        NSColor.black.setFill()
+        bg.fill()
+        let active = NSBezierPath(roundedRect: leftRect, xRadius: barRadius, yRadius: barRadius)
+        NSColor.gray.setFill()
+        active.fill()
+    }
 //
 }
 

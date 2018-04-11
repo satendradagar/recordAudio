@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "mac",
-      "filename" : "if_Like_2_372915.png",
+      "filename" : "x1-heart-active.png",
       "scale" : "1x"
     },
     {
       "idiom" : "mac",
+      "filename" : "x2-heart-active.png",
       "scale" : "2x"
     }
   ],

@@ -70,8 +70,8 @@ class MusicLoginController: NSViewController, NSPopoverDelegate {
         if nil != loginEmail {
             emailIDField.stringValue = loginEmail ?? ""
         }
-        emailIDField.stringValue = "admin@admin.com"
-        passwordField.stringValue = "password"
+//        emailIDField.stringValue = "admin@admin.com"
+//        passwordField.stringValue = "password"
 
     }
     func showPopover() {

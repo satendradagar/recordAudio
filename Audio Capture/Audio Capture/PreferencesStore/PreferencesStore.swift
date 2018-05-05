@@ -13,6 +13,8 @@ import Cocoa
     var lastName: String?;
     var email: String?;
     var id: String?;
+    var authToken: String?;
+
     var isLogin = false
     
     func configure(with dict:NSDictionary) {
@@ -20,6 +22,7 @@ import Cocoa
     firstName = dict.value(forKey: "first_name") as? String
         lastName = dict.value(forKey: "last_name") as? String
         email = dict.value(forKey: "email") as? String
+        authToken = dict.value(forKey: "access_token") as? String
         if let idInt =  dict.value(forKey: "id") as?Int {
             id = String(idInt)
         }
@@ -33,6 +36,7 @@ import Cocoa
         else{
             self.isLogin = false
         }
+        
      }
    }
 class PreferencesStore: NSObject {

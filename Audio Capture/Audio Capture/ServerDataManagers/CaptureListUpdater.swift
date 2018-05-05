@@ -17,7 +17,17 @@ class CaptureListUpdater: NSObject {
             return;
         }
         let URL = ApiConstant.pathFor(type: .capture)
-        Alamofire.request(URL, method: .post, parameters: ["user_id": PreferencesStore.sharedInstance.user.id ?? ""], encoding: URLEncoding.default).responseJSON { response in
+        var headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        if let token = PreferencesStore.sharedInstance.user.authToken{
+            headers = [
+                "Authorization": "Bearer \(token)",
+                "Accept": "application/json"
+            ]
+        }
+
+        Alamofire.request(URL, method: .post, parameters: ["user_id": PreferencesStore.sharedInstance.user.id ?? ""], encoding: URLEncoding.default, headers:headers).responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
             print("Result: \(response.result)")                         // response serialization result

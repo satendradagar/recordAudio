@@ -17,7 +17,18 @@ class FileUploader: NSObject {
             return;
         }
         let URL = ApiConstant.pathFor(type: .favourite)
-        Alamofire.request(URL, method: .post, parameters: ["user_id": PreferencesStore.sharedInstance.user.id ?? ""], encoding: URLEncoding.default).responseJSON { response in
+        
+        var headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        if let token = PreferencesStore.sharedInstance.user.authToken{
+            headers = [
+                "Authorization": "Bearer \(token)",
+                "Accept": "application/json"
+            ]
+        }
+
+        Alamofire.request(URL, method: .post, parameters: ["user_id": PreferencesStore.sharedInstance.user.id ?? ""], encoding: URLEncoding.default, headers:headers).responseJSON { response in
             print("Request: \(String(describing: response.request))")   // original url request
             print("Response: \(String(describing: response.response))") // http url response
             print("Result: \(response.result)")                         // response serialization result
@@ -81,6 +92,15 @@ class FileUploader: NSObject {
                                   ]
 //        let data = try! Data.init(contentsOf:fileUrl!)
         let data = FileManager.default.contents(atPath: filePath)
+        var headers: HTTPHeaders = [
+            "Accept": "application/json"
+        ]
+        if let token = PreferencesStore.sharedInstance.user.authToken{
+            headers = [
+                "Authorization": "Bearer \(token)",
+                "Accept": "application/json"
+            ]
+        }
 
         Alamofire.upload(multipartFormData:
         {
@@ -94,7 +114,7 @@ class FileUploader: NSObject {
 //            multipartFormData.append(data! , withName: "file" , mimeType: "audio/mpeg")
             multipartFormData.append(data!, withName: "file", fileName: fileUrl.lastPathComponent ?? "File.aiff", mimeType: "audio/mpeg")
             
-        }, to:URL,headers:nil)
+        }, to:URL,headers:headers)
         { (result) in
             switch result {
             case .success(let upload,_,_ ):

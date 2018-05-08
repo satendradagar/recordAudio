@@ -9,7 +9,8 @@
 import Foundation
 
 enum ApiConstant: String {
-    case root = "http://ec2-35-177-218-234.eu-west-2.compute.amazonaws.com"
+//    case root = "http://ec2-35-177-218-234.eu-west-2.compute.amazonaws.com"
+    case root = "http://beta.hello-demo.com"
     case login = "api/login"
     case favourite = "api/get-favourite"
     case inbox = "api/get-inbox"

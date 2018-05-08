@@ -127,7 +127,7 @@ class FileUploader: NSObject {
                         if response.result.value != nil
                         {
                             let dict :NSDictionary = response.result.value! as! NSDictionary
-                            let status = dict.value(forKey: "error_code")as! String
+                            let status = dict.value(forKey: "error_code")as? String
                             if status=="200"
                             {
                                 print("DATA UPLOAD SUCCESSFULLY")

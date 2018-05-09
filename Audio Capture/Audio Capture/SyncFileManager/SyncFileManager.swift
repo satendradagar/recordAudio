@@ -23,6 +23,9 @@ class SyncFile: NSObject {
     var uploadStatus = FileStatus.notSynced
     var isRecording = false
     var type = "capture"
+    var timer: Timer?
+    var iconState = false
+    var animationCount = 0;
     
     init(name:String) {
         fileName = name
@@ -53,8 +56,10 @@ class SyncFile: NSObject {
             if isRecording{
                 localPath = RecordingStoreManager.recordingRootFilePathFor(fileName)
             }
+            startTimer()
             FileUploader.uploadMediaAtPath(localPath,type: self.type, completion: { (path, status) in
-                
+                self.stopTimer()
+
                 if (status == true){
                     self.uploadStatus = .uploaded
                     completion(self.fileName)
@@ -67,9 +72,46 @@ class SyncFile: NSObject {
             })
         }
         else{
+            self.stopTimer()
             completion(self.fileName)
         }
     }
+    
+    func startTimer() {
+        
+        if timer == nil {
+            animationCount = 0;
+            timer = Timer.scheduledTimer(timeInterval: 1.0/16.0, target: self, selector: #selector(self.loop), userInfo: nil, repeats: true)
+        }
+    }
+    
+    func stopTimer() {
+
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+        (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
+
+    }
+    
+    @objc func loop(timer:Timer) {
+        //do something
+        (NSApp.delegate as? AppDelegate)?.setupMenuImage(imageName: "status_blue\(animationCount)");
+
+//        if iconState {
+//            (NSApp.delegate as? AppDelegate)?.setupMenuImage(imageName: "status_blue");
+//
+//        }
+//        else{
+//            (NSApp.delegate as? AppDelegate)?.setupMenuImage(imageName: "status_white");
+//        }
+        animationCount = animationCount + 1
+        animationCount = animationCount%16;
+        
+        iconState = !iconState
+    }
+
     
 }
 
@@ -78,7 +120,6 @@ class SyncFileManager: NSObject {
     var files = [SyncFile]()
     var syncIndex = 0
 //    static let shared = SyncFileManager()
-    var timer: Timer?
 
    override init() {
 //        let files = RecordingStoreManager.syncFiles()
@@ -135,21 +176,4 @@ class SyncFileManager: NSObject {
         
     }
     
-    func startTimer() {
-        
-        if timer == nil {
-            timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(self.loop), userInfo: nil, repeats: true)
-        }
-    }
-    
-    func stopTimer() {
-        if timer != nil {
-            timer?.invalidate()
-            timer = nil
-        }
-    }
-    
-    @objc func loop(timer:Timer) {
-        //do something
-    }
 }

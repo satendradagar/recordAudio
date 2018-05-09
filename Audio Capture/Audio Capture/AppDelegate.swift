@@ -52,24 +52,32 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func setupMenuForNormal() {
-        
         let img = NSImage(named: NSImage.Name("status_Recording"))
         statusItem.image = img
         statusItem.title = ""
-
-
     }
 
+
+    func setupMenuImage(imageName:String) {
+        if menu.isRec{
+            return;
+        }
+        let img = NSImage(named: NSImage.Name(imageName))
+        statusItem.image = img
+        statusItem.title = ""
+    }
+    
+    
     func setupMenuWithButton() {
-        let button = NSButton(frame: CGRect(x: 0, y: 0, width: 41, height: 18)) as? NSButton
+        let button = NSButton(frame: CGRect(x: 0, y: 0, width: 41, height: 18))
         statusItem.view = button
         let img = NSImage(named: NSImage.Name("status_Recording"))
-        button?.image = img
+        button.image = img
 //        button?.title = "Audio"
         //    [button highlight:YES];
         //    button.bezelStyle = NSRecessedBezelStyle;
         //    [button setTransparent:YES];
-        button?.isBordered = false
+        button.isBordered = false
         //    [button setTarget:self];
         //    [button setAction:@selector(showMainMenu)];
     }

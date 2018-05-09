@@ -9,6 +9,8 @@
 
 import Foundation
 import Cocoa
+import RxSwift
+import RxFileMonitor
 
 let  FFTViewControllerFFTWindowSize = 4096 as vDSP_Length;
 
@@ -72,6 +74,9 @@ class MenuBarActionHandler: NSMenu {
     var captureList: [MusicItem]?
 
     var playerController = MiniAudioPlayerController.instance()
+
+    let disposeBag = DisposeBag()
+    var timer:Timer?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -90,6 +95,7 @@ class MenuBarActionHandler: NSMenu {
         frequencyMenu.isHidden = true
         noteMenu.view = nil
         frequencyMenu.view = nil
+        syncFilesManager.checkAndSyncFiles();
 
 //        self.myCaptures.attributedTitle = self.attributedTitleWith(title: "Hello", subTitle: "New")
 //        self.recordAudio.image = #imageLiteral(resourceName: "record")
@@ -106,6 +112,7 @@ class MenuBarActionHandler: NSMenu {
 //        statusItemView.title = "00:00:00"
         configuureRecordingView()
 //        self.updateMenuBarTitleWith(note: "Hell", frequency: "Frequ")
+        registerForSyncFolderChange()
     }
     
     func reloadFavouriteWithStore()  {
@@ -164,6 +171,7 @@ class MenuBarActionHandler: NSMenu {
         let isRecording = recordingController.isRecording();
         print(isRecording)
         if (isRecording){
+            stopTimer()
             isRec = false
             recordingController.stopRecording()
             recordTitle.stringValue = "     Capture Audio"
@@ -172,10 +180,12 @@ class MenuBarActionHandler: NSMenu {
             noteMenu.view = nil
             frequencyMenu.view = nil
             (NSApp.delegate as? AppDelegate)?.setupMenuForNormal();
-
+            syncRecordingManager.checkAndSyncFiles()
+            
         }
         else{
             isRec = true
+            startTimer()
             (NSApp.delegate as? AppDelegate)?.setupMenuForRecording();
 
 //            recordingController.createRecorderFromMix()
@@ -396,8 +406,8 @@ extension MenuBarActionHandler : NSMenuDelegate {
             let isRecording = recordingController.isRecording();
             print(isRecording)
             if (isRecording == false){
-                syncFilesManager.checkAndSyncFiles()
-                syncRecordingManager.checkAndSyncFiles()
+//                syncFilesManager.checkAndSyncFiles()
+//                syncRecordingManager.checkAndSyncFiles()
                 updateSyncRelatedMenu()
                 FavouriteListUpdater.updateFavouriteItemList()
                 InboxListUpdater.updateInboxItemList()
@@ -517,6 +527,27 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
 
     }
     
+    func registerForSyncFolderChange() -> Void {
+        
+        let syncURL = URL.init(fileURLWithPath: RecordingStoreManager.syncRootPath())
+        
+        FolderContentMonitor(url: syncURL, latency: 0)
+            .asObservable()
+            
+            // Ignore Finder folder settings
+            .filter { $0.filename != ".DS_Store" }
+            
+            // Report changes into app's main log
+            .subscribeOn(MainScheduler.asyncInstance)
+            .subscribe({ event in
+                print("\(event.debugDescription)")
+                self.syncFilesManager.checkAndSyncFiles();
+
+            })
+            .disposed(by: disposeBag)
+
+    }
+    
     func attributedTitleWith(title:String,subTitle:String) -> NSAttributedString {
         print("\(title) \(subTitle)");
         var textColor = NSColor.black
@@ -560,7 +591,28 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
         return attrStr
         
     }
+    func startTimer() {
+        
+        if timer == nil {
+            timer = Timer.scheduledTimer(timeInterval: 15*60, target: self, selector: #selector(self.loop), userInfo: nil, repeats: false)
+        }
+    }
     
+    func stopTimer() {
+        
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+        
+    }
+    
+    @objc func loop(timer:Timer) {
+        //do something
+        self.didClickRecordAudio(nil)
+    }
+    
+
 }
 
 extension Double {

@@ -541,7 +541,11 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
             .subscribeOn(MainScheduler.asyncInstance)
             .subscribe({ event in
                 print("\(event.debugDescription)")
-                self.syncFilesManager.checkAndSyncFiles();
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+                    print("Sync starting....")
+                    self.syncFilesManager.checkAndSyncFiles();
+
+                })
 
             })
             .disposed(by: disposeBag)

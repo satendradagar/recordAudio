@@ -486,7 +486,7 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
             
             if let freq = self.maxFrequency{
                 if ( freq > 20.0 ){
-                    let formatted = String(format: "%.0f", freq)
+                    let formatted = String(format: "%.2f", freq)
 
                     freqStr = formatted
                     self.maxFrequencyLabel.stringValue = freqStr
@@ -504,11 +504,13 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
 //                        self.noteLabel.stringValue = ""
 //                    }
                 }
+                let formatted = String(format: "%08.2f", freq)
+                freqStr = formatted
                 self.updateMenuBarTitleWith(note: noteStr, frequency: freqStr)
 
             }
             else{
-                self.updateMenuBarTitleWith(note: "--", frequency: "---")
+                self.updateMenuBarTitleWith(note: "-----", frequency: "--")
 
             }
             

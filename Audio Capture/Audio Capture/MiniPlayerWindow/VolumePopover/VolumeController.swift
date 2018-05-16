@@ -14,12 +14,13 @@ class VolumeController: NSViewController,NSPopoverDelegate {
     @IBOutlet weak var slider: NSSlider!
 
     var closureBlock: ((_ isClose:Bool, _ volume:Double) -> Bool)?
+    
     @IBAction private func didClickClosePopover(_ sender: Any) {
         _ = closureBlock!(true, slider.doubleValue)
         loginPopover.close()
     }
 
-    init(nibName nibNameOrNil: String, bundle nibBundleOrNil: Bundle, popOverDismissHandler popOverClosure: @escaping ((Bool, Double)) -> Bool) {
+    init(nibName nibNameOrNil: String, bundle nibBundleOrNil: Bundle, popOverDismissHandler popOverClosure: @escaping (Bool, Double) -> Bool) {
         super.init(nibName: NSNib.Name(rawValue: nibNameOrNil), bundle: nibBundleOrNil)
         
         closureBlock = popOverClosure

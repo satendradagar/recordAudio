@@ -17,6 +17,7 @@ extension NSViewController{
         let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: storyboardName), bundle: nil)
         return storyboard.initialViewController()
     }
+//    btistaa@gmail.com 123456
     
     func addSSChildViewController(child:NSViewController){
         
@@ -24,11 +25,18 @@ extension NSViewController{
         self.addSSChildViewController(child: child, withView: subView)
     }
     func fit(childView: NSView, parentView: NSView) {
-        childView.translatesAutoresizingMaskIntoConstraints = false
-        childView.topAnchor.constraint(equalTo: parentView.topAnchor).isActive = true
-        childView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
-        childView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
-        childView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
+        
+        if #available(OSX 10.11, *) {
+            childView.translatesAutoresizingMaskIntoConstraints = false
+            childView.topAnchor.constraint(equalTo: parentView.topAnchor).isActive = true
+            childView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor).isActive = true
+            childView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor).isActive = true
+            childView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor).isActive = true
+        } else {
+            print("Could not set constaints on the views.")
+            // Fallback on earlier versions
+        }
+     
     }
     
     func addSSChildViewController(child:NSViewController, withView subView:NSView){

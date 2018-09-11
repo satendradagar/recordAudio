@@ -17,13 +17,13 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     // Insert code here to initialize your application
-//    NSArray *pathComponents = [[[NSBundle mainBundle] bundlePath] pathComponents];
-//    pathComponents = [pathComponents subarrayWithRange:NSMakeRange(0, [pathComponents count] - 4)];
-//    NSString *path = [NSString pathWithComponents:pathComponents];
-//    NSLog(@"Launch app at path: %@",path);
-//    [[NSWorkspace sharedWorkspace] launchApplication:path];
-//    [NSApp terminate:nil];
-//
+    NSArray *pathComponents = [[[NSBundle mainBundle] bundlePath] pathComponents];
+    pathComponents = [pathComponents subarrayWithRange:NSMakeRange(0, [pathComponents count] - 4)];
+    NSString *path = [NSString pathWithComponents:pathComponents];
+    NSLog(@"Launch app at path: %@",path);
+    [[NSWorkspace sharedWorkspace] launchApplication:path];
+    [NSApp terminate:nil];
+
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

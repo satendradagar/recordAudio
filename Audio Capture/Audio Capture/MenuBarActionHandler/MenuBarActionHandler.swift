@@ -566,13 +566,14 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
         
         // *** set LineSpacing property in points ***
 //        paragraphStyle.lineSpacing = 0.0 // Whatever line spacing you want in points
-        paragraphStyle.lineSpacing = 0.5 // change line spacing between each line like 30 or 40
-        paragraphStyle.maximumLineHeight = 6
+        paragraphStyle.lineSpacing = 1.5 // change line spacing between each line like 30 or 40
+        paragraphStyle.maximumLineHeight = 10
         let stringAttributes = [
         
             NSAttributedStringKey.font : NSFont(name: "Helvetica Neue", size: 12.0)!,
 //            NSAttributedStringKey.underlineStyle : 1,
             NSAttributedStringKey.foregroundColor : textColor,
+            NSAttributedStringKey.paragraphStyle : paragraphStyle,
 
 //            NSAttributedStringKey.textEffect : NSAttributedString.TextEffectStyle.letterpressStyle,
 //            NSAttributedStringKey.strokeWidth : 2.0
@@ -580,13 +581,19 @@ extension MenuBarActionHandler: RecordingManagerDelegate,EZAudioFFTDelegate {
             ] as [NSAttributedStringKey : Any]
         let atrributedString = NSAttributedString(string: "\(title)\n", attributes: stringAttributes)
         
+        let paragraphStyle2 = NSMutableParagraphStyle()
+        
+        // *** set LineSpacing property in points ***
+        //        paragraphStyle.lineSpacing = 0.0 // Whatever line spacing you want in points
+        paragraphStyle2.lineSpacing = 0.5 // change line spacing between each line like 30 or 40
+        paragraphStyle2.maximumLineHeight = 6
         let stringAttributes2 = [
             NSAttributedStringKey.font : NSFont(name: "Helvetica Neue", size: 8.0)!,
 //            NSAttributedStringKey.underlineStyle : 1,
             NSAttributedStringKey.foregroundColor : textColor,
 //            NSAttributedStringKey.textEffect : NSAttributedString.TextEffectStyle.letterpressStyle,
 //            NSAttributedStringKey.strokeWidth : 2.0,
-            NSAttributedStringKey.paragraphStyle : paragraphStyle,
+            NSAttributedStringKey.paragraphStyle : paragraphStyle2,
             ] as [NSAttributedStringKey : Any]
         let atrributedString2 = NSAttributedString(string: subTitle, attributes: stringAttributes2)
         

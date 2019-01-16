@@ -47,7 +47,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //            img = NSImage(named: NSImage.Name("statusDark"))
 //        }
         statusItem.image = nil
-        statusItem.attributedTitle = title
+        statusItem.button?.attributedTitle = title
         
     }
 

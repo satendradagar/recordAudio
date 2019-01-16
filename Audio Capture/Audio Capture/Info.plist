@@ -33,6 +33,8 @@
 	<string>Copyright © 2017 CB. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>USES MICROPHONE TO RECORD VOICE</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
 </dict>

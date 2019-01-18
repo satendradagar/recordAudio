@@ -123,6 +123,8 @@ class FileUploader: NSObject {
                 })
                 upload.responseJSON
                     { response in
+                        print("\(NSString.init(data: response.data!, encoding: 8))")
+
                         //print response.result
                         if response.result.value != nil
                         {
@@ -141,6 +143,7 @@ class FileUploader: NSObject {
                 }
             case .failure(let encodingError):
                 completion(filePath, false)
+                print(encodingError)
                 break
             }
         }
